@@ -21,3 +21,9 @@ monolog:
 
 assetic:
     use_controller: true
+
+swiftmailer:
+    transport: gmail
+    username:  angelus985
+    password:  mybabydana
+    delivery_address:  angelus985@gmail.com

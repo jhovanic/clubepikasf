@@ -1,0 +1,97 @@
+<h1>Bono</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ entity.name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ entity.description }}</td>
+        </tr>
+        <tr>
+            <th>Long_description</th>
+            <td>{{ entity.longdescription }}</td>
+        </tr>
+        <tr>
+            <th>Information</th>
+            <td>{{ entity.information }}</td>
+        </tr>
+        <tr>
+            <th>Conditions</th>
+            <td>{{ entity.conditions }}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>{{ entity.image }}</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>{{ entity.price }}</td>
+        </tr>
+        <tr>
+            <th>Discount</th>
+            <td>{{ entity.discount }}</td>
+        </tr>
+        <tr>
+            <th>Save</th>
+            <td>{{ entity.save }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ entity.type }}</td>
+        </tr>
+        <tr>
+            <th>Unpublish_date</th>
+            <td>{{ entity.unpublishdate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Is_active</th>
+            <td>{{ entity.isactive }}</td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>{{ entity.category }}</td>
+        </tr>
+        <tr>
+            <th>Company</th>
+            <td>{{ entity.company }}</td>
+        </tr>
+        <tr>
+            <th>Membership</th>
+            <td>{{ entity.membership }}</td>
+        </tr>
+        <tr>
+            <th>Created_at</th>
+            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Updated_at</th>
+            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('bono') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('bono_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('bono_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
