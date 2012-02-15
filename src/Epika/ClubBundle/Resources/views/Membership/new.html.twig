@@ -1,3 +1,5 @@
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block body %}
 <h1>Membership creation</h1>
 
 <form action="{{ path('membership_create') }}" method="post" {{ form_enctype(form) }}>
@@ -14,3 +16,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}

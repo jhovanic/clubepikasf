@@ -141,12 +141,12 @@ class CategoryController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('EpikaClubBundle:Category')->find($id);
-        $entity->setUpdatedAt(new \DateTime('now'));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
 
+        $entity->setUpdatedAt(new \DateTime('now'));
         $editForm   = $this->createForm(new CategoryType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 

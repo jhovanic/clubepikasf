@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Epika\ClubBundle\Entity\Company;
 use Epika\ClubBundle\Form\CompanyType;
+use Epika\ClubBundle\Entity\Contacto;
+use Epika\ClubBundle\Form\ContactoType;
 
 /**
  * Company controller.
@@ -63,11 +65,15 @@ class CompanyController extends Controller
     public function newAction()
     {
         $entity = new Company();
+        $contacto = new Contacto();
         $form   = $this->createForm(new CompanyType(), $entity);
+        $cform = $this->createForm(new ContactoType(), $contacto);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView()
+        	'contacto' => $contacto,
+            'form'   => $form->createView(),
+        	'cform' => $cform->createView()
         );
     }
 
@@ -81,6 +87,8 @@ class CompanyController extends Controller
     public function createAction()
     {
         $entity  = new Company();
+        $entity->setCreatedAt(new \DateTime('now'));
+        $entity->setUpdatedAt(new \DateTime('now'));
         $request = $this->getRequest();
         $form    = $this->createForm(new CompanyType(), $entity);
         $form->bindRequest($request);
@@ -89,7 +97,8 @@ class CompanyController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
-
+            
+            
             return $this->redirect($this->generateUrl('company_show', array('id' => $entity->getId())));
             
         }
@@ -142,7 +151,8 @@ class CompanyController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Company entity.');
         }
-
+		
+        $entity->setUpdatedAt(new \DateTime('now'));
         $editForm   = $this->createForm(new CompanyType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
@@ -154,7 +164,7 @@ class CompanyController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('company_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('company_show', array('id' => $id)));
         }
 
         return array(

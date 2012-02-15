@@ -1,12 +1,15 @@
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block body %}
 <h1>Company creation</h1>
 
 <form action="{{ path('company_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
+    <br /><h2>Contacto</h2>
+    {{ form_widget(cform) }}
     <p>
         <button type="submit">Create</button>
     </p>
 </form>
-
 <ul class="record_actions">
     <li>
         <a href="{{ path('company') }}">
@@ -14,3 +17,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}

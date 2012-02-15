@@ -81,6 +81,8 @@ class MembershipController extends Controller
     public function createAction()
     {
         $entity  = new Membership();
+        $entity->setCreatedAt(new \DateTime('now'));
+        $entity->setUpdatedAt(new \DateTime('now'));
         $request = $this->getRequest();
         $form    = $this->createForm(new MembershipType(), $entity);
         $form->bindRequest($request);
@@ -138,6 +140,7 @@ class MembershipController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('EpikaClubBundle:Membership')->find($id);
+        $entity->setUpdatedAt(new \DateTime('now'));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Membership entity.');
@@ -154,7 +157,7 @@ class MembershipController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('membership_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('membership_show', array('id' => $id)));
         }
 
         return array(

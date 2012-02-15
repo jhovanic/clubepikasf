@@ -63,6 +63,13 @@ class BonoController extends Controller
     public function newAction()
     {
         $entity = new Bono();
+        $em = $this->getDoctrine()->getEntityManager();
+        $companies = $em->getRepository('EpikaClubBundle:Company')->findAll();
+        
+        if(empty($companies)){
+        	throw $this->createNotFoundException('No hay Establecimientos creados.');
+        }
+        
         $form   = $this->createForm(new BonoType(), $entity);
 
         return array(

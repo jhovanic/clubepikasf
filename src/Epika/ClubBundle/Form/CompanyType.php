@@ -19,9 +19,7 @@ class CompanyType extends AbstractType
             ->add('cellphone')
             ->add('category')
             ->add('city')
-            ->add('contacto')
-            ->add('created_at')
-            ->add('updated_at')
+            
         ;
     }
 
