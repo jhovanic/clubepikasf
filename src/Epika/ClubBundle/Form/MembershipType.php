@@ -11,9 +11,16 @@ class MembershipType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('price')
-            ->add('quantity')
+            ->add('price','money',array('currency' => 'COP'))
+            ->add('quantity','number')
         ;
+    }
+    
+    public function getDefaultOptions(array $options)
+    {
+    	return array(
+    			'data_class' => 'Epika\ClubBundle\Entity\Membership'
+    	);
     }
 
     public function getName()

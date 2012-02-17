@@ -1,24 +1,41 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block body %}
-<h1>Membership edit</h1>
+{% block contenido_title %}Editar Membresia{% endblock %}
+{% block contenido %}
 
-<form action="{{ path('membership_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
+<form action="{{ path('membresia_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<table>
+    	<tr>
+    		<td>{{ form_label(edit_form.name,'Nombre') }}</td>
+    		<td>{{ form_widget(edit_form.name) }}</td>
+    		<td>{{ form_errors(edit_form.name) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.price,'Precio') }}</td>
+    		<td>{{ form_widget(edit_form.price) }}</td>
+    		<td>{{ form_errors(edit_form.price) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.quantity,'Cantidad') }}</td>
+    		<td>{{ form_widget(edit_form.quantity) }}</td>
+    		<td>{{ form_errors(edit_form.quantity) }}</td>
+    	</tr>
+    </table>
+	{{ form_rest(edit_form) }}
     <p>
-        <button type="submit">Edit</button>
+        <button type="submit">Editar</button>
     </p>
 </form>
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('membership') }}">
-            Back to the list
+        <a href="{{ path('membresia') }}">
+            Volver
         </a>
     </li>
     <li>
-        <form action="{{ path('membership_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('membresia_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit">Eliminar</button>
         </form>
     </li>
 </ul>

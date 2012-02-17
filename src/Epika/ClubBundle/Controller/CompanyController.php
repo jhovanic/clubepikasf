@@ -3,13 +3,13 @@
 namespace Epika\ClubBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Epika\ClubBundle\Entity\Company;
-use Epika\ClubBundle\Form\CompanyType;
 use Epika\ClubBundle\Entity\Contacto;
-use Epika\ClubBundle\Form\ContactoType;
+use Epika\ClubBundle\Form\CompanyType;
 
 /**
  * Company controller.
@@ -65,15 +65,11 @@ class CompanyController extends Controller
     public function newAction()
     {
         $entity = new Company();
-        $contacto = new Contacto();
         $form   = $this->createForm(new CompanyType(), $entity);
-        $cform = $this->createForm(new ContactoType(), $contacto);
 
         return array(
             'entity' => $entity,
-        	'contacto' => $contacto,
-            'form'   => $form->createView(),
-        	'cform' => $cform->createView()
+            'form'   => $form->createView()
         );
     }
 
@@ -87,18 +83,33 @@ class CompanyController extends Controller
     public function createAction()
     {
         $entity  = new Company();
-        $entity->setCreatedAt(new \DateTime('now'));
-        $entity->setUpdatedAt(new \DateTime('now'));
         $request = $this->getRequest();
         $form    = $this->createForm(new CompanyType(), $entity);
         $form->bindRequest($request);
+        $entity->setCreatedAt(new \DateTime('now'));
+        $entity->setUpdatedAt(new \DateTime('now'));
+        $entity->getContacto()->setCreatedAt(new \DateTime('now'));
+        $entity->getContacto()->setUpdatedAt(new \DateTime('now'));
+        $image = $request->files->get('image');
+        $photo = $request->files->get('photo');
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            
+        	if ($image !== null && $image->isValid()){
+            	$name = $entity->getNit().(new \DateTime('now')).'.'.$image->guessExtension();
+            	$image->move($entity->getUploadRootDir(),$name);
+            	$entity->setImage($name);
+            }
+            if ($photo !== null && $photo->isValid()){
+            	$pname = $entity->getNit().(new \DateTime('now')).'.'.$image->guessExtension();
+            	$photo->move($entity->getContacto()->getUploadRootDir(),$pname);
+            	$entity->getContacto()->setPhoto($pname);
+            }
+        	$em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
+            $em->persist($entity->getContacto());
             $em->flush();
-            
-            
+
             return $this->redirect($this->generateUrl('company_show', array('id' => $entity->getId())));
             
         }
@@ -151,17 +162,33 @@ class CompanyController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Company entity.');
         }
-		
-        $entity->setUpdatedAt(new \DateTime('now'));
+
         $editForm   = $this->createForm(new CompanyType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
 
         $editForm->bindRequest($request);
+        $entity->setCreatedAt(new \DateTime('now'));
+        $entity->setUpdatedAt(new \DateTime('now'));
+        $entity->getContacto()->setCreatedAt(new \DateTime('now'));
+        $entity->getContacto()->setUpdatedAt(new \DateTime('now'));
+        $image = $request->files->get('image');
+        $photo = $request->files->get('photo');
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
+        	if ($image !== null && $image->isValid()){
+        		$name = $entity->getNit().(new \DateTime('now')).'.'.$image->guessExtension();
+        		$image->move($entity->getUploadRootDir(),$name);
+        		$entity->setImage($name);
+        	}
+        	if ($photo !== null && $photo->isValid()){
+        		$pname = $entity->getNit().(new \DateTime('now')).'.'.$image->guessExtension();
+        		$photo->move($entity->getContacto()->getUploadRootDir(),$pname);
+        		$entity->getContacto()->setPhoto($pname);
+        	}
+        	$em->persist($entity);
+        	$em->persist($entity->getContacto());
             $em->flush();
 
             return $this->redirect($this->generateUrl('company_show', array('id' => $id)));

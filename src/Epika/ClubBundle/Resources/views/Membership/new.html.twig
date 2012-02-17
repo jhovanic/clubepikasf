@@ -1,18 +1,35 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block body %}
-<h1>Membership creation</h1>
+{% block contenido_title %}Nueva Membresia{% endblock %}
+{% block contenido %}
 
-<form action="{{ path('membership_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+<form action="{{ path('membresia_create') }}" method="post" {{ form_enctype(form) }}>
+    <table>
+    	<tr>
+    		<td>{{ form_label(form.name,'Nombre') }}</td>
+    		<td>{{ form_widget(form.name) }}</td>
+    		<td>{{ form_errors(form.name) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.price,'Precio') }}</td>
+    		<td>{{ form_widget(form.price) }}</td>
+    		<td>{{ form_errors(form.price) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.quantity,'Cantidad') }}</td>
+    		<td>{{ form_widget(form.quantity) }}</td>
+    		<td>{{ form_errors(form.quantity) }}</td>
+    	</tr>
+    </table>
+	{{ form_rest(form) }}
     <p>
-        <button type="submit">Create</button>
+        <button type="submit">Nueva Membresia</button>
     </p>
 </form>
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('membership') }}">
-            Back to the list
+        <a href="{{ path('membresia') }}">
+            Volver
         </a>
     </li>
 </ul>

@@ -1,30 +1,22 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block body %}
-<h1>Company list</h1>
-
+{% block contenido_title %}Compañias{% endblock %}
+{% block contenido %}
 <table class="records_list">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
+            <th>Nombre</th>
             <th>Nit</th>
-            <th>Address</th>
-            <th>Neighborhood</th>
+            <th>Dirección</th>
+            <th>Barrio</th>
             <th>Email</th>
-            <th>Phone</th>
-            <th>Cellphone</th>
-            <th>Category</th>
-            <th>City</th>
-            <th>Contacto</th>
-            <th>Created_at</th>
-            <th>Updated_at</th>
+            <th>Telefono</th>
+            <th>Celular</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('company_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.name }}</td>
             <td>{{ entity.nit }}</td>
             <td>{{ entity.address }}</td>
@@ -32,18 +24,13 @@
             <td>{{ entity.email }}</td>
             <td>{{ entity.phone }}</td>
             <td>{{ entity.cellphone }}</td>
-            <td>{{ entity.category }}</td>
-            <td>{{ entity.city }}</td>
-            <td>{{ entity.contacto }}</td>
-            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
             <td>
                 <ul>
                     <li>
-                        <a href="{{ path('company_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('company_show', { 'id': entity.id }) }}">Ver</a>
                     </li>
                     <li>
-                        <a href="{{ path('company_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('company_edit', { 'id': entity.id }) }}">Editar</a>
                     </li>
                 </ul>
             </td>
@@ -55,7 +42,7 @@
 <ul>
     <li>
         <a href="{{ path('company_new') }}">
-            Create a new entry
+            Nueva Compañia
         </a>
     </li>
 </ul>

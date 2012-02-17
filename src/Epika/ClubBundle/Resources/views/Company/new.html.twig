@@ -1,19 +1,104 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block body %}
-<h1>Company creation</h1>
+{% block contenido_title %}Nueva Compañia{% endblock %}
+{% block contenido %}
 
 <form action="{{ path('company_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <br /><h2>Contacto</h2>
-    {{ form_widget(cform) }}
+    <div>{{ form_errors(form) }}</div>
+    <table>
+    	<tr>
+    		<th>{{ form_label(form.name) }}</th>
+    		<td>{{ form_widget(form.name) }}</td>
+    		<td>{{ form_errors(form.name) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.nit) }}</th>
+    		<td>{{ form_widget(form.nit) }}</td>
+    		<td>{{ form_errors(form.nit) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.address) }}</th>
+    		<td>{{ form_widget(form.address) }}</td>
+    		<td>{{ form_errors(form.address) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.neighborhood) }}</th>
+    		<td>{{ form_widget(form.neighborhood) }}</td>
+    		<td>{{ form_errors(form.neighborhood) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.email) }}</th>
+    		<td>{{ form_widget(form.email) }}</td>
+    		<td>{{ form_errors(form.email) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.phone) }}</th>
+    		<td>{{ form_widget(form.phone) }}</td>
+    		<td>{{ form_errors(form.phone) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.cellphone) }}</th>
+    		<td>{{ form_widget(form.cellphone) }}</td>
+    		<td>{{ form_errors(form.cellphone) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.image) }}</th>
+    		<td>{{ form_widget(form.image) }}</td>
+    		<td>{{ form_errors(form.image) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.category) }}</th>
+    		<td>{{ form_widget(form.category) }}</td>
+    		<td>{{ form_errors(form.category) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.department) }}</th>
+    		<td>{{ form_widget(form.department) }}</td>
+    		<td>{{ form_errors(form.department) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.city) }}</th>
+    		<td>{{ form_widget(form.city) }}</td>
+    		<td>{{ form_errors(form.city) }}</td>
+    	</tr>
+    </table>
+    <h1>Contacto</h1>
+    <table>
+    	<tr>
+    		<th>{{ form_label(form.contacto.name) }}</th>
+    		<td>{{ form_widget(form.contacto.name) }}</td>
+    		<td>{{ form_errors(form.contacto.name) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.contacto.last_name) }}</th>
+    		<td>{{ form_widget(form.contacto.last_name) }}</td>
+    		<td>{{ form_errors(form.contacto.last_name) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.contacto.cellphone) }}</th>
+    		<td>{{ form_widget(form.contacto.cellphone) }}</td>
+    		<td>{{ form_errors(form.contacto.cellphone) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.contacto.email) }}</th>
+    		<td>{{ form_widget(form.contacto.email) }}</td>
+    		<td>{{ form_errors(form.contacto.email) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.contacto.photo) }}</th>
+    		<td>{{ form_widget(form.contacto.photo) }}</td>
+    		<td>{{ form_errors(form.contacto.photo) }}</td>
+    	</tr>
+    </table>
+    {{ form_rest(form) }}
     <p>
-        <button type="submit">Create</button>
+        <button type="submit">Crear</button>
     </p>
 </form>
+
 <ul class="record_actions">
     <li>
         <a href="{{ path('company') }}">
-            Back to the list
+            Volver
         </a>
     </li>
 </ul>

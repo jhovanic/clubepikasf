@@ -1,9 +1,95 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block body %}
-<h1>Company edit</h1>
+{% block contenido_title %}Editar Compañia{% endblock %}
+{% block contenido %}
 
 <form action="{{ path('company_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
+    <div>{{ form_errors(edit_form) }}</div>
+    <table>
+    	<tr>
+    		<th>{{ form_label(edit_form.name) }}</th>
+    		<td>{{ form_widget(edit_form.name) }}</td>
+    		<td>{{ form_errors(edit_form.name) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.nit) }}</th>
+    		<td>{{ form_widget(edit_form.nit) }}</td>
+    		<td>{{ form_errors(edit_form.nit) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.address) }}</th>
+    		<td>{{ form_widget(edit_form.address) }}</td>
+    		<td>{{ form_errors(edit_form.address) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.neighborhood) }}</th>
+    		<td>{{ form_widget(edit_form.neighborhood) }}</td>
+    		<td>{{ form_errors(edit_form.neighborhood) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.email) }}</th>
+    		<td>{{ form_widget(edit_form.email) }}</td>
+    		<td>{{ form_errors(edit_form.email) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.phone) }}</th>
+    		<td>{{ form_widget(edit_form.phone) }}</td>
+    		<td>{{ form_errors(edit_form.phone) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.cellphone) }}</th>
+    		<td>{{ form_widget(edit_form.cellphone) }}</td>
+    		<td>{{ form_errors(edit_form.cellphone) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.image) }}</th>
+    		<td>{{ form_widget(edit_form.image) }}</td>
+    		<td>{{ form_errors(edit_form.image) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.category) }}</th>
+    		<td>{{ form_widget(edit_form.category) }}</td>
+    		<td>{{ form_errors(edit_form.category) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.department) }}</th>
+    		<td>{{ form_widget(edit_form.department) }}</td>
+    		<td>{{ form_errors(edit_form.department) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.city) }}</th>
+    		<td>{{ form_widget(edit_form.city) }}</td>
+    		<td>{{ form_errors(edit_form.city) }}</td>
+    	</tr>
+    </table>
+    <h1>Contacto</h1>
+    <table>
+    	<tr>
+    		<th>{{ form_label(edit_form.contacto.name) }}</th>
+    		<td>{{ form_widget(edit_form.contacto.name) }}</td>
+    		<td>{{ form_errors(edit_form.contacto.name) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.contacto.last_name) }}</th>
+    		<td>{{ form_widget(edit_form.contacto.last_name) }}</td>
+    		<td>{{ form_errors(edit_form.contacto.last_name) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.contacto.cellphone) }}</th>
+    		<td>{{ form_widget(edit_form.contacto.cellphone) }}</td>
+    		<td>{{ form_errors(edit_form.contacto.cellphone) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.contacto.email) }}</th>
+    		<td>{{ form_widget(edit_form.contacto.email) }}</td>
+    		<td>{{ form_errors(edit_form.contacto.email) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.contacto.photo) }}</th>
+    		<td>{{ form_widget(edit_form.contacto.photo) }}</td>
+    		<td>{{ form_errors(edit_form.contacto.photo) }}</td>
+    	</tr>
+    </table>
+    {{ form_rest(edit_form) }}
     <p>
         <button type="submit">Edit</button>
     </p>

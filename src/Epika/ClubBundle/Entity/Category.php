@@ -2,6 +2,8 @@
 
 namespace Epika\ClubBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +29,16 @@ class Category
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Bono", mappedBy="category")
+     */
+    private $bonos;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Company", mappedBy="category")
+     */
+    private $companies;
 
     /**
      * @var datetime $created_at
@@ -41,6 +53,15 @@ class Category
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updated_at;
+    
+    
+    /**
+     * Constructor
+     */
+    public function __construct() {
+    	$this->bonos = new ArrayCollection();
+    	$this->companies = new ArrayCollection();
+    }
 
 
     /**
@@ -111,5 +132,45 @@ class Category
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Add bonos
+     *
+     * @param Epika\ClubBundle\Entity\Bono $bonos
+     */
+    public function addBono(\Epika\ClubBundle\Entity\Bono $bonos)
+    {
+        $this->bonos[] = $bonos;
+    }
+
+    /**
+     * Get bonos
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getBonos()
+    {
+        return $this->bonos;
+    }
+
+    /**
+     * Add companies
+     *
+     * @param Epika\ClubBundle\Entity\Company $companies
+     */
+    public function addCompany(\Epika\ClubBundle\Entity\Company $companies)
+    {
+        $this->companies[] = $companies;
+    }
+
+    /**
+     * Get companies
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCompanies()
+    {
+        return $this->companies;
     }
 }

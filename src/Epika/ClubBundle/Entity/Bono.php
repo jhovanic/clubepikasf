@@ -106,23 +106,20 @@ class Bono
     private $is_active;
 
     /**
-     * @var integer $category
-     *
-     * @ORM\Column(name="category", type="integer")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="bonos")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
     /**
-     * @var integer $company
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="bonos")
      *
-     * @ORM\Column(name="company", type="integer")
      */
     private $company;
 
     /**
-     * @var integer $membership
-     *
-     * @ORM\Column(name="membership", type="integer")
+     * @ORM\ManyToOne(targetEntity="Membership", inversedBy="bonos")
+     * 
      */
     private $membership;
 
@@ -392,66 +389,6 @@ class Bono
     }
 
     /**
-     * Set category
-     *
-     * @param integer $category
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-    }
-
-    /**
-     * Get category
-     *
-     * @return integer 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set company
-     *
-     * @param integer $company
-     */
-    public function setCompany($company)
-    {
-        $this->company = $company;
-    }
-
-    /**
-     * Get company
-     *
-     * @return integer 
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
-     * Set membership
-     *
-     * @param integer $membership
-     */
-    public function setMembership($membership)
-    {
-        $this->membership = $membership;
-    }
-
-    /**
-     * Get membership
-     *
-     * @return integer 
-     */
-    public function getMembership()
-    {
-        return $this->membership;
-    }
-
-    /**
      * Set created_at
      *
      * @param datetime $createdAt
@@ -489,5 +426,65 @@ class Bono
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Set category
+     *
+     * @param Epika\ClubBundle\Entity\Category $category
+     */
+    public function setCategory(\Epika\ClubBundle\Entity\Category $category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * Get category
+     *
+     * @return Epika\ClubBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set company
+     *
+     * @param Epika\ClubBundle\Entity\Company $company
+     */
+    public function setCompany(\Epika\ClubBundle\Entity\Company $company)
+    {
+        $this->company = $company;
+    }
+
+    /**
+     * Get company
+     *
+     * @return Epika\ClubBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set membership
+     *
+     * @param Epika\ClubBundle\Entity\Membership $membership
+     */
+    public function setMembership(\Epika\ClubBundle\Entity\Membership $membership)
+    {
+        $this->membership = $membership;
+    }
+
+    /**
+     * Get membership
+     *
+     * @return Epika\ClubBundle\Entity\Membership 
+     */
+    public function getMembership()
+    {
+        return $this->membership;
     }
 }

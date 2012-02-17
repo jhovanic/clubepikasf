@@ -1,7 +1,6 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block body %}
-<h1>Membership</h1>
-
+{% block contenido_title %}Membresia{% endblock %}
+{% block contenido %}
 <table class="record_properties">
     <tbody>
         <tr>
@@ -9,23 +8,33 @@
             <td>{{ entity.id }}</td>
         </tr>
         <tr>
-            <th>Name</th>
+            <th>Membresia</th>
             <td>{{ entity.name }}</td>
         </tr>
         <tr>
-            <th>Price</th>
+            <th>Precio</th>
             <td>{{ entity.price }}</td>
         </tr>
         <tr>
-            <th>Quantity</th>
+            <th>Cantidad</th>
             <td>{{ entity.quantity }}</td>
         </tr>
         <tr>
-            <th>Created_at</th>
+            <th>Bonos</th>
+            <td>
+            	<ul>
+            	{% for bono in entity.bonos %}
+            		<li>{{ bono.name }}</li>
+            	{% endfor %}
+            	</ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Creado</th>
             <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
         </tr>
         <tr>
-            <th>Updated_at</th>
+            <th>Actualizado</th>
             <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
         </tr>
     </tbody>
@@ -33,19 +42,19 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('membership') }}">
-            Back to the list
+        <a href="{{ path('membresia') }}">
+            Volver
         </a>
     </li>
     <li>
-        <a href="{{ path('membership_edit', { 'id': entity.id }) }}">
-            Edit
+        <a href="{{ path('membresia_edit', { 'id': entity.id }) }}">
+            Editar
         </a>
     </li>
     <li>
-        <form action="{{ path('membership_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('membresia_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit">Eliminar</button>
         </form>
     </li>
 </ul>

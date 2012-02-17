@@ -13,6 +13,13 @@ class CategoryType extends AbstractType
             ->add('name')
         ;
     }
+    
+    public function getDefaultOptions(array $options)
+    {
+    	return array(
+    			'data_class' => 'Epika\ClubBundle\Entity\Category'
+    	);
+    }
 
     public function getName()
     {

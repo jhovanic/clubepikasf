@@ -1,6 +1,6 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block body %}
-<h1>Company</h1>
+{% block contenido_title %}Compañia{% endblock %}
+{% block contenido %}
 
 <table class="record_properties">
     <tbody>
@@ -9,7 +9,11 @@
             <td>{{ entity.id }}</td>
         </tr>
         <tr>
-            <th>Name</th>
+            <th>Imagen</th>
+            <td><img alt="" src="{{ entity.getWebPath }}" /></td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
             <td>{{ entity.name }}</td>
         </tr>
         <tr>
@@ -17,11 +21,11 @@
             <td>{{ entity.nit }}</td>
         </tr>
         <tr>
-            <th>Address</th>
+            <th>Dirección</th>
             <td>{{ entity.address }}</td>
         </tr>
         <tr>
-            <th>Neighborhood</th>
+            <th>Barrio</th>
             <td>{{ entity.neighborhood }}</td>
         </tr>
         <tr>
@@ -29,51 +33,59 @@
             <td>{{ entity.email }}</td>
         </tr>
         <tr>
-            <th>Phone</th>
+            <th>Teléfono</th>
             <td>{{ entity.phone }}</td>
         </tr>
         <tr>
-            <th>Cellphone</th>
+            <th>Celular</th>
             <td>{{ entity.cellphone }}</td>
-        </tr>
-        <tr>
-            <th>Category</th>
-            <td>{{ entity.category }}</td>
-        </tr>
-        <tr>
-            <th>City</th>
-            <td>{{ entity.city }}</td>
-        </tr>
-        <tr>
-            <th>Contacto</th>
-            <td>{{ entity.contacto }}</td>
-        </tr>
-        <tr>
-            <th>Created_at</th>
-            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <th>Updated_at</th>
-            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
         </tr>
     </tbody>
 </table>
-
+<h1 class="divRecentWorksTitle">Contacto</h1>
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.contacto.id }}</td>
+        </tr>
+        <tr>
+            <th>Nombres</th>
+            <td>{{ entity.contacto.name }}</td>
+        </tr>
+        <tr>
+            <th>Apellidos</th>
+            <td>{{ entity.contacto.lastName }}</td>
+        </tr>
+        <tr>
+            <th>Celular</th>
+            <td>{{ entity.contacto.cellphone }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ entity.contacto.email }}</td>
+        </tr>
+        <tr>
+            <th>Foto</th>
+            <td><img alt="" src="{{ entity.contacto.getWebPath }}" /></td>
+        </tr>
+    </tbody>
+</table>
 <ul class="record_actions">
     <li>
         <a href="{{ path('company') }}">
-            Back to the list
+            Volver
         </a>
     </li>
     <li>
         <a href="{{ path('company_edit', { 'id': entity.id }) }}">
-            Edit
+            Editar
         </a>
     </li>
     <li>
         <form action="{{ path('company_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit">Eliminar</button>
         </form>
     </li>
 </ul>

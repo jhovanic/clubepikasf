@@ -1,5 +1,3 @@
-{% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block body %}
 <h1>Contacto list</h1>
 
 <table class="records_list">
@@ -28,9 +26,6 @@
                     <li>
                         <a href="{{ path('contacto_show', { 'id': entity.id }) }}">show</a>
                     </li>
-                    <li>
-                        <a href="{{ path('contacto_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
                 </ul>
             </td>
         </tr>
@@ -38,11 +33,3 @@
     </tbody>
 </table>
 
-<ul>
-    <li>
-        <a href="{{ path('contacto_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
-{% endblock %}

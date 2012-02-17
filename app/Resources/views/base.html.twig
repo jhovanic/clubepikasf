@@ -9,20 +9,6 @@
         <link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/validationEngine.jquery.css') }}" type="text/css" />
         {% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-        {% block javascripts %}
-    		<script src="{{ asset('bundles/epikaclub/js/tabs/jquery.tools.min.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/slider/jquery.carouFredSel-4.5.1-packed.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/slider/jquery.carouFredSel-4.5.1.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/slider/jquery.easing.1.3.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/slider/jquery.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/filterable/jquery-1.6.2.min.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/filterable/jquery.easing.1.3.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/filterable/jquery.prettyPhoto.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/filterable/jquery.quicksand.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/filterable/script.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/contact_form/jquery-1.6.min.js') }}"></script>
-    		<script src="{{ asset('bundles/epikaclub/js/contact_form/jquery.validationEngine.js') }}"></script>
-    	{% endblock %}
     </head>
     <body>
 
@@ -395,18 +381,18 @@
 			
 				<!-- BEGIN #divFooterLogoAndTagline -->
             	<div id="divFooterLogoAndTagline">
-                    <div id="divFooterLogo">OStudio</div>
-                    <div id="divFooterTagline">Wordpress theme for creative</div>
+                    <div id="divFooterLogo">Epika Marketing</div>
+                    <div id="divFooterTagline"></div>
 				<!-- END #divFooterLogoAndTagline -->
             	</div>
                 
 				<!-- BEGIN #divFooterCopyrightAndThemeBy -->
                 <div id="divFooterCopyrightAndThemeBy">
                     <div id="divCopyright">
-                        &copy; Copyright 2011. Powered by <a href="http://www.wordpress.org/" target="_blank">Wordpress</a>
+                        &copy; Copyright 2012. Powered by <a href="http://www.clubepika.com/" target="_blank">Club Epika</a>
                     </div>
                     <div id="divThemeBy">
-                        <a href="http://www.oratic.com/themes/ostudio-html/" target="_blank">OStudio</a> Template by <a href="http://www.oratic.com/" target="_blank">husamrayan</a>
+                        <a href="http://www.clubepika.com" target="_blank"></a>
                     </div>
 				<!-- END #divFooterCopyrightAndThemeBy -->
             	</div>
@@ -420,7 +406,20 @@
 	<!-- END #divMain -->     
 	</div>
        
-       
+       {% block javascripts %}
+    		<script src="{{ asset('bundles/epikaclub/js/tabs/jquery.tools.min.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/slider/jquery.carouFredSel-4.5.1-packed.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/slider/jquery.carouFredSel-4.5.1.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/slider/jquery.easing.1.3.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/slider/jquery.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/filterable/jquery-1.6.2.min.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/filterable/jquery.easing.1.3.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/filterable/jquery.prettyPhoto.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/filterable/jquery.quicksand.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/filterable/script.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/contact_form/jquery-1.6.min.js') }}"></script>
+    		<script src="{{ asset('bundles/epikaclub/js/contact_form/jquery.validationEngine.js') }}"></script>
+    	{% endblock %}
        
     <!-- END body -->
     </body>

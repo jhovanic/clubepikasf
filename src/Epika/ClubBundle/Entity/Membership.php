@@ -2,6 +2,8 @@
 
 namespace Epika\ClubBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,11 @@ class Membership
      * @ORM\Column(name="quantity", type="integer")
      */
     private $quantity;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Bono", mappedBy="membership")
+     */
+    private $bonos;
 
     /**
      * @var datetime $created_at
@@ -56,6 +63,12 @@ class Membership
      */
     private $updated_at;
 
+    /**
+     * Constructor
+     */
+    public function __construct() {
+    	$this->bonos = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -165,5 +178,25 @@ class Membership
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Add bonos
+     *
+     * @param Epika\ClubBundle\Entity\Bono $bonos
+     */
+    public function addBono(\Epika\ClubBundle\Entity\Bono $bonos)
+    {
+        $this->bonos[] = $bonos;
+    }
+
+    /**
+     * Get bonos
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getBonos()
+    {
+        return $this->bonos;
     }
 }

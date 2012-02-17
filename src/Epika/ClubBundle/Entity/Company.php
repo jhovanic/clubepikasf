@@ -2,6 +2,8 @@
 
 namespace Epika\ClubBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -69,25 +71,36 @@ class Company
      * @ORM\Column(name="cellphone", type="string", length=255)
      */
     private $cellphone;
+    
+    /**
+     * @var string $image
+     * 
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
 
     /**
-     * @var integer $category
+     * 
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="companies")
      *
-     * @ORM\Column(name="category", type="integer")
      */
     private $category;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Bono", mappedBy="company")
+     */
+    private $bonos;
 
     /**
-     * @var integer $city
+     * @ORM\OneToOne(targetEntity="City")
      *
-     * @ORM\Column(name="city", type="integer")
      */
     private $city;
     
     /**
-     * @var integer $contacto
      * 
-     * @ORM\Column(name="contacto", type="integer")
+     * @ORM\OneToOne(targetEntity="Contacto", inversedBy="company")
+     * 
      */
     private $contacto;
 
@@ -105,6 +118,12 @@ class Company
      */
     private $updated_at;
 
+    /**
+     * Constructor
+     */
+    public function __construct() {
+    	$this->bonos = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -255,66 +274,27 @@ class Company
     {
         return $this->cellphone;
     }
-
+    
     /**
-     * Set category
+     * Set Image
      *
-     * @param integer $category
+     * @param string $image
      */
-    public function setCategory($category)
+    public function setImage($image)
     {
-        $this->category = $category;
-    }
-
-    /**
-     * Get category
-     *
-     * @return integer 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set city
-     *
-     * @param integer $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    }
-
-    /**
-     * Get city
-     *
-     * @return integer 
-     */
-    public function getCity()
-    {
-        return $this->city;
+    	$this->image = $image;
     }
     
     /**
-     * Set contacto
+     * Get Image
      *
-     * @param integer $contacto
+     * @return string
      */
-    public function setContacto($contacto)
+    public function getImage()
     {
-    	$this->contacto = $contacto;
+    	return $this->image;
     }
-    
-    /**
-     * Get contacto
-     *
-     * @return integer
-     */
-    public function getContacto()
-    {
-    	return $this->contacto;
-    }
+
 
     /**
      * Set created_at
@@ -355,4 +335,110 @@ class Company
     {
         return $this->updated_at;
     }
+
+    /**
+     * Set category
+     *
+     * @param Epika\ClubBundle\Entity\Category $category
+     */
+    public function setCategory(\Epika\ClubBundle\Entity\Category $category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * Get category
+     *
+     * @return Epika\ClubBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Add bonos
+     *
+     * @param Epika\ClubBundle\Entity\Bono $bonos
+     */
+    public function addBono(\Epika\ClubBundle\Entity\Bono $bonos)
+    {
+        $this->bonos[] = $bonos;
+    }
+
+    /**
+     * Get bonos
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getBonos()
+    {
+        return $this->bonos;
+    }
+
+    /**
+     * Set city
+     *
+     * @param Epika\ClubBundle\Entity\City $city
+     */
+    public function setCity(\Epika\ClubBundle\Entity\City $city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * Get city
+     *
+     * @return Epika\ClubBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set contacto
+     *
+     * @param Epika\ClubBundle\Entity\Contacto $contacto
+     */
+    public function setContacto(\Epika\ClubBundle\Entity\Contacto $contacto)
+    {
+        $this->contacto = $contacto;
+    }
+
+    /**
+     * Get contacto
+     *
+     * @return Epika\ClubBundle\Entity\Contacto 
+     */
+    public function getContacto()
+    {
+        return $this->contacto;
+    }
+    
+    /**
+     * Path and Upload methods
+     */
+    public function getAbsolutePath()
+    {
+    	return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+    }
+    
+    public function getWebPath()
+    {
+    	return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
+    }
+    
+    protected function getUploadRootDir()
+    {
+    	// the absolute directory path where uploaded documents should be saved
+    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    protected function getUploadDir()
+    {
+    	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+    	return '/images/uploads/company';
+    }
+    
 }

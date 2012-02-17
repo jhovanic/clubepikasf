@@ -12,7 +12,7 @@ use Epika\ClubBundle\Form\CategoryType;
 /**
  * Category controller.
  *
- * @Route("/category")
+ * @Route("/categoria")
  */
 class CategoryController extends Controller
 {
@@ -34,7 +34,7 @@ class CategoryController extends Controller
     /**
      * Finds and displays a Category entity.
      *
-     * @Route("/{id}/show", name="category_show")
+     * @Route("/ver/{id}", name="category_show")
      * @Template()
      */
     public function showAction($id)
@@ -57,13 +57,12 @@ class CategoryController extends Controller
     /**
      * Displays a form to create a new Category entity.
      *
-     * @Route("/new", name="category_new")
+     * @Route("/nueva", name="category_new")
      * @Template()
      */
     public function newAction()
     {
         $entity = new Category();
-        
         $form   = $this->createForm(new CategoryType(), $entity);
 
         return array(
@@ -106,7 +105,7 @@ class CategoryController extends Controller
     /**
      * Displays a form to edit an existing Category entity.
      *
-     * @Route("/{id}/edit", name="category_edit")
+     * @Route("/editar/{id}", name="category_edit")
      * @Template()
      */
     public function editAction($id)
@@ -146,7 +145,6 @@ class CategoryController extends Controller
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
 
-        $entity->setUpdatedAt(new \DateTime('now'));
         $editForm   = $this->createForm(new CategoryType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
@@ -158,7 +156,7 @@ class CategoryController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('category_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('category_edit', array('id' => $id)));
         }
 
         return array(
@@ -171,7 +169,7 @@ class CategoryController extends Controller
     /**
      * Deletes a Category entity.
      *
-     * @Route("/{id}/delete", name="category_delete")
+     * @Route("/eliminar/{id}", name="category_delete")
      * @Method("post")
      */
     public function deleteAction($id)
