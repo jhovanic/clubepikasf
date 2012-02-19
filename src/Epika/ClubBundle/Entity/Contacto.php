@@ -75,6 +75,7 @@ class Contacto
      */
     private $updated_at;
 
+    /********************************* Class functions ****************************************/
 
     /**
      * Get id
@@ -206,9 +207,7 @@ class Contacto
         return $this->company;
     }
     
-    /**
-     * Path and Upload methods
-     */
+    /******************************* Path and Upload methods **************************************/
     public function getAbsolutePath()
     {
     	return null === $this->photo ? null : $this->getUploadRootDir().'/'.$this->photo;
@@ -219,7 +218,7 @@ class Contacto
     	return null === $this->photo ? null : $this->getUploadDir().'/'.$this->photo;
     }
     
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
     	// the absolute directory path where uploaded documents should be saved
     	return __DIR__.'/../../../../web/'.$this->getUploadDir();
@@ -231,7 +230,7 @@ class Contacto
     	return '/images/uploads/contacto';
     }
     
-    //End of upload methods
+    /***************************** End of upload methods *****************************************/
 
     /**
      * Set created_at

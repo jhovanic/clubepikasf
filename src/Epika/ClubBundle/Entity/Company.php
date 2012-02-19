@@ -118,6 +118,8 @@ class Company
      */
     private $updated_at;
 
+    
+    /*********************************** Class functions *************************************/
     /**
      * Constructor
      */
@@ -416,9 +418,7 @@ class Company
         return $this->contacto;
     }
     
-    /**
-     * Path and Upload methods
-     */
+    /*********************************** Path and Upload methods *********************************/
     public function getAbsolutePath()
     {
     	return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
@@ -429,7 +429,7 @@ class Company
     	return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
     }
     
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
     	// the absolute directory path where uploaded documents should be saved
     	return __DIR__.'/../../../../web/'.$this->getUploadDir();

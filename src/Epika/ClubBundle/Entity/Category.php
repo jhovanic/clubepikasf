@@ -55,6 +55,8 @@ class Category
     private $updated_at;
     
     
+    /********************************************* Class functions *********************************************/
+    
     /**
      * Constructor
      */

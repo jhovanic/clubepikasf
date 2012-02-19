@@ -90,27 +90,32 @@ class CompanyController extends Controller
         $entity->setUpdatedAt(new \DateTime('now'));
         $entity->getContacto()->setCreatedAt(new \DateTime('now'));
         $entity->getContacto()->setUpdatedAt(new \DateTime('now'));
-        $image = $request->files->get('image');
-        $photo = $request->files->get('photo');
+        $image = $form['image']->getData();
+        $photo = $form['contacto']['photo']->getData();
+        $now = date('Y').date('m').date('d').date('H').date('i').date('s');
+         
 
         if ($form->isValid()) {
             
         	if ($image !== null && $image->isValid()){
-            	$name = $entity->getNit().(new \DateTime('now')).'.'.$image->guessExtension();
-            	$image->move($entity->getUploadRootDir(),$name);
-            	$entity->setImage($name);
-            }
-            if ($photo !== null && $photo->isValid()){
-            	$pname = $entity->getNit().(new \DateTime('now')).'.'.$image->guessExtension();
-            	$photo->move($entity->getContacto()->getUploadRootDir(),$pname);
-            	$entity->getContacto()->setPhoto($pname);
-            }
+        		$name = $entity->getNit().$now.'.'.$image->guessExtension();
+        		$image->move($entity->getUploadRootDir(),$name);
+        		$entity->setImage($name);
+        	}
+        	 
+        	if ($photo !== null && $photo->isValid()){
+        		$name = $entity->getNit().$now.'.'.$photo->guessExtension();
+        		$photo->move($entity->getContacto()->getUploadRootDir(),$name);
+        		$entity->getContacto()->setPhoto($name);
+        	}
+        	
         	$em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->persist($entity->getContacto());
             $em->flush();
 
             return $this->redirect($this->generateUrl('company_show', array('id' => $entity->getId())));
+            
             
         }
 
@@ -173,19 +178,21 @@ class CompanyController extends Controller
         $entity->setUpdatedAt(new \DateTime('now'));
         $entity->getContacto()->setCreatedAt(new \DateTime('now'));
         $entity->getContacto()->setUpdatedAt(new \DateTime('now'));
-        $image = $request->files->get('image');
-        $photo = $request->files->get('photo');
+        $image = $editForm['image']->getData();
+        $photo = $editForm['contacto']['photo']->getData();
+        $now = date('Y').date('m').date('d').date('H').date('i').date('s');
 
         if ($editForm->isValid()) {
-        	if ($image !== null && $image->isValid()){
-        		$name = $entity->getNit().(new \DateTime('now')).'.'.$image->guessExtension();
+        if ($image !== null && $image->isValid()){
+        		$name = $entity->getNit().$now.'.'.$image->guessExtension();
         		$image->move($entity->getUploadRootDir(),$name);
         		$entity->setImage($name);
         	}
+        	 
         	if ($photo !== null && $photo->isValid()){
-        		$pname = $entity->getNit().(new \DateTime('now')).'.'.$image->guessExtension();
-        		$photo->move($entity->getContacto()->getUploadRootDir(),$pname);
-        		$entity->getContacto()->setPhoto($pname);
+        		$name = $entity->getNit().$now.'.'.$photo->guessExtension();
+        		$photo->move($entity->getContacto()->getUploadRootDir(),$name);
+        		$entity->getContacto()->setPhoto($name);
         	}
         	$em->persist($entity);
         	$em->persist($entity->getContacto());
@@ -223,6 +230,7 @@ class CompanyController extends Controller
             }
 
             $em->remove($entity);
+            $em->remove($entity->getContacto());
             $em->flush();
         }
 

@@ -9,11 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/index", name="default_index")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        $em = $this->getDoctrine()->getEntityManager();
+        $categories = $em->getRepository('EpikaClubBundle:Category')->findAll();
+    	return array('categories' => $categories);
     }
 }
