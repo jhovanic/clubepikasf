@@ -21,6 +21,13 @@ class CategoryType extends AbstractType
     	);
     }
 
+    public function getDefaultOptions(array $options)
+    {
+    	return array(
+    			'data_class' => 'Epika\ClubBundle\Entity\Category'
+    	);
+    }
+    
     public function getName()
     {
         return 'epika_clubbundle_categorytype';

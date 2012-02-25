@@ -92,8 +92,8 @@ class Company
     private $bonos;
 
     /**
-     * @ORM\OneToOne(targetEntity="City")
-     *
+     * @ORM\ManyToOne(targetEntity="City")
+     * 
      */
     private $city;
     

@@ -2,6 +2,8 @@
 
 namespace Epika\ClubBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,11 +59,10 @@ class Bono
     private $conditions;
 
     /**
-     * @var string $image
-     *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="Bono_Images", mappedBy="bono", cascade={"persist","remove"})
+     * 
      */
-    private $image;
+    private $images;
 
     /**
      * @var integer $price
@@ -139,6 +140,13 @@ class Bono
 
     /****************************************** Class functions ****************************************/
 
+    /**
+     * Constructor
+     */
+    public function __construct() {
+    	$this->images = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -247,26 +255,6 @@ class Bono
     public function getConditions()
     {
         return $this->conditions;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     /**
@@ -487,5 +475,25 @@ class Bono
     public function getMembership()
     {
         return $this->membership;
+    }
+
+    /**
+     * Add images
+     *
+     * @param Epika\ClubBundle\Entity\Bono_Images $images
+     */
+    public function addBono_Images(\Epika\ClubBundle\Entity\Bono_Images $images)
+    {
+        $this->images[] = $images;
+    }
+
+    /**
+     * Get images
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }
