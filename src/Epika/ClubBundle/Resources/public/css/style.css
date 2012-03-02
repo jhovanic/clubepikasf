@@ -7,15 +7,14 @@
 	License: GNU General Public License version 3.0
 	License URI: http://www.gnu.org/licenses/gpl-3.0.html
 	Version: 1.0
+	#E6E5DD
 --*/
-
 /* ========================== general tags ========================== */
 body {
 	font-family: Arial, Verdana, Tahoma, Helvetica, sans-serif;
 	font-size: 13px;
 	color: #606060;
-	background: url(../images/grunge06.jpg)  #E6E5DD;
-	background-attachment: scroll;
+	background: url(../images/linea.png) #343333;
 	margin: 0px;
 	padding: 0px;
 	line-height: 20px;
@@ -255,6 +254,7 @@ blockquote p{
 	width: 1022px;
 	height: 300px;
 	position: relative;
+	top: -50px;
 	z-index: 2;
 }
 
@@ -343,6 +343,8 @@ blockquote p{
 	padding-right: 37px;
 	padding-bottom: 15px;
 	padding-left: 37px;
+	position: relative;
+	top: -50px;
 }
 #divWelcome a {
 	color:#FFF;
@@ -356,6 +358,8 @@ blockquote p{
 	background-image: url(../images/welcome_bottom.png);
 	background-repeat: no-repeat;
 	height: 14px;
+	position: relative;
+	top: -50px;
 }
 
 /* ========================== Home Recent Works ========================== */
@@ -371,6 +375,8 @@ blockquote p{
 	border-bottom-width: 2px;
 	border-bottom-style: solid;
 	border-bottom-color: #E6E5DD;
+	position: relative;
+	top: -64px;
 }
 #divRecentWorksTitle {
 	font-weight: bold;
@@ -666,6 +672,8 @@ blockquote p{
 	width: 990px;
 	margin-right: 16px;
 	margin-left: 16px;
+	position: relative;
+	top: -64px;
 }
 #divFooterWidgetsAndFollowUs {
 	float: left;

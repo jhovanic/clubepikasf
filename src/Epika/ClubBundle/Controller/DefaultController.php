@@ -16,6 +16,14 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
         $categories = $em->getRepository('EpikaClubBundle:Category')->findAll();
-    	return array('categories' => $categories);
+        $ids = array();
+        $ids[0] = rand(0,sizeof($categories)-1);
+        $ids[1] = rand(0,sizeof($categories)-2);
+        if($ids[0] == $ids[1])
+        	$ids[1] = $ids[0]+1;
+        $randCategories = array();
+        $randCategories[] = $categories[$ids[0]];
+        $randCategories[] = $categories[$ids[1]];
+    	return array('categories' => $randCategories);
     }
 }
