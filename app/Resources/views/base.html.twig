@@ -75,12 +75,9 @@
 			<!-- BEGIN #divMainMenu -->
             <div id="divMainMenu" class="menu-header">
             	{% block menu %}
-            	<form>
-            		
-            	</form>
             	<ul>
                     <li><a href="index.html" class="current">Log in</a></li>
-                    <li><a href="index.html" class="current">Registrate</a></li>
+                    <li><a href="index.html">Registrate</a></li>
                 </ul>
                 {% endblock %}
 			<!-- END #divMainMenu -->
@@ -88,6 +85,22 @@
 		
 		<!-- END #divHeader -->
         </div>
+        <br /><br />
+        <!-- BEGIN #divMenuBar -->
+        <div id="divMenuBar">
+				<ul>
+					<li><a href="{{ path('category') }}"><span>Categorias</span></a></li>
+            		<li><a href="{{ path('bono') }}"><span>Bonos</span></a></li>
+            		<li><a href="#"><span> ¿ Cómo funciona ?</span></a></li>
+            		<li><a href="#"><span> Contactenos</span></a></li>
+            	</ul>
+            <div id="divSearch">
+            	<input type="text" size="30" id="indexSearch" name="indexSearch" />
+            	<a href="#"><img alt="" title="Buscar" src="{{ asset('bundles/epikaclub/images/lupa.png') }}" /></a>
+            </div>
+        </div>
+        <!-- END #divMenuBar -->
+        
 		{% block body %}
 		
 
