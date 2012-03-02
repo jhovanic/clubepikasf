@@ -1,0 +1,444 @@
+<?php
+
+namespace Epika\ClubBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Epika\ClubBundle\Entity\Company
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Company
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string $nit
+     *
+     * @ORM\Column(name="nit", type="string", length=255)
+     */
+    private $nit;
+
+    /**
+     * @var string $address
+     *
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    private $address;
+
+    /**
+     * @var string $neighborhood
+     *
+     * @ORM\Column(name="neighborhood", type="string", length=255)
+     */
+    private $neighborhood;
+
+    /**
+     * @var string $email
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var string $phone
+     *
+     * @ORM\Column(name="phone", type="string", length=255)
+     */
+    private $phone;
+
+    /**
+     * @var string $cellphone
+     *
+     * @ORM\Column(name="cellphone", type="string", length=255)
+     */
+    private $cellphone;
+    
+    /**
+     * @var string $image
+     * 
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * 
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="companies")
+     *
+     */
+    private $category;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Bono", mappedBy="company")
+     */
+    private $bonos;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="City")
+     * 
+     */
+    private $city;
+    
+    /**
+     * 
+     * @ORM\OneToOne(targetEntity="Contacto", inversedBy="company")
+     * 
+     */
+    private $contacto;
+
+    /**
+     * @var datetime $created_at
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @var datetime $updated_at
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updated_at;
+
+    
+    /*********************************** Class functions *************************************/
+    /**
+     * Constructor
+     */
+    public function __construct() {
+    	$this->bonos = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set nit
+     *
+     * @param string $nit
+     */
+    public function setNit($nit)
+    {
+        $this->nit = $nit;
+    }
+
+    /**
+     * Get nit
+     *
+     * @return string 
+     */
+    public function getNit()
+    {
+        return $this->nit;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string 
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set neighborhood
+     *
+     * @param string $neighborhood
+     */
+    public function setNeighborhood($neighborhood)
+    {
+        $this->neighborhood = $neighborhood;
+    }
+
+    /**
+     * Get neighborhood
+     *
+     * @return string 
+     */
+    public function getNeighborhood()
+    {
+        return $this->neighborhood;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set cellphone
+     *
+     * @param string $cellphone
+     */
+    public function setCellphone($cellphone)
+    {
+        $this->cellphone = $cellphone;
+    }
+
+    /**
+     * Get cellphone
+     *
+     * @return string 
+     */
+    public function getCellphone()
+    {
+        return $this->cellphone;
+    }
+    
+    /**
+     * Set Image
+     *
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+    	$this->image = $image;
+    }
+    
+    /**
+     * Get Image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+    	return $this->image;
+    }
+
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set category
+     *
+     * @param Epika\ClubBundle\Entity\Category $category
+     */
+    public function setCategory(\Epika\ClubBundle\Entity\Category $category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * Get category
+     *
+     * @return Epika\ClubBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Add bonos
+     *
+     * @param Epika\ClubBundle\Entity\Bono $bonos
+     */
+    public function addBono(\Epika\ClubBundle\Entity\Bono $bonos)
+    {
+        $this->bonos[] = $bonos;
+    }
+
+    /**
+     * Get bonos
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getBonos()
+    {
+        return $this->bonos;
+    }
+
+    /**
+     * Set city
+     *
+     * @param Epika\ClubBundle\Entity\City $city
+     */
+    public function setCity(\Epika\ClubBundle\Entity\City $city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * Get city
+     *
+     * @return Epika\ClubBundle\Entity\City 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set contacto
+     *
+     * @param Epika\ClubBundle\Entity\Contacto $contacto
+     */
+    public function setContacto(\Epika\ClubBundle\Entity\Contacto $contacto)
+    {
+        $this->contacto = $contacto;
+    }
+
+    /**
+     * Get contacto
+     *
+     * @return Epika\ClubBundle\Entity\Contacto 
+     */
+    public function getContacto()
+    {
+        return $this->contacto;
+    }
+    
+    /*********************************** Path and Upload methods *********************************/
+    public function getAbsolutePath()
+    {
+    	return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+    }
+    
+    public function getWebPath()
+    {
+    	return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
+    }
+    
+    public function getUploadRootDir()
+    {
+    	// the absolute directory path where uploaded documents should be saved
+    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    protected function getUploadDir()
+    {
+    	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+    	return '/images/uploads/company';
+    }
+    
+}

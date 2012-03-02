@@ -1,0 +1,108 @@
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block contenido_title %}Nuevo Bono{% endblock %}
+{% block contenido %}
+
+<form action="{{ path('bono_create') }}" method="post" {{ form_enctype(form) }}>
+    <div>{{ form_errors(form) }}</div>
+    <table id="newBonoTable">
+    	<tr>
+    		<td>{{ form_label(form.name) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.name) }}</td>
+    		<td>{{ form_errors(form.name) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.description) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.description) }}</td>
+    		<td>{{ form_errors(form.description) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.long_description) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.long_description) }}</td>
+    		<td>{{ form_errors(form.long_description) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.information) }}</td>
+    		<td>{{ form_widget(form.information) }}</td>
+    		<td>{{ form_errors(form.information) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.conditions) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.conditions) }}</td>
+    		<td>{{ form_errors(form.conditions) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.price) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.price) }}</td>
+    		<td>{{ form_errors(form.price) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.discount) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.discount) }}</td>
+    		<td>{{ form_errors(form.discount) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.type) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.type) }}</td>
+    		<td>{{ form_errors(form.type) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.unpublish_date) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.unpublish_date.day) }}
+    		{{ form_widget(form.unpublish_date.month) }}
+    		{{ form_widget(form.unpublish_date.year) }}</td>
+    		<td>{{ form_errors(form.unpublish_date) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.company) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.company) }}</td>
+    		<td>{{ form_errors(form.company) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.membership) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.membership) }}</td>
+    		<td>{{ form_errors(form.membership) }}</td>
+    	</tr>
+    </table>
+    <br />
+    <h1 class="divRecentWorksTitle">Imagenes</h1>
+    <hr>
+    <table>
+    	<tr>
+    		<td>{{ form_label(form.image1) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(form.image1) }}</td>
+    		<td>{{ form_errors(form.image1) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.image2) }}</td>
+    		<td>{{ form_widget(form.image2) }}</td>
+    		<td>{{ form_errors(form.image2) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.image3) }}</td>
+    		<td>{{ form_widget(form.image3) }}</td>
+    		<td>{{ form_errors(form.image3) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.image4) }}</td>
+    		<td>{{ form_widget(form.image4) }}</td>
+    		<td>{{ form_errors(form.image4) }}</td>
+    	</tr>
+    </table>
+    {{ form_rest(form) }}
+    <div class="image_errors"></div>
+    
+    Los campos marcados con <span class="field_required">*</span> son obligatorios.
+    
+    <p>
+        <button type="submit">Crear</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('bono') }}">
+            Volver
+        </a>
+    </li>
+</ul>
+{% endblock %}

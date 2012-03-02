@@ -1,0 +1,32 @@
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block contenido_title %}Departamento{% endblock %}
+{% block contenido %}
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Departamento</th>
+            <td>{{ entity.name }}</td>
+        </tr>
+        <tr>
+            <th>Creado</th>
+            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Actualizado</th>
+            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('department') }}">
+            Volver
+        </a>
+    </li>
+</ul>
+{% endblock %}

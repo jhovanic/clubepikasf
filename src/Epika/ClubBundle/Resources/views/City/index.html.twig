@@ -1,0 +1,29 @@
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block contenido_title %}Ciudades{% endblock %}
+{% block contenido %}
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Ciudad</th>
+            <th>Departamento</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.department.name }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('city_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
