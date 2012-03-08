@@ -146,4 +146,49 @@ class Bono_Images
     {
         return $this->updated_at;
     }
+
+    /**
+     * Set bono
+     *
+     * @param Epika\ClubBundle\Entity\Bono $bono
+     */
+    public function setBono(\Epika\ClubBundle\Entity\Bono $bono)
+    {
+        $this->bono = $bono;
+    }
+
+    /**
+     * Get bono
+     *
+     * @return Epika\ClubBundle\Entity\Bono 
+     */
+    public function getBono()
+    {
+        return $this->bono;
+    }
+    
+    /*********************************** Upload functions ********************************/
+    
+    public function getAbsolutePath()
+    {
+    	return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
+    }
+    
+    public function getWebPath()
+    {
+    	return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+    }
+    
+    public function getUploadRootDir()
+    {
+    	// the absolute directory path where uploaded documents should be saved
+    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    protected function getUploadDir()
+    {
+    	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+    	return '/images/uploads/bono';
+    }
+    
 }

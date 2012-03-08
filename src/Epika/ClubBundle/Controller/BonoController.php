@@ -120,6 +120,7 @@ class BonoController extends Controller
             	$ab = new Afiliate_Bono();
             	$ab->setAfiliate($afiliate);
             	$ab->setBono($bono);
+            	$ab->setIsActive($bono->getIsActive());
             	$em->persist($ab);
             	$em->flush();
             }

@@ -59,7 +59,7 @@ class Bono
     private $conditions;
 
     /**
-     * @ORM\OneToMany(targetEntity="Bono_Images", mappedBy="bono")
+     * @ORM\OneToMany(targetEntity="Bono_Images", mappedBy="bono", cascade={"persist","remove"})
      * 
      */
     private $images;
@@ -475,5 +475,25 @@ class Bono
     public function getMembership()
     {
         return $this->membership;
+    }
+
+    /**
+     * Add images
+     *
+     * @param Epika\ClubBundle\Entity\Bono_Images $images
+     */
+    public function addBono_Images(\Epika\ClubBundle\Entity\Bono_Images $images)
+    {
+        $this->images[] = $images;
+    }
+
+    /**
+     * Get images
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

@@ -66,7 +66,7 @@
 			
 			<!-- BEGIN #divLogo -->
             <div id="divLogo">
-                <a href="{{ path('default_index') }}" ><img src="{{ asset('bundles/epikaclub/images/logo.png') }}"/></a>
+                <a href="{{ path('default_index') }}" ><img src="{{ asset('bundles/epikaclub/images/header.png') }}"/></a>
 			<!-- END #divLogo -->
             </div>
 				
@@ -76,8 +76,8 @@
             <div id="divMainMenu" class="menu-header">
             	{% block menu %}
             	<ul>
-                    <li><a href="index.html" class="current">Log in</a></li>
-                    <li><a href="index.html">Registrate</a></li>
+                    <li><a href="{{ path('default_index') }}" class="current"><img src="{{ asset('bundles/epikaclub/images/micuenta.png') }}" width="120" /></a></li>
+                    <li><a href="{{ path('default_index') }}"><img src="{{ asset('bundles/epikaclub/images/registrate.png') }}" width="120" /></a></li>
                 </ul>
                 {% endblock %}
 			<!-- END #divMainMenu -->
@@ -122,7 +122,8 @@
 				<!-- BEGIN #divFooterCopyrightAndThemeBy -->
                 <div id="divFooterCopyrightAndThemeBy">
                     <div id="divCopyright">
-                        &copy; Copyright 2012. Powered by <a href="http://www.clubepika.com/" target="_blank">Club Epika</a>
+                        &copy; Copyright 2012. Powered by <a href="http://www.symfony.com/" target="_blank">
+                        <img alt="" src="{{ asset('bundles/epikaclub/images/sf_black.png') }}" width="90" height="30" /></a>
                     </div>
                     <div id="divThemeBy">
                         <a href="http://www.clubepika.com" target="_blank"></a>

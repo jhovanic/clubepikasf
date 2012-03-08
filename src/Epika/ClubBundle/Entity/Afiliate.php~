@@ -113,7 +113,7 @@ class Afiliate
     private $bonos;
     
     /**
-     * @ORM\OneToOne(targetEntity="City")
+     * @ORM\ManyToOne(targetEntity="City")
      */
     private $city;
     
@@ -123,7 +123,7 @@ class Afiliate
     private $ocupation;
     
     /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User", cascade={ "persist", "remove" })
      */
     private $user;
     

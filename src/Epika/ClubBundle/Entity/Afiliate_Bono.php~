@@ -24,7 +24,7 @@ class Afiliate_Bono
     /**
      * @var datetime $activation_date
      *
-     * @ORM\Column(name="activation_date", type="datetime")
+     * @ORM\Column(name="activation_date", type="datetime", nullable=true)
      */
     private $activation_date;
 

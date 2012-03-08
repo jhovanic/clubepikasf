@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Epika\ClubBundle\Entity\Afiliate;
 use Epika\ClubBundle\Form\AfiliateType;
+use Epika\ClubBundle\Entity\Afiliate_Bono;
+use Epika\ClubBundle\Entity\Bono;
 
 /**
  * Afiliate controller.
@@ -80,22 +82,38 @@ class AfiliateController extends Controller
      */
     public function createAction()
     {
-        $entity  = new Afiliate();
+        $afiliate  = new Afiliate();
         $request = $this->getRequest();
-        $form    = $this->createForm(new AfiliateType(), $entity);
+        $form    = $this->createForm(new AfiliateType(), $afiliate);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
+            $afiliate->setCreatedAt(new \DateTime('now'));
+            $afiliate->setUpdatedAt(new \DateTime('now'));
+            $afiliate->getUser()->setRole('usuario');
+            $afiliate->getUser()->setIsActive(true);
+            $afiliate->getUser()->setCreatedAt(new \DateTime('now'));
+            $afiliate->getUser()->setUpdatedAt(new \DateTime('now'));
+        	$em = $this->getDoctrine()->getEntityManager();
+            $em->persist($afiliate);
             $em->flush();
+            
+            $bonos = $em->getRepository('EpikaClubBundle:Bono')->findAll();
+            foreach ($bonos as $bono) {
+            	$ab = new Afiliate_Bono();
+            	$ab->setAfiliate($afiliate);
+            	$ab->setBono($bono);
+            	$ab->setIsActive($bono->getIsActive());
+            	$em->persist($ab);
+            	$em->flush();
+            }
 
-            return $this->redirect($this->generateUrl('afiliado_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('afiliado_show', array('id' => $afiliate->getId())));
             
         }
 
         return array(
-            'entity' => $entity,
+            'entity' => $afiliate,
             'form'   => $form->createView()
         );
     }

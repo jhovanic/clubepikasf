@@ -141,6 +141,9 @@ blockquote p{
 }
 #divLogo a img {
 	border:0px;
+	width: 980px;
+	position: relative;
+	left: -22px;
 }
 #divMainMenu {
 	float: right;
@@ -376,7 +379,7 @@ blockquote p{
 	border-bottom-style: solid;
 	border-bottom-color: #E6E5DD;
 	position: relative;
-	top: -64px;
+	top: -50px;
 }
 #divRecentWorksTitle {
 	font-weight: bold;
@@ -673,7 +676,7 @@ blockquote p{
 	margin-right: 16px;
 	margin-left: 16px;
 	position: relative;
-	top: -64px;
+	top: -50px;
 }
 #divFooterWidgetsAndFollowUs {
 	float: left;
@@ -2342,9 +2345,8 @@ divFooterWidgets {
 	width: 1003px;
 	height: 98px;
 	position: relative;
-	top: 8px;
+	top: 394px;
 	left: 3px;
-	z-index: 5;
 	background: url(../images/menuepika.png);
 }
 
@@ -2353,7 +2355,7 @@ divFooterWidgets {
 	text-align: center;
 	list-style-type: none;
 	position: relative;
-	top: -10px;
+	top: -395px;
 
 }
 
@@ -2392,7 +2394,7 @@ divFooterWidgets {
 #divSearch {
 	float: right;
 	position: relative;
-	top: -72px;
+	top: -457px;
 	left: -35px;
 }
 
