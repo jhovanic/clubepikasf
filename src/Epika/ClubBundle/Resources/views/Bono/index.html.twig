@@ -1,42 +1,73 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block contenido_title %}Bono list{% endblock %}
-{% block contenido %}
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Descuento</th>
-            <th>Ahorro</th>
-            <th>Active</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td>{{ entity.name }}</td>
-            <td>{{ entity.description }}</td>
-            <td>{{ entity.price }}</td>
-            <td>{{ entity.discount }}</td>
-            <td>{{ entity.save }}</td>
-            <td>{{ entity.isactive }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('bono_show', { 'id': entity.id }) }}">Ver</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('bono_edit', { 'id': entity.id }) }}">Editar</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
 
+{% block contenido %}
+<br />
+{% for entity in entities %}
+<div style="width: 718px; height:320px; border: 2px #000000 groove; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
+			<table border="0">
+				<tr>
+					<td width="300">
+						<div class="bonoImages" style="margin: 0; padding: 0; position: relative; top: -3px; left: -4px;">
+							<img class="image" alt="" src="{{ entity.images[0].getWebPath }}" width="300" height="283" />
+						</div>
+						<div class="bonoSocials" style="width: 302px; heigh: 40px; background: #D0CACA; text-align: center; padding-top: 10px; padding-bottom: 5px; position: relative; top: -25px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
+							<div>
+								<div style="position: relative; top: -7px;" class="fb-like" data-href="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}" data-send="false" data-layout="button_count" data-width="10" data-show-faces="false" data-font="verdana">
+								</div>
+								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Plus.png') }}" widht="32" height="32" />
+								<a href="http://twitter.com/share" data-url="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}" data-text="{{ entity.description }}" data-lang="es">
+								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Twitter.png') }}" widht="32" height="32" /></a>
+								<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Gmail.png') }}" widht="32" height="32" />
+							</div>
+						</div>
+					</td>
+					<td>
+						<table border="0" width="100%">
+							<tr>
+								<td height="20">
+									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -79px; left: 180px;">
+										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" width="140" height="140" />
+										{% if entity.discount < 100 %}
+										<span style="position: relative; top:-86px; left: 38px; font-size: 1.9em; color: #fff;">{{ entity.discount }}%</span>
+										{% else %}
+										<span style="position: relative; top:-86px; left: 38px; font-size: 1.9em; color: #fff;">2x1</span>
+										{% endif %}
+									</div>
+									<div class="bonoSaveImage" style="float: right; position: relative; top: -79px; left: -110px; width: 20px; height: 55px;">
+										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="140" height="140" />
+										<span style="position: relative; top:-86px; left: 38px; font-size: 1.7em; color: #fff;">{{ entity.save }}</span>
+									</div>
+									<div class="bonoTitle" style="width: 200px; height: 50px; position: relative; top: -70px; word-wrap: break-word;">	
+										<h2>{{ entity.name }}</h2>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="bonoShortDescription" style="width: 400px; height: 70px; word-wrap: break-word; position: relative; top: -50px;">
+										{{ entity.description }}
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<div class="bonoPrice" style="position: relative; top: -15px;">
+										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/precio.png') }}" width="130" height="55" />
+										<a href="{{ path('bono_show', {'id':entity.id}) }}">
+										<img alt="Ver Promoción" title="Ver Promoción" src="{{ asset('bundles/epikaclub/images/promocion.png') }}" width="130" height="55" />
+										</a>
+									</div>
+									<span style="position: relative; top:-60px; left: -62px; font-size: 2em; color: #fff;">{{ entity.price }}</span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+</div>
+<br />
+{% endfor %}
 <ul>
     <li>
         <a href="{{ path('bono_new') }}">

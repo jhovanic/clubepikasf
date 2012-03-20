@@ -53,7 +53,7 @@ class CompanyController extends Controller
 
         return array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        );
+            'delete_form' => $deleteForm->createView());
     }
 
     /**
@@ -90,6 +90,7 @@ class CompanyController extends Controller
         $entity->setUpdatedAt(new \DateTime('now'));
         $entity->getContacto()->setCreatedAt(new \DateTime('now'));
         $entity->getContacto()->setUpdatedAt(new \DateTime('now'));
+        $entity->getUser()->setPassword($entity->getNit());
         $image = $form['image']->getData();
         $photo = $form['contacto']['photo']->getData();
         $now = date('Y').date('m').date('d').date('H').date('i').date('s');
@@ -109,6 +110,10 @@ class CompanyController extends Controller
         		$entity->getContacto()->setPhoto($name);
         	}
         	
+        	$entity->getUser()->setRole('3');
+        	$entity->getUser()->setIsActive(true);
+        	$entity->getUser()->setCreatedAt(new \DateTime('now'));
+        	$entity->getUser()->setUpdatedAt(new \DateTime('now'));
         	$em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->persist($entity->getContacto());
@@ -244,4 +249,29 @@ class CompanyController extends Controller
             ->getForm()
         ;
     }
+    
+    /**
+     * Activates a Bono from an Afiliate
+     * 
+     * @Route("/activar/{id}", name="company_activate")
+     * @Template()
+     */
+    public function activarAction($id)
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliado')->find($id);
+    	
+    	if (!$afiliate) {
+    		throw $this->createNotFoundException('Oops el Afiliado no existe');
+    	}
+    	
+    	return array(
+    			'afiliado' => $afiliate
+    			);
+    	
+    }
+    
+    
+    
+    
 }

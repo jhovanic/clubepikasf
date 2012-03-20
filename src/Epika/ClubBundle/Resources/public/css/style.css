@@ -112,9 +112,10 @@ blockquote p{
 
 /* ========================== Header ========================== */
 #divHeader {
-	background-color: #FFF;
+	background-color: none;
 	float: left;
 	width: 944px;
+	height: 247px;
 	margin-right: 16px;
 	margin-left: 16px;
 	border-bottom-width: 3px;
@@ -141,15 +142,23 @@ blockquote p{
 }
 #divLogo a img {
 	border:0px;
-	width: 980px;
+	width: 990px;
+	height: 232px;
 	position: relative;
 	left: -22px;
 }
 #divMainMenu {
 	float: right;
+	background: none;
+	width: 320px;
+	text-align: center;
 	padding-top: 9px;
 	padding-bottom: 7px;
 	clear: right;
+	z-index: 5;
+	position: relative;
+	top: -280px;
+	right: -10px;
 }
 #divMainMenu ul {
 	margin: 0px;
@@ -166,7 +175,7 @@ blockquote p{
 }
 #divMainMenu ul li a {
 	font-weight: 700;
-	color: #888888;
+	color: none;
 	text-decoration: none;
 	float: left;
 	font-size: 12px;
@@ -174,9 +183,6 @@ blockquote p{
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left: 13px;
-	border-left-width: 1px;
-	border-left-style: solid;
-	border-left-color: #E6E5DD;
 }
 #divMainMenu ul li a:hover {
 	color: #ea6941;
@@ -197,11 +203,10 @@ blockquote p{
 	border-bottom: solid 3px #ea6941;
 	padding-top:23px;
 	margin-left:13px;
-
 }
 #divMainMenu.menu-header ul ul li {
 	min-width: 186px;
-	background-color:#ffffff;	
+	background-color:none;
 }
 #divMainMenu.menu-header  ul ul ul {
 	left: 100%;
@@ -212,8 +217,7 @@ blockquote p{
 }
 #divMainMenu.menu-header ul ul ul li {
 	min-width: 186px;
-	background-color:#f9f9f9;
-		
+	background-color:none;
 }	
 #divMainMenu.menu-header ul ul li a {
 	padding-left: 19px;
@@ -221,17 +225,15 @@ blockquote p{
 	padding-bottom:13px;
 	width: 167px;
 	height: auto;
-	border-top:solid 1px #e6e5dd;
 	font-weight: normal;
 	font-size: 12px;
 	margin:0px;
 	border-left:0px;
-	border-right:0px;;
+	border-right:0px;
 }
 #divMainMenu.menu-header ul ul li:hover > a {
 	font-size: 12px;
 	font-weight: normal;
-	
 }
 #divMainMenu.menu-header ul ul li.current_page_item > a{
 	color: #ea6941;
@@ -2337,7 +2339,8 @@ divFooterWidgets {
 }
 
 .image {
-	border-radius: 6px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
 	border-right: 2px groove #242524;
 }
 
@@ -2345,7 +2348,7 @@ divFooterWidgets {
 	width: 1003px;
 	height: 98px;
 	position: relative;
-	top: 394px;
+	top: 184px;
 	left: 3px;
 	background: url(../images/menuepika.png);
 }
@@ -2355,7 +2358,7 @@ divFooterWidgets {
 	text-align: center;
 	list-style-type: none;
 	position: relative;
-	top: -395px;
+	top: -186px;
 
 }
 
@@ -2394,7 +2397,7 @@ divFooterWidgets {
 #divSearch {
 	float: right;
 	position: relative;
-	top: -457px;
+	top: -249px;
 	left: -35px;
 }
 
@@ -2408,4 +2411,29 @@ divFooterWidgets {
 #divSearch a {
 	position: relative;
 	top: -1px;
+}
+
+#divMainMenuItems.menu-items ul li > a img {
+	background: none;
+	opacity: 1 !important;
+	z-index: 2000;
+}
+
+.loginTable {
+	border: none;
+	border-collapse: collapse;
+}
+
+.loginTable input {
+	-moz-border-image:url(../images/cajadetexto.png) 30 30 stretch; /* Firefox */
+	-webkit-border-image:url(../images/cajadetexto.png) 30 30 stretch; /* Safari and Chrome */
+	-o-border-image:url(../images/cajadetexto.png) 30 30 stretch; /* Opera */
+	border-image:url(../images/cajadetexto.png) 30 30 stretch;
+	padding: 5px;
+	border: 1px #000 thin;
+}
+
+.topMenu ul li {
+	padding: 0;
+	margin: 0;
 }

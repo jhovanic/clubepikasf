@@ -1,4 +1,6 @@
-<h1>Afiliate creation</h1>
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block contenido_title %}Nuevo Afiliado{% endblock %}
+{% block contenido %}
 
 <form action="{{ path('afiliado_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
@@ -14,3 +16,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}

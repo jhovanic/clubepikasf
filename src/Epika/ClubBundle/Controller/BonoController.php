@@ -171,15 +171,17 @@ class BonoController extends Controller
      */
     public function updateAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+    	$now = date('Y').date('m').date('d').date('H').date('i').date('s');
+    	
+    	$em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('EpikaClubBundle:Bono')->find($id);
+        $bono = $em->getRepository('EpikaClubBundle:Bono')->find($id);
 
-        if (!$entity) {
+        if (!$bono) {
             throw $this->createNotFoundException('Unable to find Bono entity.');
         }
 
-        $editForm   = $this->createForm(new BonoType(), $entity);
+        $editForm   = $this->createForm(new BonoType(), $bono);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -187,14 +189,33 @@ class BonoController extends Controller
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
+        	$bono->setSave($bono->getPrice()*($bono->getDiscount()/100));
+        	$bono->setUpdatedAt(new \DateTime('now'));
+        	$em->persist($bono);
             $em->flush();
+            $bi = array();
+            for ($i = 1; $i < 5 ; $i++) {
+            	$bi[$i] = new Bono_Images();
+            	$image = $editForm['image'.$i]->getData();
+            	if ($image !== null && $image->isValid()){
+            		$name = $i.$bono->getId().$now.'.'.$image->guessExtension();
+            		$image->move($bi[$i]->getUploadRootDir(),$name);
+            		$bi[$i]->setPath($name);
+            		$bi[$i]->setThumb($name);
+            		$bi[$i]->setBono($bono);
+            		$bi[$i]->setCreatedAt(new \DateTime('now'));
+            		$bi[$i]->setUpdatedAt(new \DateTime('now'));
+            		$bono->addBono_Images($bi[$i]);
+            	}
+            }
+            $em->flush();
+            
 
             return $this->redirect($this->generateUrl('bono_edit', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $bono,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );

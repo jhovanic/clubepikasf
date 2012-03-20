@@ -103,6 +103,11 @@ class Company
      * 
      */
     private $contacto;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="User", cascade={ "persist", "remove" })
+     */
+    private $user;
 
     /**
      * @var datetime $created_at

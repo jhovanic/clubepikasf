@@ -75,6 +75,21 @@
         </tr>
     </tbody>
 </table>
+{% if entity.user %}
+<h1 class="divRecentWorksTitle">Usuario</h1>
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.user.login }}</td>
+        </tr>
+        <tr>
+            <th>Nombres</th>
+            <td>{{ entity.user.password }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endif %}
 <ul class="record_actions">
     <li>
         <a href="{{ path('company') }}">

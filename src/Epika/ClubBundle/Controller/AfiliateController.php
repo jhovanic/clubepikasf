@@ -90,7 +90,7 @@ class AfiliateController extends Controller
         if ($form->isValid()) {
             $afiliate->setCreatedAt(new \DateTime('now'));
             $afiliate->setUpdatedAt(new \DateTime('now'));
-            $afiliate->getUser()->setRole('usuario');
+            $afiliate->getUser()->setRole('2');
             $afiliate->getUser()->setIsActive(true);
             $afiliate->getUser()->setCreatedAt(new \DateTime('now'));
             $afiliate->getUser()->setUpdatedAt(new \DateTime('now'));

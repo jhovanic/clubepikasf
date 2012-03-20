@@ -1,4 +1,6 @@
-<h1>Afiliate list</h1>
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block contenido_title %}Afiliado{% endblock %}
+{% block contenido %}
 
 <table class="records_list">
     <thead>
@@ -7,16 +9,10 @@
             <th>Identification</th>
             <th>Name</th>
             <th>Last_name</th>
-            <th>Address</th>
-            <th>Neighborhood</th>
             <th>Phone</th>
             <th>Cellphone</th>
             <th>Email</th>
-            <th>Gender</th>
-            <th>Birth_date</th>
-            <th>Created_at</th>
-            <th>Updated_at</th>
-            <th>Actions</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -26,15 +22,9 @@
             <td>{{ entity.identification }}</td>
             <td>{{ entity.name }}</td>
             <td>{{ entity.lastname }}</td>
-            <td>{{ entity.address }}</td>
-            <td>{{ entity.neighborhood }}</td>
             <td>{{ entity.phone }}</td>
             <td>{{ entity.cellphone }}</td>
             <td>{{ entity.email }}</td>
-            <td>{{ entity.gender }}</td>
-            <td>{{ entity.birthdate|date('Y-m-d H:i:s') }}</td>
-            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
             <td>
                 <ul>
                     <li>
@@ -57,3 +47,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}

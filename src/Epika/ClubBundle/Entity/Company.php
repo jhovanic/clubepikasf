@@ -103,6 +103,11 @@ class Company
      * 
      */
     private $contacto;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="User", cascade={ "persist", "remove" })
+     */
+    private $user;
 
     /**
      * @var datetime $created_at
@@ -440,5 +445,25 @@ class Company
     	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
     	return '/images/uploads/company';
     }
-    
+    /************************************* END OF UPLOAD METHODS **********************************/
+
+    /**
+     * Set user
+     *
+     * @param Epika\ClubBundle\Entity\User $user
+     */
+    public function setUser(\Epika\ClubBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Epika\ClubBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

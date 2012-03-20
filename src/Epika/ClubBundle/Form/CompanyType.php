@@ -37,6 +37,7 @@ class CompanyType extends AbstractType
             		'multiple' => false,
             		'expanded' => false))
             ->add('contacto', new ContactoType())
+            ->add('user', new UserType())
         ;
     }
     

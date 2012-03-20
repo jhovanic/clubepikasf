@@ -1,23 +1,55 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/nivo-slider.css') }}" type="text/css" />
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery-1.7.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery.nivo.slider.js') }}"></script>
+{% endblock %}
 {% block contenido_title %}{% endblock %}
 {% block contenido %}
-
+<div id="showContainer" style="height:780px;">
 <div style="width: 718px; height:320px; border: 2px #000000 groove; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
 			<table border="0">
 				<tr>
-					<td width="300">
+					<td width="301">
 						<div class="bonoImages" style="margin: 0; padding: 0; position: relative; top: -3px; left: -4px;">
-							<img class="image" alt="" src="{{ entity.images[0].getWebPath }}" width="300" height="283" />
+
+							<!-- BEGIN #imageList -->							
+				            <div id="slider" class="nivoSlider">
+				               	{% for image in entity.images %}
+				               	<img class="image" alt="" src="{{ image.getWebPath }}" width="300" height="266" />
+				               	{% endfor %}
+							</div>
+							<!-- END #imageList -->
+							<script type="text/javascript">
+							$(window).load(function() {
+							    $('#slider').nivoSlider({
+							        effect: 'random', // Specify sets like: 'fold,fade,sliceDown'
+							        animSpeed: 500, // Slide transition speed
+							        pauseTime: 3000, // How long each slide will show
+							        startSlide: 0, // Set starting Slide (0 index)
+							        directionNav: false, // Next & Prev navigation
+							        controlNav: false, // 1,2,3... navigation
+							        keyboardNav: false, // Use left & right arrows
+							        pauseOnHover: true, // Stop animation while hovering
+							        captionOpacity: 0.8, // Universal caption opacity
+							    });
+							});
+							</script>
+							
 						</div>
-						<div class="bonoSocials" style="width: 302px; heigh: 40px; background: #D0CACA; text-align: center; padding-top: 10px; padding-bottom: 5px; position: relative; top: -25px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
+						<div class="bonoSocials" style="width: 302px; heigh: 40px; background: #D0CACA; text-align: center; padding-top: 10px; padding-bottom: 5px; position: relative; top: -3px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
 							<div>
-								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Facebook.png') }}" width="32" height="32" />
-								&nbsp;&nbsp;&nbsp;
+								<div style="position: relative; top: -7px;" class="fb-like" data-href="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}" data-send="false" data-layout="button_count" data-width="10" data-show-faces="false" data-font="verdana">
+								</div>
 								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Plus.png') }}" widht="32" height="32" />
-								&nbsp;&nbsp;&nbsp;
-								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Twitter.png') }}" widht="32" height="32" />
-								&nbsp;&nbsp;&nbsp;
-								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Google.png') }}" widht="32" height="32" />
+								<a href="http://twitter.com/share" data-url="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}" data-text="{{ entity.description }}" data-lang="es">
+								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Twitter.png') }}" widht="32" height="32" /></a>
+								<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Gmail.png') }}" widht="32" height="32" />
 							</div>
 						</div>
 					</td>
@@ -27,9 +59,15 @@
 								<td height="20">
 									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -69px; left: 180px;">
 										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" width="140" height="140" />
+										{% if entity.discount < 100 %}
+										<span style="position: relative; top:-86px; left: 38px; font-size: 1.9em; color: #fff;">{{ entity.discount }}%</span>
+										{% else %}
+										<span style="position: relative; top:-86px; left: 38px; font-size: 1.9em; color: #fff;">2x1</span>
+										{% endif %}
 									</div>
 									<div class="bonoSaveImage" style="float: right; position: relative; top: -69px; left: -110px; width: 20px; height: 55px;">
 										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="140" height="140" />
+										<span style="position: relative; top:-86px; left: 38px; font-size: 1.7em; color: #fff;">{{ entity.save }}</span>
 									</div>
 									<div class="bonoTitle" style="width: 200px; height: 50px; position: relative; top: -70px; word-wrap: break-word;">	
 										<h2>{{ entity.name }}</h2>
@@ -47,8 +85,8 @@
 								<td align="center">
 									<div class="bonoPrice" style="position: relative; top: -15px;">
 										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/precio.png') }}" width="130" height="55" />
-										<img alt="Ver Promoción" title="Ver Promoción" src="{{ asset('bundles/epikaclub/images/promocion.png') }}" width="130" height="55" />
 									</div>
+									<span style="position: relative; top:-60px; left: 5px; font-size: 2em; color: #fff;">{{ entity.price }}</span>
 								</td>
 							</tr>
 						</table>
@@ -56,27 +94,72 @@
 				</tr>
 			</table>
 </div>
-			<div class="sideBar">
-				<span>SIDEBAR</span>
-			</div>
-		<div class="actions" style="">
-				<ul class="record_actions">
-				    <li>
-				        <a href="{{ path('bono') }}">
-				            Volver
-				        </a>
-				    </li>
-				    <li>
-				        <a href="{{ path('bono_edit', { 'id': entity.id }) }}">
-				            Editar
-				        </a>
-				    </li>
-				    <li>
-				        <form action="{{ path('bono_delete', { 'id': entity.id }) }}" method="post">
-				            {{ form_widget(delete_form) }}
-				            <button type="submit">Eliminar</button>
-				        </form>
-				    </li>
-				</ul>
-			</div>
+
+<div id="bonoDescription">
+	<div id="mapcanvas"></div>
+</div>
+<script type="text/javascript" src=""></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	var geocoder, map;
+	function initialize() {
+		geocoder = new google.maps.Geocoder();
+	  var latlng = new google.maps.LatLng(-34.397, 150.644);
+	  var myOptions = {
+	    zoom: 14,
+	    center: latlng,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+	  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	}
+	var infoWindow = new google.maps.InfoWindow();
+	function codeAddress(adrs, title) {
+			//alert(adrs);	
+		  var address = adrs;
+		  geocoder.geocode( { 'address': address}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+			  map.setCenter(results[0].geometry.location);
+			  var marker = new google.maps.Marker({
+				  map: map, 
+				  position: results[0].geometry.location,
+				  title:"Prueba"
+			  });
+	
+			  google.maps.event.addListener(marker, 'click', function () {
+				 //infoWindow.close();
+			     infoWindow.setContent("<b>"+title+"</b><br />"+address);
+			     infoWindow.open(map, marker);
+			  });
+			}
+		  });
+		}
+	$(document).ready(function() {
+		initialize();
+		codeAddress({{ entity.company.address }} + ' ' + {{ entity.company.city }} + ' ' + 'Colombia', {{ entity.company.name }});	    	
+	});
+});
+</script>
+
+<div class="actions" style="">
+	<ul class="record_actions">
+	    <li>
+	        <a href="{{ path('bono') }}">
+	            Volver
+	        </a>
+	    </li>
+	    <li>
+	        <a href="{{ path('bono_edit', { 'id': entity.id }) }}">
+	            Editar
+	        </a>
+	    </li>
+	    <li>
+	        <form action="{{ path('bono_delete', { 'id': entity.id }) }}" method="post">
+	            {{ form_widget(delete_form) }}
+	            <button type="submit">Eliminar</button>
+	        </form>
+	    </li>
+	</ul>
+</div>
+</div>
 {% endblock %}

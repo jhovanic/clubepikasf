@@ -89,6 +89,19 @@
     		<td>{{ form_errors(form.contacto.photo) }}</td>
     	</tr>
     </table>
+    <h1>Usuario</h1>
+    <table>
+    	<tr>
+    		<th>{{ form_label(form.user.login) }}</th>
+    		<td>{{ form_widget(form.user.login) }}</td>
+    		<td>{{ form_errors(form.user.login) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(form.user.password) }}</th>
+    		<td>{{ form_widget(form.user.password) }}</td>
+    		<td>{{ form_errors(form.user.password) }}</td>
+    	</tr>
+    </table>
     {{ form_rest(form) }}
     <p>
         <button type="submit">Crear</button>

@@ -1,4 +1,6 @@
-<h1>Afiliate edit</h1>
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block contenido_title %}Editar Afiliado{% endblock %}
+{% block contenido %}
 
 <form action="{{ path('afiliado_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}
@@ -20,3 +22,4 @@
         </form>
     </li>
 </ul>
+{% endblock %}
