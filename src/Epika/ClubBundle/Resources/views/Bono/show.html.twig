@@ -10,7 +10,7 @@
 {% endblock %}
 {% block contenido_title %}{% endblock %}
 {% block contenido %}
-<div id="showContainer" style="height:780px;">
+<div id="showContainer">
 <div style="width: 718px; height:320px; border: 2px #000000 groove; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
 			<table border="0">
 				<tr>
@@ -95,19 +95,35 @@
 			</table>
 </div>
 
-<div id="bonoDescription">
-	<div id="mapcanvas"></div>
-</div>
-<script type="text/javascript" src=""></script>
+<!-- Google Maps -->
+<div id="bonoMicroSite" style="width:100%;text-align:left;padding: 0; margin-left: 1.5em; margin-top: 1.5em;">
+	<div id="map_canvas" style="width: 700px; height:200px; border: 1px #000000 groove;text-align:center"></div>
+	<div id="bonoDescription" style="width: 700px;margin-left:1em;margin-top:2em;">
+		<h2>{{ entity.name }}</h2>
+		<span>{{ entity.description }}</span><br /><br />
+		<fieldset>
+		<legend>Descripción</legend>
+		<p>{{ entity.longdescription }}</p>
+		</fieldset>
+		<fieldset>
+		<legend>Información</legend>
+		<p>{{ entity.information }}</p>
+		</fieldset>
+		<fieldset>
+		<legend>Condiciones</legend>
+		{{ entity.conditions }}
+		</fieldset>
+	</div>
+</div> 
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> 
 <script type="text/javascript">
-
 $(document).ready(function() {
 	var geocoder, map;
 	function initialize() {
 		geocoder = new google.maps.Geocoder();
 	  var latlng = new google.maps.LatLng(-34.397, 150.644);
 	  var myOptions = {
-	    zoom: 14,
+	    zoom: 15,
 	    center: latlng,
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	  };
@@ -134,10 +150,12 @@ $(document).ready(function() {
 			}
 		  });
 		}
-	$(document).ready(function() {
+
+		$(document).ready(function() {
 		initialize();
-		codeAddress({{ entity.company.address }} + ' ' + {{ entity.company.city }} + ' ' + 'Colombia', {{ entity.company.name }});	    	
-	});
+		codeAddress('{{ entity.company.address }}' + ' ' + '{{ entity.company.neighborhood }}' + ' ' + '{{ entity.company.city.name }}' + ' ' + 'Colombia', '{{ entity.company.name }}');
+		});	    	
+
 });
 </script>
 
