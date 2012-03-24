@@ -3,3 +3,5 @@
 /app/logs/*
 /vendor/
 /app/config/parameters.ini
+/web/images/*
+/web/bundles/*
