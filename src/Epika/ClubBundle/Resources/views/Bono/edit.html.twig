@@ -3,7 +3,94 @@
 {% block contenido %}
 
 <form action="{{ path('bono_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
+    <div>{{ form_errors(edit_form) }}</div>
+    <table id="editBonoTable">
+    	<tr>
+    		<td>{{ form_label(edit_form.name) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.name) }}</td>
+    		<td>{{ form_errors(edit_form.name) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.description) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.description) }}</td>
+    		<td>{{ form_errors(edit_form.description) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.long_description) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.long_description) }}</td>
+    		<td>{{ form_errors(edit_form.long_description) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.information) }}</td>
+    		<td>{{ form_widget(edit_form.information) }}</td>
+    		<td>{{ form_errors(edit_form.information) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.conditions) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.conditions) }}</td>
+    		<td>{{ form_errors(edit_form.conditions) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.price) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.price) }}</td>
+    		<td>{{ form_errors(edit_form.price) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.discount) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.discount) }}</td>
+    		<td>{{ form_errors(edit_form.discount) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.type) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.type) }}</td>
+    		<td>{{ form_errors(edit_form.type) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.unpublish_date) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.unpublish_date.day) }}
+    		{{ form_widget(edit_form.unpublish_date.month) }}
+    		{{ form_widget(edit_form.unpublish_date.year) }}</td>
+    		<td>{{ form_errors(edit_form.unpublish_date) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.company) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.company) }}</td>
+    		<td>{{ form_errors(edit_form.company) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.membership) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.membership) }}</td>
+    		<td>{{ form_errors(edit_form.membership) }}</td>
+    	</tr>
+    </table>
+    <br />
+    <h1 class="divRecentWorksTitle">Imagenes</h1>
+    <hr>
+    <table>
+    	<tr>
+    		<td>{{ form_label(edit_form.image1) }}<span class="field_required">*</span></td>
+    		<td>{{ form_widget(edit_form.image1) }}</td>
+    		<td>{{ form_errors(edit_form.image1) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.image2) }}</td>
+    		<td>{{ form_widget(edit_form.image2) }}</td>
+    		<td>{{ form_errors(edit_form.image2) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.image3) }}</td>
+    		<td>{{ form_widget(edit_form.image3) }}</td>
+    		<td>{{ form_errors(edit_form.image3) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(edit_form.image4) }}</td>
+    		<td>{{ form_widget(edit_form.image4) }}</td>
+    		<td>{{ form_errors(edit_form.image4) }}</td>
+    	</tr>
+    </table>
+    {{ form_rest(edit_form) }}
+    
+    Los campos marcados con <span class="field_required">*</span> son obligatorios.
     <p>
         <button type="submit">Editar</button>
     </p>

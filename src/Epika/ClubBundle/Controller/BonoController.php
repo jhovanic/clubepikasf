@@ -241,7 +241,12 @@ class BonoController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Bono entity.');
             }
-
+            
+			$abs = $em->getRepository('EpikaClubBundle:Afiliate_Bono')->findAll();
+			foreach ($abs as $ab){
+				if($ab->getBono()->getId() == $entity->getId())
+					$em->remove($ab);
+			}
             $em->remove($entity);
             $em->flush();
         }

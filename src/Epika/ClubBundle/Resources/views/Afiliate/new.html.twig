@@ -3,7 +3,83 @@
 {% block contenido %}
 
 <form action="{{ path('afiliado_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+    <div>{{ form_errors(form) }}</div>
+    <table>
+    	<tr>
+    		<td>{{ form_label(form.identification) }}</td>
+    		<td>{{ form_widget(form.identification) }}</td>
+    		<td>{{ form_errors(form.identification) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.name) }}</td>
+    		<td>{{ form_widget(form.name) }}</td>
+    		<td>{{ form_errors(form.name) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.last_name) }}</td>
+    		<td>{{ form_widget(form.last_name) }}</td>
+    		<td>{{ form_errors(form.last_name) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.address) }}</td>
+    		<td>{{ form_widget(form.address) }}</td>
+    		<td>{{ form_errors(form.address) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.neighborhood) }}</td>
+    		<td>{{ form_widget(form.neighborhood) }}</td>
+    		<td>{{ form_errors(form.neighborhood) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.phone) }}</td>
+    		<td>{{ form_widget(form.phone) }}</td>
+    		<td>{{ form_errors(form.phone) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.cellphone) }}</td>
+    		<td>{{ form_widget(form.cellphone) }}</td>
+    		<td>{{ form_errors(form.cellphone) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.email) }}</td>
+    		<td>{{ form_widget(form.email) }}</td>
+    		<td>{{ form_errors(form.email) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.gender) }}</td>
+    		<td>{{ form_widget(form.gender) }}</td>
+    		<td>{{ form_errors(form.gender) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.birth_date) }}</td>
+    		<td>{{ form_widget(form.birth_date) }}</td>
+    		<td>{{ form_errors(form.birth_date) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.department) }}</td>
+    		<td>{{ form_widget(form.department) }}</td>
+    		<td>{{ form_errors(form.department) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.city) }}</td>
+    		<td>{{ form_widget(form.city) }}</td>
+    		<td>{{ form_errors(form.city) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.ocupation) }}</td>
+    		<td>{{ form_widget(form.ocupation) }}</td>
+    		<td>{{ form_errors(form.ocupation) }}</td>
+    	</tr>
+    </table>
+    <h1>Usuario</h1>
+    <table>
+    	<tr>
+    		<td>{{ form_label(form.user.login) }}</td>
+    		<td>{{ form_widget(form.user.login) }}</td>
+    		<td>{{ form_errors(form.user.login) }}</td>
+    	</tr>
+    </table>
+    {{ form_rest(form) }}
     <p>
         <button type="submit">Create</button>
     </p>
