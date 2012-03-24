@@ -41,10 +41,6 @@ if (!class_exists('DomDocument')) {
     $minorProblems[] = 'Install and enable the <strong>php-xml</strong> module.';
 }
 
-if (!defined('LIBXML_COMPACT')) {
-    $minorProblems[] = 'Upgrade your <strong>php-xml</strong> extension with a newer libxml.';
-}
-
 if (!((function_exists('apc_store') && ini_get('apc.enabled')) || function_exists('eaccelerator_put') && ini_get('eaccelerator.enable') || function_exists('xcache_set'))) {
     $minorProblems[] = 'Install and enable a <strong>PHP accelerator</strong> like APC (highly recommended).';
 }
@@ -112,6 +108,10 @@ if (!function_exists('ctype_alpha')) {
     $majorProblems[] = 'Install and enable the <strong>ctype</strong> extension.';
 }
 
+if (!function_exists('token_get_all')) {
+    $majorProblems[] = 'Install and enable the <strong>Tokenizer</strong> extension.';
+}
+
 // php.ini
 if (!ini_get('date.timezone')) {
     $phpini = true;
@@ -141,8 +141,8 @@ if (ini_get('session.auto_start')) {
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <link href="bundles/sensiodistribution/webconfigurator/css/install.css" rel="stylesheet" type="text/css" media="all" />
+        <meta charset="UTF-8" />
+        <link href="bundles/sensiodistribution/webconfigurator/css/install.css" rel="stylesheet" media="all" />
         <title>Symfony Configuration</title>
     </head>
     <body>
@@ -188,14 +188,13 @@ if (ini_get('session.auto_start')) {
 
                     <?php if ($phpini): ?>
                             <a id="phpini"></a>
-                                <p>*
-                                    <?php if (get_cfg_var('cfg_file_path')): ?>
-                                        Changes to the <strong>php.ini</strong> file must be done in "<strong><?php echo get_cfg_var('cfg_file_path') ?></strong>".
-                                    <?php else: ?>
-                                        To change settings, create a "<strong>php.ini</strong>".
-                                    <?php endif; ?>
-                                </p>
-                            </div>
+                            <p>*
+                                <?php if (get_cfg_var('cfg_file_path')): ?>
+                                    Changes to the <strong>php.ini</strong> file must be done in "<strong><?php echo get_cfg_var('cfg_file_path') ?></strong>".
+                                <?php else: ?>
+                                    To change settings, create a "<strong>php.ini</strong>".
+                                <?php endif; ?>
+                            </p>
                     <?php endif; ?>
 
                     <ul class="symfony-install-continue">
