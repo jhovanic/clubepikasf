@@ -7,11 +7,13 @@
 	{{ parent() }}
 	<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery-1.7.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery.nivo.slider.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/epikaclub/tabs/vendor/jquery.hashchange.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/epikaclub/tabs/lib/jquery.easytabs.min.js') }}"></script>
 {% endblock %}
 {% block contenido_title %}{% endblock %}
 {% block contenido %}
 <div id="showContainer">
-<div style="width: 718px; height:320px; border: 2px #000000 groove; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
+<div style="width: 708px; height:290px; border: 2px #000000 groove; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
 			<table border="0">
 				<tr>
 					<td width="301">
@@ -20,7 +22,7 @@
 							<!-- BEGIN #imageList -->							
 				            <div id="slider" class="nivoSlider">
 				               	{% for image in entity.images %}
-				               	<img class="image" alt="" src="{{ image.getWebPath }}" width="300" height="266" />
+				               	<img class="image" alt="" src="{{ image.getWebPath }}" width="300" height="253" />
 				               	{% endfor %}
 							</div>
 							<!-- END #imageList -->
@@ -41,7 +43,7 @@
 							</script>
 							
 						</div>
-						<div class="bonoSocials" style="width: 302px; heigh: 40px; background: #D0CACA; text-align: center; padding-top: 10px; padding-bottom: 5px; position: relative; top: -3px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
+						<div class="bonoSocials" style="width: 302px; heigh: 40px; background: #D0CACA; text-align: center; padding-top: 10px; padding-bottom: 5px; position: relative; top: -33px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524; z-index: 1000;">
 							<div>
 								<div style="position: relative; top: -7px;" class="fb-like" data-href="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}" data-send="false" data-layout="button_count" data-width="10" data-show-faces="false" data-font="verdana">
 								</div>
@@ -57,18 +59,18 @@
 						<table border="0" width="100%">
 							<tr>
 								<td height="20">
-									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -69px; left: 180px;">
-										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" width="140" height="140" />
+									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -44px; left: 300px;">
+										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" />
 										{% if entity.discount < 100 %}
-										<span style="position: relative; top:-86px; left: 38px; font-size: 1.9em; color: #fff;">{{ entity.discount }}%</span>
+										<span style="position: relative; top:-61px; left: 19px; font-size: 1.9em; color: #b31504;">{{ entity.discount }}%</span>
 										{% else %}
-										<span style="position: relative; top:-86px; left: 38px; font-size: 1.9em; color: #fff;">2x1</span>
+										<span style="position: relative; top:-61px; left: 19px; font-size: 1.9em; color: #b31504;">2x1</span>
 										{% endif %}
 									</div>
-									<div class="bonoSaveImage" style="float: right; position: relative; top: -69px; left: -110px; width: 20px; height: 55px;">
+									<!-- <div class="bonoSaveImage" style="float: right; position: relative; top: -69px; left: -110px; width: 20px; height: 55px;">
 										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="140" height="140" />
 										<span style="position: relative; top:-86px; left: 38px; font-size: 1.7em; color: #fff;">{{ entity.save }}</span>
-									</div>
+									</div> -->
 									<div class="bonoTitle" style="width: 200px; height: 50px; position: relative; top: -70px; word-wrap: break-word;">	
 										<h2>{{ entity.name }}</h2>
 									</div>
@@ -84,9 +86,13 @@
 							<tr>
 								<td align="center">
 									<div class="bonoPrice" style="position: relative; top: -15px;">
-										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/precio.png') }}" width="130" height="55" />
+										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
 									</div>
-									<span style="position: relative; top:-60px; left: 5px; font-size: 2em; color: #fff;">{{ entity.price }}</span>
+									{% if entity.discount == 100 %}
+									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #ef7f1a;">${{ entity.price }}</span>
+									{% else %}
+									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #ef7f1a;">${{ entity.price - entity.save }}</span>
+									{% endif %}
 								</td>
 							</tr>
 						</table>
@@ -95,26 +101,53 @@
 			</table>
 </div>
 
-<!-- Google Maps -->
+<!-- Style de los tabs -->
+<style>
+    /* Example Styles for Demo */
+    .etabs { margin: 0; padding: 0; }
+    .tab { display: inline-block; zoom:1; *display:inline; background: #eee; border: solid 1px #999; border-bottom: none; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; }
+    .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; text-decoration: none; color: #ef7f1a; }
+    .tab a:hover { text-decoration: underline; }
+    .tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
+    .tab a.active { font-weight: bold; }
+    .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
+    .panel-container { margin-bottom: 10px; }
+</style>
+<!-- End del Style -->
+
+<!-- Bono Description -->
 <div id="bonoMicroSite" style="width:100%;text-align:left;padding: 0; margin-left: 1.5em; margin-top: 1.5em;">
-	<div id="map_canvas" style="width: 700px; height:200px; border: 1px #000000 groove;text-align:center"></div>
 	<div id="bonoDescription" style="width: 700px;margin-left:1em;margin-top:2em;">
 		<h2>{{ entity.name }}</h2>
 		<span>{{ entity.description }}</span><br /><br />
-		<fieldset>
-		<legend>Descripción</legend>
-		<p>{{ entity.longdescription }}</p>
-		</fieldset>
-		<fieldset>
-		<legend>Información</legend>
-		<p>{{ entity.information }}</p>
-		</fieldset>
-		<fieldset>
-		<legend>Condiciones</legend>
-		{{ entity.conditions }}
-		</fieldset>
+		<!-- BEGIN TABS -->
+		<div id="tab-container" class="tab-container">
+			<ul class="etabs">
+				<li class="tab"><a href="#tab-desc">Descripción</a></li>
+				<li class="tab"><a href="#tab-info">Información</a></li>
+				<li class="tab"><a href="#tab-cond">Condiciones</a></li>
+				<li class="tab"><a id="map-tab" href="#tab-map">Ubicación</a></li>
+			</ul>
+			<div class="panel-container">
+				<div id="tab-desc">
+					{{ entity.longdescription }}
+				</div>
+				<div id="tab-info">
+					{{ entity.information }}
+				</div>
+				<div id="tab-cond">
+					{{ entity.conditions }}
+				</div>
+				<div id="tab-map">
+					<div id="map_canvas" style="width: 675px; height:250px; border: 1px #000000 groove;text-align:center"></div>
+				</div>
+			</div>
+		</div>
+		<!-- END TABS -->
 	</div>
 </div> 
+<!-- End Bono Description -->
+<!-- Google Maps -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -151,14 +184,26 @@ $(document).ready(function() {
 		  });
 		}
 
-		$(document).ready(function() {
-		initialize();
-		codeAddress('{{ entity.company.address }}' + ' ' + '{{ entity.company.neighborhood }}' + ' ' + '{{ entity.company.city.name }}' + ' ' + 'Colombia', '{{ entity.company.name }}');
-		});	    	
+		//$(document).ready(function() {
+		//	initialize();
+		//	codeAddress('{{ entity.company.address }}' + ' ' + '{{ entity.company.neighborhood }}' + ' ' + '{{ entity.company.city.name }}' + ' ' + 'Colombia', '{{ entity.company.name }}');
+		//});
+
+		$(document).ready( function() {
+			$('#tab-container').easytabs();
+		});
+
+		$('#tab-container').bind('easytabs:after', function(evt, tab, panel, data) {
+			  if ( tab.hasClass('active') ) {
+			    initialize();
+			    codeAddress('{{ entity.company.address }}' + ' ' + '{{ entity.company.neighborhood }}' + ' ' + '{{ entity.company.city.name }}' + ' ' + 'Colombia', '{{ entity.company.name }}');
+			  }
+		});
+
 
 });
 </script>
-
+<!-- END Google Maps -->
 <div class="actions" style="">
 	<ul class="record_actions">
 	    <li>
