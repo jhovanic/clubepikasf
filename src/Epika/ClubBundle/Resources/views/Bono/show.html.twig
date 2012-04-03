@@ -57,18 +57,18 @@
 						<table border="0" width="100%">
 							<tr>
 								<td height="20">
-									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -69px; left: 180px;">
-										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" width="140" height="140" />
+									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -44px; left: 300px;">
+										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" />
 										{% if entity.discount < 100 %}
-										<span style="position: relative; top:-86px; left: 38px; font-size: 1.9em; color: #fff;">{{ entity.discount }}%</span>
+										<span style="position: relative; top:-61px; left: 19px; font-size: 1.9em; color: #b31504;">{{ entity.discount }}%</span>
 										{% else %}
-										<span style="position: relative; top:-86px; left: 38px; font-size: 1.9em; color: #fff;">2x1</span>
+										<span style="position: relative; top:-61px; left: 19px; font-size: 1.9em; color: #b31504;">2x1</span>
 										{% endif %}
 									</div>
-									<div class="bonoSaveImage" style="float: right; position: relative; top: -69px; left: -110px; width: 20px; height: 55px;">
+									<!-- <div class="bonoSaveImage" style="float: right; position: relative; top: -69px; left: -110px; width: 20px; height: 55px;">
 										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="140" height="140" />
 										<span style="position: relative; top:-86px; left: 38px; font-size: 1.7em; color: #fff;">{{ entity.save }}</span>
-									</div>
+									</div> -->
 									<div class="bonoTitle" style="width: 200px; height: 50px; position: relative; top: -70px; word-wrap: break-word;">	
 										<h2>{{ entity.name }}</h2>
 									</div>
@@ -84,9 +84,13 @@
 							<tr>
 								<td align="center">
 									<div class="bonoPrice" style="position: relative; top: -15px;">
-										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/precio.png') }}" width="130" height="55" />
+										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
 									</div>
-									<span style="position: relative; top:-60px; left: 5px; font-size: 2em; color: #fff;">{{ entity.price }}</span>
+									{% if entity.discount == 100 %}
+									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #ef7f1a;">${{ entity.price }}</span>
+									{% else %}
+									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #ef7f1a;">${{ entity.price - entity.save }}</span>
+									{% endif %}
 								</td>
 							</tr>
 						</table>
