@@ -25,12 +25,12 @@ p {
 	margin:0px;
 	padding-bottom:15px;
 }
-a {
+/*a {
 	color:#ea6941;
 }
 a:hover {
 	color:#606060;
-}
+}*/
 h1 {
 	float:left;
 	width:100%;
@@ -112,10 +112,9 @@ blockquote p{
 
 /* ========================== Header ========================== */
 #divHeader {
-	background-color: none;
 	float: left;
 	width: 944px;
-	height: 247px;
+	height: 256px;
 	margin-right: 16px;
 	margin-left: 16px;
 	border-bottom-width: 3px;
@@ -127,8 +126,6 @@ blockquote p{
 }
 #divLogo {
 	float:left;
-	padding-top: 15px;
-	padding-bottom: 15px;
 	line-height:35px;
 }
 #divLogo a {
@@ -142,14 +139,13 @@ blockquote p{
 }
 #divLogo a img {
 	border:0px;
-	width: 990px;
-	height: 232px;
+	/*width: 990px;
+	height: 262px;*/
 	position: relative;
 	left: -22px;
 }
 #divMainMenu {
 	float: right;
-	background: none;
 	width: 320px;
 	text-align: center;
 	padding-top: 9px;
@@ -2348,7 +2344,7 @@ divFooterWidgets {
 	width: 1003px;
 	height: 98px;
 	position: relative;
-	top: 184px;
+	top: 192px;
 	left: 3px;
 	background: url(../images/menuepika.png);
 }
@@ -2358,7 +2354,7 @@ divFooterWidgets {
 	text-align: center;
 	list-style-type: none;
 	position: relative;
-	top: -186px;
+	top: -195px;
 
 }
 
@@ -2379,7 +2375,7 @@ divFooterWidgets {
 	text-decoration: none;
 	font-family: Verdana;
 	color: #ffffff;
-	font-size: 18px;
+	font-size: 16px;
 	position: relative;
 	top: -12px;
 }
@@ -2397,7 +2393,7 @@ divFooterWidgets {
 #divSearch {
 	float: right;
 	position: relative;
-	top: -249px;
+	top: -258px;
 	left: -35px;
 }
 

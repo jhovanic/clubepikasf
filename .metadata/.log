@@ -77,3 +77,41 @@ Binding(CTRL+SHIFT+I,
 
 !ENTRY org.eclipse.ui 4 4 2012-02-29 16:03:03.438
 !MESSAGE Invalid preference page path: XML Syntax
+!SESSION 2012-03-27 06:51:40.746 -----------------------------------------------
+eclipse.buildId=M20110909-1335
+java.version=1.6.0_26
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=es_CO
+Command-line arguments:  -os linux -ws gtk -arch x86 -data /home/jhovani/apps/club_sf
+
+!ENTRY org.eclipse.ui 2 0 2012-03-27 06:51:42.564
+!MESSAGE Warnings while parsing the action sets from the 'org.eclipse.ui.actionSets' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2012-03-27 06:51:42.564
+!MESSAGE The class was not null but retarget was set to true: plug-in='com.dubture.symfony.ui', id='com.dubture.symfony.ui.actions.SwitchContextAction', class='com.dubture.symfony.ui.actions.SwitchContextAction'
+
+!ENTRY org.eclipse.jface 2 0 2012-03-27 06:51:45.853
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-03-27 06:51:45.853
+!MESSAGE A conflict occurred for CTRL+SHIFT+I:
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(org.eclipse.jdt.debug.ui.commands.Inspect,Inspect,
+		Inspect result of evaluating selected text,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		ActionDelegateHandlerProxy(null,org.eclipse.jdt.internal.debug.ui.actions.PopupInspectAction),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialogAndWindow,,,system)
+Binding(CTRL+SHIFT+I,
+	ParameterizedCommand(Command(org.eclipse.php.debug.ui.commands.Inspect,Inspect,
+		Inspect result of evaluating selected text,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialogAndWindow,,,system)
+
+!ENTRY org.eclipse.ui 4 4 2012-03-27 06:51:58.850
+!MESSAGE Invalid preference page path: HTML Syntax
+
+!ENTRY org.eclipse.ui 4 4 2012-03-27 06:51:58.850
+!MESSAGE Invalid preference page path: XML Syntax
