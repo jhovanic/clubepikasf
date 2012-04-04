@@ -25,6 +25,7 @@ class AfiliateType extends AbstractType
             ->add('birth_date', 'birthday', array('label' => 'Fecha de Nacimiento'))
             ->add('department', 'entity', array('class' => 'EpikaClubBundle:Department',
             		'property' => 'name',
+            		'required' => false,
             		'label' => 'Departamento',
             		'empty_value' => 'Seleccione un Departamento',
             		'property_path' => false,
@@ -42,6 +43,7 @@ class AfiliateType extends AbstractType
             		'multiple' => false,
             		'expanded' => false))
             ->add('user', new UserType(), array('label' => 'Usuario'))
+            ->add('card', new CardType(), array('label' => 'Tarjeta'))
         ;
     }
 

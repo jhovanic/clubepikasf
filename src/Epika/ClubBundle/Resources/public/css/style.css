@@ -2335,6 +2335,8 @@ divFooterWidgets {
 }
 
 .image {
+	width: 300px;
+	height: 253px;
 	border-top-left-radius: 6px;
 	border-bottom-left-radius: 6px;
 	border-right: 2px groove #242524;

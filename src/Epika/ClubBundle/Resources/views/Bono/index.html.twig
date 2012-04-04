@@ -10,15 +10,35 @@
 						<div class="bonoImages" style="margin: 0; padding: 0; position: relative; top: -3px; left: -4px;">
 							<img class="image" alt="" src="{{ entity.images[0].getWebPath }}" width="300" height="253" />
 						</div>
-						<div class="bonoSocials" style="width: 302px; heigh: 40px; background: #D0CACA; text-align: center; padding-top: 10px; padding-bottom: 5px; position: relative; top: -25px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
-							<div>
-								<div style="position: relative; top: -7px;" class="fb-like" data-href="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}" data-send="false" data-layout="button_count" data-width="10" data-show-faces="false" data-font="verdana">
+						<div class="bonoSocials" style="width: 302px; height: 37px; background: #D0CACA; text-align: center; margin:0 auto; padding-top: 10px; padding-bottom: 5px; position: relative; top: -25px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
+							<div style="text-align:center; margin:0 auto; padding:8px 65px; width:100%;">
+								<!-- AddThis Button BEGIN -->
+								<div class="addthis_toolbox addthis_default_style" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
+								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}" addthis:screenshot="{{ entity.images[0].getWebPath }}" 
+								addthis:templates=""
+								addthis:width="300" addthis:height="253">
+								<a class="addthis_button_facebook"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_twitter"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_google_plusone" g:plusone:annotation="none"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_email"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_compact" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
+								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}"></a>
 								</div>
-								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Plus.png') }}" widht="32" height="32" />
-								<a href="http://twitter.com/share" data-url="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}" data-text="{{ entity.description }}" data-lang="es">
-								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Twitter.png') }}" widht="32" height="32" /></a>
-								<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-								<img class="social" alt="" src="{{ asset('bundles/epikaclub/images/Gmail.png') }}" widht="32" height="32" />
+								<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f70d93e6ae929b0"></script>
+								<script type="text/javascript">
+									var addthis_config =
+									{
+										services_compact: 'blogger,digg,gmail,google,hotmail,linkedin,myspace,orkut,reddit,tumblr',
+										services_exclude: 'facebook,twitter'
+									}
+									
+									var addthis_share = {
+								        templates: {
+								            twitter: '{{ entity.name }} {{ '{{url}}' }} via @clubepika'
+								        }
+								    }
+								</script>
+								<!-- AddThis Button END -->
 							</div>
 						</div>
 					</td>

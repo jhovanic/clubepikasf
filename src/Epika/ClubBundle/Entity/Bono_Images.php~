@@ -182,7 +182,7 @@ class Bono_Images
     public function getUploadRootDir()
     {
     	// the absolute directory path where uploaded documents should be saved
-    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    	return __DIR__.'/../../../../web'.$this->getUploadDir();
     }
     
     protected function getUploadDir()
@@ -190,5 +190,7 @@ class Bono_Images
     	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
     	return '/images/uploads/bono';
     }
+    
+    /******************************* END UPLOAD FUNCTIONS *********************************/
     
 }

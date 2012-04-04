@@ -2,6 +2,7 @@
 
 namespace Epika\ClubBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer $id
@@ -22,11 +23,11 @@ class User
     private $id;
 
     /**
-     * @var string $login
+     * @var string $username
      *
-     * @ORM\Column(name="login", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255)
      */
-    private $login;
+    private $username;
 
     /**
      * @var string $password
@@ -36,18 +37,17 @@ class User
     private $password;
     
     /**
-     * @var string $role
      * 
-     * @ORM\Column(name="role", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="Role")
      */
     private $role;
-
+    
     /**
-     * @var boolean $is_active
-     *
-     * @ORM\Column(name="is_active", type="boolean")
+     * @var string $salt
+     * 
+     * @ORM\Column(name="salt", type="string", length=255)
      */
-    private $is_active;
+    private $salt;
 
     /**
      * @var datetime $created_at
@@ -63,7 +63,81 @@ class User
      */
     private $updated_at;
 
+    /**
+     * @var boolean $isActive
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+    
     /********************************************* Class functions ***************************************/
+    
+    public function __construct()
+    {
+    	$this->isActive = true;
+    	$this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
+    
+    /**
+     * Get Role
+     * @return Epika\ClubBundle\Entity\Role
+     */
+    public function getRoles()
+    {
+    	return $this->role;
+    }
+    
+    /**
+     * Set Role
+     * @param \Epika\ClubBundle\Entity\Role $role
+     */
+    public function setRoles(\Epika\ClubBundle\Entity\Role $role)
+    {
+    	$this->role = $role;
+    }
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::equals()
+     */
+    public function equals(UserInterface $user)
+    {
+    	return $user->getUsername() === $this->username;
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::eraseCredentials()
+     */
+    public function eraseCredentials()
+    {
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::getUsername()
+     */
+    public function getUsername()
+    {
+    	return $this->username;
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::getSalt()
+     */
+    public function getSalt()
+    {
+    	return $this->salt;
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::getPassword()
+     */
+    public function getPassword()
+    {
+    	return $this->password;
+    }
+
 
     /**
      * Get id
@@ -76,23 +150,13 @@ class User
     }
 
     /**
-     * Set login
+     * Set username
      *
-     * @param string $login
+     * @param string $username
      */
-    public function setLogin($login)
+    public function setUsername($username)
     {
-        $this->login = $login;
-    }
-
-    /**
-     * Get login
-     *
-     * @return string 
-     */
-    public function getLogin()
-    {
-        return $this->login;
+        $this->username = $username;
     }
 
     /**
@@ -106,33 +170,13 @@ class User
     }
 
     /**
-     * Get password
+     * Set salt
      *
-     * @return string 
+     * @param string $salt
      */
-    public function getPassword()
+    public function setSalt($salt)
     {
-        return $this->password;
-    }
-
-    /**
-     * Set is_active
-     *
-     * @param boolean $isActive
-     */
-    public function setIsActive($isActive)
-    {
-        $this->is_active = $isActive;
-    }
-
-    /**
-     * Get is_active
-     *
-     * @return boolean 
-     */
-    public function getIsActive()
-    {
-        return $this->is_active;
+        $this->salt = $salt;
     }
 
     /**
@@ -176,11 +220,31 @@ class User
     }
 
     /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
      * Set role
      *
-     * @param string $role
+     * @param Epika\ClubBundle\Entity\Role $role
      */
-    public function setRole($role)
+    public function setRole(\Epika\ClubBundle\Entity\Role $role)
     {
         $this->role = $role;
     }
@@ -188,7 +252,7 @@ class User
     /**
      * Get role
      *
-     * @return string 
+     * @return Epika\ClubBundle\Entity\Role 
      */
     public function getRole()
     {
