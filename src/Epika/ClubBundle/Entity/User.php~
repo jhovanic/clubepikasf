@@ -2,6 +2,7 @@
 
 namespace Epika\ClubBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer $id
@@ -22,11 +23,11 @@ class User
     private $id;
 
     /**
-     * @var string $login
+     * @var string $username
      *
-     * @ORM\Column(name="login", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255)
      */
-    private $login;
+    private $username;
 
     /**
      * @var string $password
@@ -36,18 +37,17 @@ class User
     private $password;
     
     /**
-     * @var string $role
      * 
-     * @ORM\Column(name="role", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="Role")
      */
     private $role;
-
+    
     /**
-     * @var boolean $is_active
-     *
-     * @ORM\Column(name="is_active", type="boolean")
+     * @var string $salt
+     * 
+     * @ORM\Column(name="salt", type="string", length=255)
      */
-    private $is_active;
+    private $salt;
 
     /**
      * @var datetime $created_at
@@ -63,135 +63,79 @@ class User
      */
     private $updated_at;
 
+    /**
+     * @var boolean $isActive
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+    
     /********************************************* Class functions ***************************************/
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
+    
+    public function __construct()
     {
-        return $this->id;
+    	$this->isActive = true;
+    	$this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
     }
-
+    
     /**
-     * Set login
-     *
-     * @param string $login
+     * Get Role
+     * @return Epika\ClubBundle\Entity\Role
      */
-    public function setLogin($login)
+    public function getRoles()
     {
-        $this->login = $login;
+    	return $this->role;
     }
-
+    
     /**
-     * Get login
-     *
-     * @return string 
+     * Set Role
+     * @param \Epika\ClubBundle\Entity\Role $role
      */
-    public function getLogin()
+    public function setRoles(\Epika\ClubBundle\Entity\Role $role)
     {
-        return $this->login;
+    	$this->role = $role;
     }
-
     /**
-     * Set password
-     *
-     * @param string $password
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::equals()
      */
-    public function setPassword($password)
+    public function equals(UserInterface $user)
     {
-        $this->password = $password;
+    	return $user->getUsername() === $this->username;
     }
-
+    
     /**
-     * Get password
-     *
-     * @return string 
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::eraseCredentials()
+     */
+    public function eraseCredentials()
+    {
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::getUsername()
+     */
+    public function getUsername()
+    {
+    	return $this->username;
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::getSalt()
+     */
+    public function getSalt()
+    {
+    	return $this->salt;
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Security\Core\User.UserInterface::getPassword()
      */
     public function getPassword()
     {
-        return $this->password;
+    	return $this->password;
     }
 
-    /**
-     * Set is_active
-     *
-     * @param boolean $isActive
-     */
-    public function setIsActive($isActive)
-    {
-        $this->is_active = $isActive;
-    }
-
-    /**
-     * Get is_active
-     *
-     * @return boolean 
-     */
-    public function getIsActive()
-    {
-        return $this->is_active;
-    }
-
-    /**
-     * Set created_at
-     *
-     * @param datetime $createdAt
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->created_at = $createdAt;
-    }
-
-    /**
-     * Get created_at
-     *
-     * @return datetime 
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * Set updated_at
-     *
-     * @param datetime $updatedAt
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updated_at = $updatedAt;
-    }
-
-    /**
-     * Get updated_at
-     *
-     * @return datetime 
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * Set role
-     *
-     * @param string $role
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string 
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
 }

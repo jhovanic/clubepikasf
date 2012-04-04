@@ -127,6 +127,11 @@ class Afiliate
      */
     private $user;
     
+    /**
+     * @ORM\OneToOne(targetEntity="Card", cascade={ "persist", "remove" })
+     */
+    private $card;
+    
     /****************************************** Class functions ***************************************/
 
     /**

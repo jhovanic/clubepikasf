@@ -71,6 +71,24 @@
     		<td>{{ form_errors(form.ocupation) }}</td>
     	</tr>
     </table>
+    <h1>Tarjeta</h1>
+    <table>
+    	<tr>
+    		<td>{{ form_label(form.card.number) }}</td>
+    		<td>{{ form_widget(form.card.number) }}</td>
+    		<td>{{ form_errors(form.card.number) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.card.expiration_date) }}</td>
+    		<td>{{ form_widget(form.card.expiration_date) }}</td>
+    		<td>{{ form_errors(form.card.expiration_date) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.card.membership) }}</td>
+    		<td>{{ form_widget(form.card.membership) }}</td>
+    		<td>{{ form_errors(form.card.membership) }}</td>
+    	</tr>
+    </table>
     <h1>Usuario</h1>
     <table>
     	<tr>

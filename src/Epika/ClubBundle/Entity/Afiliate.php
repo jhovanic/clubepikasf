@@ -127,6 +127,11 @@ class Afiliate
      */
     private $user;
     
+    /**
+     * @ORM\OneToOne(targetEntity="Card", cascade={ "persist", "remove" })
+     */
+    private $card;
+    
     /****************************************** Class functions ***************************************/
 
     /**
@@ -464,5 +469,25 @@ class Afiliate
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set card
+     *
+     * @param Epika\ClubBundle\Entity\Card $card
+     */
+    public function setCard(\Epika\ClubBundle\Entity\Card $card)
+    {
+        $this->card = $card;
+    }
+
+    /**
+     * Get card
+     *
+     * @return Epika\ClubBundle\Entity\Card 
+     */
+    public function getCard()
+    {
+        return $this->card;
     }
 }

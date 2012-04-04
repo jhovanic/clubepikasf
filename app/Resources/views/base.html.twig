@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns:fb="http://ogp.me/ns/fb#"
+		xmlns:addthis="http://www.addthis.com/help/client-api">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Club Epika{% endblock %}</title>
@@ -51,22 +52,6 @@
 						}
 					});
 
-					$('#miCuenta').mouseover(function() {
-						$('#loginDiv').css('display','block');
-						});
-					$('#miCuenta').mouseout(function() {
-						$('#loginDiv').css('display','none');
-						});
-					$('#loginDiv').mouseover(function() {
-						$('#loginDiv').css('display','block');
-						});
-					$('#loginDiv').mouseout(function() {
-						$('#loginDiv').css('display','none');
-						});
-					$('#cerrar').click(function() {
-						$('#loginDiv').css('display','none');
-						});
-
 				});
 			</script>
     	{% endblock %}
@@ -104,83 +89,9 @@
             	{% block menu %}
             	<div class="topMenu">
             	<ul>
-                    <li><a id="miCuenta" href="#"><img style="opacity: 1.0 !important;" src="{{ asset('bundles/epikaclub/images/micuenta.png') }}" width="120" /></a></li>
+                    <li><a id="miCuenta" href="{{ path('default_login') }}"><img style="opacity: 1.0 !important;" src="{{ asset('bundles/epikaclub/images/micuenta.png') }}" width="120" /></a></li>
                     <li><a href="{{ path('afiliado_new') }}"><img style="opacity: 1.0 !important;" src="{{ asset('bundles/epikaclub/images/registrate.png') }}" width="120" /></a></li>
                 </ul>
-                </div>
-                <div id="loginDiv" style="position: absolute; top: 56px; left: -202px; display:none;">
-                	<table class="loginTable" border="0">
-                		<tr>
-                			<td style="background: url({{ asset('bundles/epikaclub/images/barramicuenta.png') }}); width: 45px; height: 238px;">
-                				<div id="clearfix" style="width:45px; height:238px;"></div>
-                			</td>
-                			<td style="background: 5% 0% url({{ asset('bundles/epikaclub/images/barracentral.png') }}); width: 295px; height: 238px;">
-                				<table width="295" height="238">
-                					<tr height="10%"><td></td></tr>
-                					<tr height="15%">
-                						<td width="7%">&nbsp;</td>
-                						<td align="left" colspan="2"><img src="{{ asset('bundles/epikaclub/images/usuario.png') }}" /></td>
-                						<td></td>
-                					</tr>
-                					<tr height="15%">
-                						<td width="7%">&nbsp;</td>
-                						<td align="left" colspan="2"><input type="text" name="login" placeholder="Nombre de Usuario" /></td>
-                						<td width="7%"><div id="loginError"></div></td>
-                					</tr>
-                					<tr height="15%">
-                						<td width="7%">&nbsp;</td>
-                						<td align="left" colspan="2"><img src="{{ asset('bundles/epikaclub/images/contrasena.png') }}" /></td>
-                						<td></td>
-                					</tr>
-                					<tr height="15%">
-                						<td width="7%">&nbsp;</td>
-                						<td align="left" colspan="2"><input type="password" name="password" placeholder="Tú Contraseña" /></td>
-                						<td width="7%"><div id="passwordError"></div></td>
-                					</tr>
-                					<tr>
-                						<td width="7%">&nbsp;</td>
-                						<td align="left">
-                							<input type="checkbox" name="rememberme" value="true" />
-                							<img src="{{ asset('bundles/epikaclub/images/recordarme.png') }}" />
-                						</td>
-                						<td align="left">
-                							<a href="#">
-                								<img src="{{ asset('bundles/epikaclub/images/entrar.png') }}" />
-                							</a>
-                						</td>
-                						<td width="7%"></td>
-                					</tr>
-                				</table>
-                			</td>
-                			<td style="background: url({{ asset('bundles/epikaclub/images/barraderecha.png') }}); width: 149px; height: 238px;">
-                				<table width="149" height="238">
-                					<tr height="25%">
-                						<td align="right" style="padding-right: 10px;">
-                							<a id="cerrar" href="#">
-                								<img src="{{ asset('bundles/epikaclub/images/cerrar.png') }}" />
-                							</a>
-                						</td>
-                					</tr>
-                					<tr height="15%">
-                						<td align="right"></td>
-                					</tr>
-                					<tr height="15%">
-                						<td align="right"></td>
-                					</tr>
-                					<tr height="15%">
-                						<td align="left">
-                							<a href="#">
-                								<img src="{{ asset('bundles/epikaclub/images/recordarcontra.png') }}" />
-                							</a>
-                						</td>
-                					</tr>
-                					<tr>
-                						<td align="right"></td>
-                					</tr>
-                				</table>
-                			</td>
-                		</tr>
-                	</table>
                 </div>
                 {% endblock %}
 			<!-- END #divMainMenu -->
