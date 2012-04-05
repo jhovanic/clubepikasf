@@ -22,7 +22,7 @@
 							<!-- BEGIN #imageList -->							
 				            <div id="slider" class="nivoSlider">
 				               	{% for image in entity.images %}
-				               	<img class="image" alt="" src="{{ image.getWebPath }}" width="300" height="253" />
+				               	<img class="image" alt="{{ entity.description }}" title="{{ entity.description }}" src="{{ image.getWebPath }}" width="300" height="253" />
 				               	{% endfor %}
 							</div>
 							<!-- END #imageList -->
