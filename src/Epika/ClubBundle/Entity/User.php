@@ -87,14 +87,6 @@ class User implements UserInterface
     }
     
     /**
-     * Set Role
-     * @param \Epika\ClubBundle\Entity\Role $role
-     */
-    public function setRoles(\Epika\ClubBundle\Entity\Role $role)
-    {
-    	$this->role = $role;
-    }
-    /**
      * (non-PHPdoc)
      * @see Symfony\Component\Security\Core\User.UserInterface::equals()
      */

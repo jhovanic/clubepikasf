@@ -14,7 +14,7 @@ use Epika\ClubBundle\Entity\Bono;
 /**
  * Afiliate controller.
  *
- * @Route("/afiliado")
+ * @Route("/afiliados")
  */
 class AfiliateController extends Controller
 {

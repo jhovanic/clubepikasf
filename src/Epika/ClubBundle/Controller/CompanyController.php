@@ -110,11 +110,17 @@ class CompanyController extends Controller
         		$entity->getContacto()->setPhoto($name);
         	}
         	
-        	$entity->getUser()->setRole('3');
+        	$em = $this->getDoctrine()->getEntityManager();
+        	$roles = $em->getRepository('EpikaClubBundle:Role')->findAll();
+        	foreach ($roles as $role){
+        		if($role->getName() == 'ROLE_COMPANY')
+        			$entity->getUser()->setRole($role);
+        	}
+
         	$entity->getUser()->setIsActive(true);
         	$entity->getUser()->setCreatedAt(new \DateTime('now'));
         	$entity->getUser()->setUpdatedAt(new \DateTime('now'));
-        	$em = $this->getDoctrine()->getEntityManager();
+
             $em->persist($entity);
             $em->persist($entity->getContacto());
             $em->flush();
@@ -256,17 +262,29 @@ class CompanyController extends Controller
      * @Route("/activar/{id}", name="company_activate")
      * @Template()
      */
-    public function activarAction($id)
+    public function activarAction($id, $cid = 1)
     {
+    	$request = $this->getRequest();
+    	$session = $request->getSession();
     	$em = $this->getDoctrine()->getEntityManager();
-    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliado')->find($id);
+    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliate')->find($id);
+    	$company = $em->getRepository('EpikaClubBundle:Company')->find($cid);
     	
     	if (!$afiliate) {
     		throw $this->createNotFoundException('Oops el Afiliado no existe');
     	}
     	
+    	$afbonos = $afiliate->getBonos();
+    	
+    	foreach ($afbonos as $afbono) {
+    		if ($afbono->getBono()->getCompany()->getId() == $cid)
+    			$bonos[] = $afbono;
+    	}
+    	
     	return array(
-    			'afiliado' => $afiliate
+    			'afiliado' => $afiliate,
+    			'bonos' => $bonos,
+    			'company' => $company
     			);
     	
     }

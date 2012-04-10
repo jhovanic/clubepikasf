@@ -1,0 +1,98 @@
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block contenido_title %}Bonos de {{ company.name }}{% endblock %}
+{% block contenido %}
+<br />
+    {% for afbono in bonos %}
+        <div style="width: 708px; height:290px; border: 2px #000000 groove; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
+			<table border="0">
+				<tr>
+					<td width="300">
+						<div class="bonoImages" style="margin: 0; padding: 0; position: relative; top: -3px; left: -4px;">
+							<img class="image" alt="" src="{{ afbono.bono.images[0].getWebPath }}" width="300" height="253" />
+						</div>
+						<div class="bonoSocials" style="width: 302px; height: 37px; background: #D0CACA; text-align: center; margin:0 auto; padding-top: 10px; padding-bottom: 5px; position: relative; top: -25px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
+							<div style="text-align:center; margin:0 auto; padding:8px 65px; width:100%;">
+								<!-- AddThis Button BEGIN -->
+								<div class="addthis_toolbox addthis_default_style" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':afbono.bono.id}) }}" 
+								addthis:title="{{ afbono.bono.name }}" addthis:description="{{ afbono.bono.description }}" addthis:screenshot="{{ afbono.bono.images[0].getWebPath }}" 
+								addthis:templates=""
+								addthis:width="300" addthis:height="253">
+								<a class="addthis_button_facebook"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_twitter"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_google_plusone" g:plusone:annotation="none"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_email"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_compact" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':afbono.bono.id}) }}" 
+								addthis:title="{{ afbono.bono.name }}" addthis:description="{{ afbono.bono.description }}"></a>
+								</div>
+								<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f70d93e6ae929b0"></script>
+								<script type="text/javascript">
+									var addthis_config =
+									{
+										services_compact: 'blogger,digg,gmail,google,hotmail,linkedin,myspace,orkut,reddit,tumblr',
+										services_exclude: 'facebook,twitter'
+									}
+									
+									var addthis_share = {
+								        templates: {
+								            twitter: '{{ afbono.bono.name }} {{ '{{url}}' }} via @clubepika'
+								        }
+								    }
+								</script>
+								<!-- AddThis Button END -->
+							</div>
+						</div>
+					</td>
+					<td>
+						<table border="0" width="100%">
+							<tr>
+								<td height="20">
+									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -42px; left: 300px;">
+										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" />
+										{% if afbono.bono.discount < 100 %}
+										<span style="position: relative; top:-61px; left: 19px; font-size: 1.8em; color: #b31504;">{{ afbono.bono.discount }}%</span>
+										{% else %}
+										<span style="position: relative; top:-61px; left: 19px; font-size: 1.8em; color: #b31504;">2x1</span>
+										{% endif %}
+									</div>
+									<!-- 
+									<div class="bonoSaveImage" style="float: right; position: relative; top: -53px; left: -80px; width: 20px; height: 55px;">
+										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="80" height="89" />
+										<span style="position: relative; top:-58px; left: 9px; font-size: 1.4em; color: #fff;">{{ afbono.bono.save }}</span>
+									</div> -->
+									<div class="bonoTitle" style="width: 200px; height: 50px; position: relative; top: -70px; word-wrap: break-word;">	
+										<h2>{{ afbono.bono.name }}</h2>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="bonoShortDescription" style="width: 400px; height: 70px; word-wrap: break-word; position: relative; top: -50px;">
+										{{ afbono.bono.description }}
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<div class="bonoPrice" style="position: relative; top: 0px;">
+										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
+										<a href="{{ path('bono_show', {'id':afbono.bono.id}) }}">
+										<img alt="Validar" title="Validar" src="{{ asset('bundles/epikaclub/images/validar.png') }}" />
+										</a>
+									</div>
+									{% if afbono.bono.discount == 100 %}
+									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #ef7f1a;">${{ afbono.bono.price }}</span>
+									{% else %}
+									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #ef7f1a;">${{ afbono.bono.price - afbono.bono.save }}</span>
+									{% endif %}
+									<!-- <span style="position: relative; top:-45px; left: 28px; font-size: 1.11em; color: #ef7f1a;">VER PROMOCIÓN</span> -->
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+</div>
+<br />
+    {% endfor %}
+    
+{% endblock %}

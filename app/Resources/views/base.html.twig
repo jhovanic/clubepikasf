@@ -87,12 +87,13 @@
 			<!-- BEGIN #divMainMenu -->
             <div id="divMainMenu" class="menu-header">
             	{% block menu %}
+            	<!-- 
             	<div class="topMenu">
             	<ul>
                     <li><a id="miCuenta" href="{{ path('default_login') }}"><img style="opacity: 1.0 !important;" src="{{ asset('bundles/epikaclub/images/micuenta.png') }}" width="120" /></a></li>
                     <li><a href="{{ path('afiliado_new') }}"><img style="opacity: 1.0 !important;" src="{{ asset('bundles/epikaclub/images/registrate.png') }}" width="120" /></a></li>
                 </ul>
-                </div>
+                </div> -->
                 {% endblock %}
 			<!-- END #divMainMenu -->
             </div>
@@ -103,10 +104,10 @@
         <!-- BEGIN #divMenuBar -->
         <div id="divMenuBar">
 				<ul>
-					<li><a href="{{ path('category') }}"><span>Categorias</span></a></li>
-            		<li><a href="{{ path('bono') }}"><span>Bonos</span></a></li>
-            		<li><a href="#"><span> ¿ Cómo funciona ?</span></a></li>
-            		<li><a href="#"><span> Contactenos</span></a></li>
+					<li><a href="#"><span>¿ Cómo funciona ?</span></a></li>
+            		<li><a href="{{ path('default_login') }}"><span>Mi Cuenta</span></a></li>
+            		<li><a href="#"><span> Regístrate</span></a></li>
+            		<li><a href="#"><span> Contáctenos</span></a></li>
             	</ul>
             <div id="divSearch">
             	<input type="text" size="20" id="indexSearch" name="indexSearch" />

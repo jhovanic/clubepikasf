@@ -6,7 +6,7 @@ security:
             iterations: 10
 
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER,ROLE_COMPANY]
+        ROLE_ADMIN:  [ROLE_USER,ROLE_COMPANY]
 
     providers:
         user_db:
@@ -53,8 +53,10 @@ security:
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/afiliados, roles: ROLE_USER }
-        - { path: ^/comercio, roles: ROLE_COMPANY }
+        - { path: ^/afiliados, roles: ROLE_ADMIN }
+        - { path: ^/afiliados/micuenta, roles: ROLE_USER }
+        - { path: ^/comercio, roles: ROLE_ADMIN }
+        - { path: ^/comercio/activar, roles: ROLE_COMPANY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
