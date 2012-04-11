@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/validationEngine.jquery.css') }}" type="text/css" />
         {% endblock %}
         {% block javascripts %}
+    		<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery-1.7.1.min.js') }}"></script>
     		<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/slider/jquery.js') }}"></script>
     		<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/slider/jquery.carouFredSel-4.5.1-packed.js') }}"></script>
     		<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/slider/jquery.carouFredSel-4.5.1.js') }}"></script>
@@ -55,6 +56,16 @@
 				});
 			</script>
     	{% endblock %}
+    	<!-- arscode social slider -->
+		<link rel="stylesheet" media="screen" href="{{ asset('arscode-social-slider/fblb.css') }}"/>
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" media="screen" href="{{ asset('arscode-social-slider/ie7.css?ver=3.2.1') }}" />
+		<![endif]-->
+		<script type="text/javascript" src="{{ asset('arscode-social-slider/js/userscripts.js') }}"></script>
+		<!--[if lte IE 7]>
+			<script type="text/javascript" src="{{ asset('arscode-social-slider/js/userscripts-ie7.js') }}"></script>
+		<![endif]-->
+		<!-- END arscode social slider -->
         <link rel="shortcut icon" href="{{ asset('clubfavicon.ico') }}" />
     </head>
     <body>
@@ -158,5 +169,6 @@
 
        
     <!-- END body -->
+    {{ requireonce('arscode-social-slider/arscode-social-slider.php') }}
     </body>
 </html>

@@ -17,4 +17,11 @@
         </service>
     </services>
     -->
+     
+    <services>
+        <service id="epika_club.twig.extension" class="Epika\ClubBundle\Twig\Extensions\UtilsExtensions" public="false">
+            <tag name="twig.extension" />
+        </service>
+    </services> 
+    
 </container>

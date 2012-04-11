@@ -5,7 +5,6 @@
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
-	<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery-1.7.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery.nivo.slider.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/epikaclub/tabs/vendor/jquery.hashchange.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/epikaclub/tabs/lib/jquery.easytabs.min.js') }}"></script>
@@ -124,12 +123,12 @@
 <style>
     /* Example Styles for Demo */
     .etabs { margin: 0; padding: 0; }
-    .tab { display: inline-block; zoom:1; *display:inline; background: #eee; border: solid 1px #999; border-bottom: none; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; }
-    .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; text-decoration: none; color: #ef7f1a; }
+    .tab { display: inline-block; zoom:1; *display:inline; background: #ea6941; border: solid 1px #999; border-bottom: none; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; }
+    .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; text-decoration: none; color: #fff; }
     .tab a:hover { text-decoration: underline; }
-    .tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
-    .tab a.active { font-weight: bold; }
-    .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
+    .tab.active { background: #ededf0; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
+    .tab a.active { font-weight: bold; color: #ea6941; }
+    .tab-container .panel-container { background: #ededf0; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
     .panel-container { margin-bottom: 10px; }
 </style>
 <!-- End del Style -->
