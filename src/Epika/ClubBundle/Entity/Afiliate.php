@@ -118,7 +118,7 @@ class Afiliate
     private $city;
     
     /**
-     * @ORM\OneToOne(targetEntity="Ocupation")
+     * @ORM\ManyToOne(targetEntity="Ocupation")
      */
     private $ocupation;
     

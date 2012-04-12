@@ -86,15 +86,22 @@ class AfiliateController extends Controller
         $request = $this->getRequest();
         $form    = $this->createForm(new AfiliateType(), $afiliate);
         $form->bindRequest($request);
+        $em = $this->getDoctrine()->getEntityManager();
+        $roles = $em->getRepository('EpikaClubBundle:Role')->findAll();
 
         if ($form->isValid()) {
             $afiliate->setCreatedAt(new \DateTime('now'));
             $afiliate->setUpdatedAt(new \DateTime('now'));
-            $afiliate->getUser()->setRole('2');
+            foreach ($roles as $role) {
+            	if ($role->getName() === 'ROLE_USER')
+            		$afiliate->getUser()->setRole($role);
+            }
+            $factory = $this->get('security.encoder_factory');
+            $encoder = $factory->getEncoder($afiliate->getUser());
+            $afiliate->getUser()->setPassword($encoder->encodePassword($afiliate->getIdentification(), $afiliate->getUser()->getSalt()));
             $afiliate->getUser()->setIsActive(true);
             $afiliate->getUser()->setCreatedAt(new \DateTime('now'));
             $afiliate->getUser()->setUpdatedAt(new \DateTime('now'));
-        	$em = $this->getDoctrine()->getEntityManager();
             $em->persist($afiliate);
             $em->flush();
             

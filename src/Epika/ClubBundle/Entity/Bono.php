@@ -91,6 +91,13 @@ class Bono
      * @ORM\Column(name="type", type="smallint")
      */
     private $type;
+    
+    /**
+     * @var smallint $quantity
+     * 
+     * @ORM\Column(name="quantity", type="smallint")
+     */
+    private $quantity;
 
     /**
      * @var date $unpublish_date
@@ -495,5 +502,25 @@ class Bono
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * Set quantity
+     *
+     * @param smallint $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return smallint 
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
 }

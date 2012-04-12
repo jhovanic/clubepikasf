@@ -14,7 +14,7 @@ security:
 
     firewalls:
         main:
-            pattern: /.*
+            pattern: ^/
             provider: user_db
             form_login:
                 login_path: /login
@@ -22,11 +22,11 @@ security:
                 remember_me: true
             logout:
                 path: /logout
-                target: /
+                target: /index
             remember_me:
-                key: mySafePass
+                key: myStrongSafePass
                 lifetime: 1800
-                path: /.*
+                path: ^/
                 domain: ~
             security: true
             anonymous: true
@@ -53,11 +53,11 @@ security:
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/afiliados, roles: ROLE_ADMIN }
         - { path: ^/afiliados/micuenta, roles: ROLE_USER }
-        - { path: ^/comercio, roles: ROLE_ADMIN }
+        #- { path: ^/afiliados, roles: ROLE_ADMIN }
         - { path: ^/comercio/activar, roles: ROLE_COMPANY }
+        - { path: ^/comercio, roles: ROLE_ADMIN }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
 

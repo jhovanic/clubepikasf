@@ -91,6 +91,13 @@ class Bono
      * @ORM\Column(name="type", type="smallint")
      */
     private $type;
+    
+    /**
+     * @var smallint $quantity
+     * 
+     * @ORM\Column(name="quantity", type="smallint")
+     */
+    private $quantity;
 
     /**
      * @var date $unpublish_date

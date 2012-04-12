@@ -1,11 +1,9 @@
 EpikaClubBundle:
     resource: "@EpikaClubBundle/Controller/"
     type:     annotation
-    prefix:   /
-    
+    prefix:   /    
 login_check:
     pattern: /login_check
-    
 logout:
     pattern: /logout
 

@@ -45,6 +45,8 @@ class BonoType extends AbstractType
             				'1' => 'Mensual'
             				),
             		'empty_value' => 'Seleccione el tipo'))
+            ->add('quantity', 'number', array('label' => 'Cantidad x Mes',
+            		'required' => false))
             ->add('unpublish_date',null,array('label' => 'Fecha de Vencimiento',
             		'widget' => 'choice',
             		'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día'),
@@ -66,7 +68,8 @@ class BonoType extends AbstractType
             		'expanded' => false,
             		'empty_value' => 'Seleccione la membresia'))
             ->add('image1', 'file', array('label' => 'Imagen',
-            		'property_path' => false))
+            		'property_path' => false,
+            		'required' => false))
             ->add('image2', 'file', array('label' => 'Imagen',
             		'property_path' => false,
             		'required' => false))

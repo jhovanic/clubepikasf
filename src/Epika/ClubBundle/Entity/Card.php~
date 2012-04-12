@@ -91,4 +91,24 @@ class Card
     {
         return $this->expiration_date;
     }
+
+    /**
+     * Set membership
+     *
+     * @param Epika\ClubBundle\Entity\Membership $membership
+     */
+    public function setMembership(\Epika\ClubBundle\Entity\Membership $membership)
+    {
+        $this->membership = $membership;
+    }
+
+    /**
+     * Get membership
+     *
+     * @return Epika\ClubBundle\Entity\Membership 
+     */
+    public function getMembership()
+    {
+        return $this->membership;
+    }
 }

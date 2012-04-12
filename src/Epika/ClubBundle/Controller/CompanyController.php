@@ -90,7 +90,6 @@ class CompanyController extends Controller
         $entity->setUpdatedAt(new \DateTime('now'));
         $entity->getContacto()->setCreatedAt(new \DateTime('now'));
         $entity->getContacto()->setUpdatedAt(new \DateTime('now'));
-        $entity->getUser()->setPassword($entity->getNit());
         $image = $form['image']->getData();
         $photo = $form['contacto']['photo']->getData();
         $now = date('Y').date('m').date('d').date('H').date('i').date('s');
@@ -113,10 +112,12 @@ class CompanyController extends Controller
         	$em = $this->getDoctrine()->getEntityManager();
         	$roles = $em->getRepository('EpikaClubBundle:Role')->findAll();
         	foreach ($roles as $role){
-        		if($role->getName() == 'ROLE_COMPANY')
+        		if($role->getName() === 'ROLE_COMPANY')
         			$entity->getUser()->setRole($role);
         	}
-
+        	$factory = $this->get('security.encoder_factory');
+        	$encoder = $factory->getEncoder($entity->getUser());
+        	$entity->getUser()->setPassword($encoder->encodePassword($entity->getNit(), $entity->getUser()->getSalt()));
         	$entity->getUser()->setIsActive(true);
         	$entity->getUser()->setCreatedAt(new \DateTime('now'));
         	$entity->getUser()->setUpdatedAt(new \DateTime('now'));

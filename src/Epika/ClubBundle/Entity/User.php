@@ -241,13 +241,4 @@ class User implements UserInterface
         $this->role = $role;
     }
 
-    /**
-     * Get role
-     *
-     * @return Epika\ClubBundle\Entity\Role 
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
 }
