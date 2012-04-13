@@ -74,11 +74,11 @@ class User implements UserInterface
     public function __construct()
     {
     	$this->isActive = true;
-    	$this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    	$this->salt = md5(uniqid(null, true));
     }
     
     /**
-     * Get Role
+     * Get Roles
      * @return Epika\ClubBundle\Entity\Role
      */
     public function getRoles()
@@ -238,7 +238,26 @@ class User implements UserInterface
      */
     public function setRole(\Epika\ClubBundle\Entity\Role $role)
     {
-        $this->role = $role;
+        $this->role[] = $role;
+    }
+    
+    public function serialize()
+    {
+    	return serialize(array(
+    			'username' => $this->getUsername(),
+    			'password' => $this->getPassword(),
+    			'salt' => $this->getSalt(),
+    			'role' => $this->getRoles()
+    	));
+    }
+    
+    public function unserialize($serializedData)
+    {
+    	$unserializedData     = unserialize($serializedData);
+    
+    	$this->setUsername(isset($unserializedData['username']) ? $unserializedData['username'] : null);
+    	$this->setPassword(isset($unserializedData['password']) ? $unserializedData['password'] : null);
+    	$this->setSalt(isset($unserializedData['salt']) ? $unserializedData['salt'] : null);
     }
 
 }
