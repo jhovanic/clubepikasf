@@ -47,6 +47,13 @@ class Afiliate_Bono
      */
     private $bono;
     
+    /**
+     * 
+     * @var smallint
+     * @ORM\Column(name="quantity", type="smallint")
+     */
+    private $quantity;
+    
     /******************************************** Class functions ******************************************/
 
     /**

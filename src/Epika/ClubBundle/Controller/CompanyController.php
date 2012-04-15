@@ -14,7 +14,7 @@ use Epika\ClubBundle\Form\CompanyType;
 /**
  * Company controller.
  *
- * @Route("/company")
+ * @Route("/comercios")
  */
 class CompanyController extends Controller
 {
@@ -36,7 +36,7 @@ class CompanyController extends Controller
     /**
      * Finds and displays a Company entity.
      *
-     * @Route("/{id}/show", name="company_show")
+     * @Route("/ver/{id}", name="company_show")
      * @Template()
      */
     public function showAction($id)
@@ -59,7 +59,7 @@ class CompanyController extends Controller
     /**
      * Displays a form to create a new Company entity.
      *
-     * @Route("/new", name="company_new")
+     * @Route("/nuevo", name="company_new")
      * @Template()
      */
     public function newAction()
@@ -140,7 +140,7 @@ class CompanyController extends Controller
     /**
      * Displays a form to edit an existing Company entity.
      *
-     * @Route("/{id}/edit", name="company_edit")
+     * @Route("/editar/{id}", name="company_edit")
      * @Template()
      */
     public function editAction($id)
@@ -260,37 +260,96 @@ class CompanyController extends Controller
     /**
      * Activates a Bono from an Afiliate
      * 
-     * @Route("/activar/{id}", name="company_activate")
+     * @Route("/activar", name="company_activate")
      * @Template()
      */
-    public function activarAction($id, $cid = 1)
+    public function activarAction()
     {
     	$request = $this->getRequest();
     	$session = $request->getSession();
+    	
+    	if(false === $this->get('security.context')->isGranted('ROLE_COMPANY'))
+    		throw new AccessDeniedException();
+    	
     	$em = $this->getDoctrine()->getEntityManager();
-    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliate')->find($id);
-    	$company = $em->getRepository('EpikaClubBundle:Company')->find($cid);
+    	$company = $em->getRepository('EpikaClubBundle:Company')->findOneBy(array('user' => $this->get('security.context')->getToken()->getUser()->getId()));
+    	$bonos = array();
     	
-    	if (!$afiliate) {
-    		throw $this->createNotFoundException('Oops el Afiliado no existe');
-    	}
-    	
-    	$afbonos = $afiliate->getBonos();
-    	
-    	foreach ($afbonos as $afbono) {
-    		if ($afbono->getBono()->getCompany()->getId() == $cid)
-    			$bonos[] = $afbono;
+    	if($request->getMethod() === 'POST') {
+	    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliate')->findOneBy(array('identification' => $request->request->get('identification')));
+	    	foreach ($afiliate->getBonos() as $bono)
+	    	{
+	    		if(($bono->getBono()->getCompany()->getId() == $company->getId()) && ($bono->getIsActive() === true))
+	    		{
+	    			$bonos[] = $bono->getBono();
+	    		}
+	    	}
+	    	return array(
+	    			'bonos' => $bonos,
+	    			'afiliate' => $afiliate,
+	    			'company' => $company
+	    	);
     	}
     	
     	return array(
-    			'afiliado' => $afiliate,
-    			'bonos' => $bonos,
     			'company' => $company
     			);
     	
     }
     
+    /**
+     * Valida el bono y lo descuenta para el usuario
+     * @Route("/validar/{id}/{aid}", name="company_validate")
+     * @Method("get")
+     * @Template()
+     */
+    public function validarAction($id, $aid)
+    {
+    	$request = $this->getRequest();
+    	$session = $request->getSession();
+    	
+    	if(false === $this->get('security.context')->isGranted('ROLE_COMPANY'))
+    		throw new AccessDeniedException();
+    	
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliate')->find($aid);
+    	
+    	if (!$afiliate) {
+    		throw $this->createNotFoundException('Oops el Afiliado no existe');
+    	}
+    	
+    	foreach ($afiliate->getBonos() as $afbono) {
+    		if ($afbono->getBono()->getId() == $id) {
+    			$afbono->setQuantity($afbono->getQuantity() - 1);
+    			$afbono->setActivationDate(new \DateTime('now'));
+    			if($afbono->getQuantity() <= 0)
+    				$afbono->setIsActive(false);
+    			$em->persist($afbono);
+    			$em->flush();
+    		}
+    	}
+
+    	$em->persist($afiliate);
+    	$em->flush();
+    	return $this->redirect($this->generateUrl('company_profile'));
+    	
+    }
     
+    /**
+     * Gets the profile of an afiliate
+     * @Route("/perfil", name="company_profile")
+     * @Template()
+     */
+    public function profileAction()
+    {
+    	if(false === $this->get('security.context')->isGranted('ROLE_COMPANY'))
+    		throw new AccessDeniedException();
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$company = $em->getRepository('EpikaClubBundle:Company')->findOneBy(array('user' => $this->get('security.context')->getToken()->getUser()->getId()));
+    	return array(
+    			'entity' => $company
+    	);
+    }
     
     
 }

@@ -12,7 +12,7 @@ use Epika\ClubBundle\Form\MembershipType;
 /**
  * Membership controller.
  *
- * @Route("/membresia")
+ * @Route("/membresias")
  */
 class MembershipController extends Controller
 {

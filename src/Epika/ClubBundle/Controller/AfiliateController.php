@@ -36,7 +36,7 @@ class AfiliateController extends Controller
     /**
      * Finds and displays a Afiliate entity.
      *
-     * @Route("/{id}/show", name="afiliado_show")
+     * @Route("/ver/{id}", name="afiliado_show")
      * @Template()
      */
     public function showAction($id)
@@ -59,7 +59,7 @@ class AfiliateController extends Controller
     /**
      * Displays a form to create a new Afiliate entity.
      *
-     * @Route("/new", name="afiliado_new")
+     * @Route("/nuevo", name="afiliado_new")
      * @Template()
      */
     public function newAction()
@@ -128,7 +128,7 @@ class AfiliateController extends Controller
     /**
      * Displays a form to edit an existing Afiliate entity.
      *
-     * @Route("/{id}/edit", name="afiliado_edit")
+     * @Route("/editar/{id}", name="afiliado_edit")
      * @Template()
      */
     public function editAction($id)
@@ -223,5 +223,19 @@ class AfiliateController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+    
+    /**
+     * Gets the profile of an afiliate
+     * @Route("/perfil", name="afiliate_profile")
+     * @Template()
+     */
+    public function profileAction()
+    {
+    	$info = 'SOme info';
+    	
+    	return array(
+    			'info' => $info
+    			);
     }
 }

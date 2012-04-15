@@ -116,7 +116,17 @@
         <div id="divMenuBar">
 				<ul>
 					<li><a href="#"><span>¿ Cómo funciona ?</span></a></li>
-            		<li><a href="{{ path('default_login') }}"><span>Mi Cuenta</span></a></li>
+            		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            			{% if is_granted('ROLE_ADMIN') %}
+            				<li><a href="{{ path('admin_profile') }}"><span>Admin</span></a></li>
+            			{% elseif is_granted('ROLE_COMPANY') %}
+            				<li><a href="{{ path('company_profile') }}"><span>Mi Cuenta</span></a></li>
+            			{% else %}
+            				<li><a href="{{ path('afiliate_profile') }}"><span>Mi Cuenta</span></a></li>
+            			{% endif %}
+            		{% else %}
+            			<li><a href="{{ path('default_login') }}"><span>Login</span></a></li>
+            		{% endif %}
             		<li><a href="#"><span> Regístrate</span></a></li>
             		<li><a href="#"><span> Contáctenos</span></a></li>
             	</ul>

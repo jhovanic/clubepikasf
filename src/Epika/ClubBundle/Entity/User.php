@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @var integer $id
@@ -83,7 +83,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-    	return $this->role;
+    	return array($this->role->getName());
     }
     
     /**
@@ -244,20 +244,31 @@ class User implements UserInterface
     public function serialize()
     {
     	return serialize(array(
-    			'username' => $this->getUsername(),
-    			'password' => $this->getPassword(),
-    			'salt' => $this->getSalt(),
-    			'role' => $this->getRoles()
-    	));
+    			'id' => $this->id,
+    			'username' => $this->username,
+    			'password' => $this->password,
+    			'salt' => $this->salt,
+    			'role' => $this->role->getName()));
     }
     
     public function unserialize($serializedData)
     {
     	$unserializedData     = unserialize($serializedData);
     
+    	$this->id = isset($unserializedData['id']) ? $unserializedData['id'] : null;
     	$this->setUsername(isset($unserializedData['username']) ? $unserializedData['username'] : null);
     	$this->setPassword(isset($unserializedData['password']) ? $unserializedData['password'] : null);
     	$this->setSalt(isset($unserializedData['salt']) ? $unserializedData['salt'] : null);
     }
 
+
+    /**
+     * Get role
+     *
+     * @return Epika\ClubBundle\Entity\Role 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
 }

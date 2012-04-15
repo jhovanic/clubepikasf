@@ -58,21 +58,4 @@ class DefaultController extends Controller
     	);
     }
     
-    /**
-     * @Route("/login_check", name="default_check")
-     * 
-     */
-    public function loginCheckAction()
-    {
-    	//Security Layer
-    }
-    
-    /**
-     * @Route("/logout", name="default_logout")
-     */
-    public function logoutAction()
-    {
-    	//Security Layer
-    }
-    
 }

@@ -503,4 +503,24 @@ class Bono
     {
         return $this->images;
     }
+
+    /**
+     * Set quantity
+     *
+     * @param smallint $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return smallint 
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
 }

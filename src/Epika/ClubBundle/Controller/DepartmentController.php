@@ -11,7 +11,7 @@ use Epika\ClubBundle\Entity\Department;
 /**
  * Department controller.
  *
- * @Route("/department")
+ * @Route("/departamentos")
  */
 class DepartmentController extends Controller
 {
@@ -33,7 +33,7 @@ class DepartmentController extends Controller
     /**
      * Finds and displays a Department entity.
      *
-     * @Route("/{id}/show", name="department_show")
+     * @Route("/ver/{id}", name="department_show")
      * @Template()
      */
     public function showAction($id)

@@ -12,7 +12,7 @@ use Epika\ClubBundle\Form\UserType;
 /**
  * User controller.
  *
- * @Route("/usuario")
+ * @Route("/usuarios")
  */
 class UserController extends Controller
 {
@@ -34,7 +34,7 @@ class UserController extends Controller
     /**
      * Finds and displays a User entity.
      *
-     * @Route("/{id}/show", name="usuario_show")
+     * @Route("/ver/{id}", name="usuario_show")
      * @Template()
      */
     public function showAction($id)
@@ -57,7 +57,7 @@ class UserController extends Controller
     /**
      * Displays a form to create a new User entity.
      *
-     * @Route("/new", name="usuario_new")
+     * @Route("/nuevo", name="usuario_new")
      * @Template()
      */
     public function newAction()
@@ -103,7 +103,7 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing User entity.
      *
-     * @Route("/{id}/edit", name="usuario_edit")
+     * @Route("/editar/{id}", name="usuario_edit")
      * @Template()
      */
     public function editAction($id)
@@ -198,5 +198,23 @@ class UserController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+    
+    public function profileAction()
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$user = $this->get('security.context')->getToken()->getUser();
+    	
+    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliate')->findBy(array('user_id' => $user->getId()));
+    	
+    	if (!$afiliate) {
+    		throw $this->createNotFoundException('Oops el Afiliado no existe.');
+    	}
+    	
+    	$deleteForm = $this->createDeleteForm($id);
+    	
+    	return array(
+    			'entity'      => $user,
+    			'delete_form' => $deleteForm->createView(),        );
     }
 }

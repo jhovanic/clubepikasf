@@ -11,7 +11,7 @@ use Epika\ClubBundle\Entity\Contacto;
 /**
  * Contacto controller.
  *
- * @Route("/contacto")
+ * @Route("/contactos")
  */
 class ContactoController extends Controller
 {
@@ -33,7 +33,7 @@ class ContactoController extends Controller
     /**
      * Finds and displays a Contacto entity.
      *
-     * @Route("/{id}/show", name="contacto_show")
+     * @Route("/ver/{id}", name="contacto_show")
      * @Template()
      */
     public function showAction($id)

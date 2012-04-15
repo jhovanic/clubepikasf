@@ -2,14 +2,13 @@
 
 {% block body %}
 <div id="divRecentWorks">
-	<form name="loginForm" action="{{ path('default_check') }}" method="POST" enctype="text/plain">
+	<form name="loginForm" action="{{ path('login_check') }}" method="post" enctype="application/x-www-form-urlencoded">
 				{% if error %}
 				<div style="color: #ff0000; position: relative; left: 25px; margin-bottom:10px;">
-					<!-- <span>Nombre de Usuario o Contraseña Invalidos</span> -->
-					{{ error.message }}
+					<span>Nombre de Usuario o Contraseña Invalidos</span>
 				</div>
 				{% endif %}
-				<div id="loginDiv" style="position: relative; top: 0px; left: 25px; display:block; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; width:492px;">
+				<div id="loginDiv" style="position: relative; top: 0px; left: 25px; display:block; margin: 0 auto; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; width:492px;">
                 	<table class="loginTable" border="0">
                 		<tr>
                 			<td style="background: url({{ asset('bundles/epikaclub/images/barramicuenta.png') }}); width: 45px; height: 238px;">
@@ -83,7 +82,6 @@
                 		</tr>
                 	</table>
                 </div>
-                <input type="hidden" name="_target_path" value="/" />
 	</form>
 </div>
 <script type="text/javascript">
