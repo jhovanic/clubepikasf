@@ -15,7 +15,7 @@ use Epika\ClubBundle\Form\BonoType;
 /**
  * Bono controller.
  *
- * @Route("/bono")
+ * @Route("/bonos")
  */
 class BonoController extends Controller
 {
@@ -37,7 +37,7 @@ class BonoController extends Controller
     /**
      * Finds and displays a Bono entity.
      *
-     * @Route("/{id}/show", name="bono_show")
+     * @Route("/ver/{id}", name="bono_show")
      * @Template()
      */
     public function showAction($id)
@@ -60,7 +60,7 @@ class BonoController extends Controller
     /**
      * Displays a form to create a new Bono entity.
      *
-     * @Route("/new", name="bono_new")
+     * @Route("/nuevo", name="bono_new")
      * @Template()
      */
     public function newAction()
@@ -139,7 +139,7 @@ class BonoController extends Controller
     /**
      * Displays a form to edit an existing Bono entity.
      *
-     * @Route("/{id}/edit", name="bono_edit")
+     * @Route("/editar/{id}", name="bono_edit")
      * @Template()
      */
     public function editAction($id)

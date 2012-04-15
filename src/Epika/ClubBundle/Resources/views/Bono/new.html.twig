@@ -46,6 +46,11 @@
     		<td>{{ form_errors(form.type) }}</td>
     	</tr>
     	<tr>
+    		<td>{{ form_label(form.quantity) }}</td>
+    		<td>{{ form_widget(form.quantity) }}</td>
+    		<td>{{ form_errors(form.quantity) }}</td>
+    	</tr>
+    	<tr>
     		<td>{{ form_label(form.unpublish_date) }}<span class="field_required">*</span></td>
     		<td>{{ form_widget(form.unpublish_date.day) }}
     		{{ form_widget(form.unpublish_date.month) }}

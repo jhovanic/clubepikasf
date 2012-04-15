@@ -118,7 +118,7 @@ class Afiliate
     private $city;
     
     /**
-     * @ORM\OneToOne(targetEntity="Ocupation")
+     * @ORM\ManyToOne(targetEntity="Ocupation")
      */
     private $ocupation;
     
@@ -469,5 +469,25 @@ class Afiliate
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set card
+     *
+     * @param Epika\ClubBundle\Entity\Card $card
+     */
+    public function setCard(\Epika\ClubBundle\Entity\Card $card)
+    {
+        $this->card = $card;
+    }
+
+    /**
+     * Get card
+     *
+     * @return Epika\ClubBundle\Entity\Card 
+     */
+    public function getCard()
+    {
+        return $this->card;
     }
 }

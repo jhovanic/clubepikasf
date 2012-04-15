@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/validationEngine.jquery.css') }}" type="text/css" />
         {% endblock %}
         {% block javascripts %}
+    		<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery-1.7.1.min.js') }}"></script>
     		<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/slider/jquery.js') }}"></script>
     		<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/slider/jquery.carouFredSel-4.5.1-packed.js') }}"></script>
     		<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/slider/jquery.carouFredSel-4.5.1.js') }}"></script>
@@ -55,6 +56,16 @@
 				});
 			</script>
     	{% endblock %}
+    	<!-- arscode social slider -->
+		<link rel="stylesheet" media="screen" href="{{ asset('arscode-social-slider/fblb.css') }}"/>
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" media="screen" href="{{ asset('arscode-social-slider/ie7.css?ver=3.2.1') }}" />
+		<![endif]-->
+		<script type="text/javascript" src="{{ asset('arscode-social-slider/js/userscripts.js') }}"></script>
+		<!--[if lte IE 7]>
+			<script type="text/javascript" src="{{ asset('arscode-social-slider/js/userscripts-ie7.js') }}"></script>
+		<![endif]-->
+		<!-- END arscode social slider -->
         <link rel="shortcut icon" href="{{ asset('clubfavicon.ico') }}" />
     </head>
     <body>
@@ -87,12 +98,13 @@
 			<!-- BEGIN #divMainMenu -->
             <div id="divMainMenu" class="menu-header">
             	{% block menu %}
+            	<!-- 
             	<div class="topMenu">
             	<ul>
                     <li><a id="miCuenta" href="{{ path('default_login') }}"><img style="opacity: 1.0 !important;" src="{{ asset('bundles/epikaclub/images/micuenta.png') }}" width="120" /></a></li>
                     <li><a href="{{ path('afiliado_new') }}"><img style="opacity: 1.0 !important;" src="{{ asset('bundles/epikaclub/images/registrate.png') }}" width="120" /></a></li>
                 </ul>
-                </div>
+                </div> -->
                 {% endblock %}
 			<!-- END #divMainMenu -->
             </div>
@@ -103,13 +115,23 @@
         <!-- BEGIN #divMenuBar -->
         <div id="divMenuBar">
 				<ul>
-					<li><a href="{{ path('category') }}"><span>Categorias</span></a></li>
-            		<li><a href="{{ path('bono') }}"><span>Bonos</span></a></li>
-            		<li><a href="#"><span> ¿ Cómo funciona ?</span></a></li>
-            		<li><a href="#"><span> Contactenos</span></a></li>
+					<li><a href="#"><span>¿ Cómo funciona ?</span></a></li>
+            		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            			{% if is_granted('ROLE_ADMIN') %}
+            				<li><a href="{{ path('admin_profile') }}"><span>Admin</span></a></li>
+            			{% elseif is_granted('ROLE_COMPANY') %}
+            				<li><a href="{{ path('company_profile') }}"><span>Mi Cuenta</span></a></li>
+            			{% else %}
+            				<li><a href="{{ path('afiliate_profile') }}"><span>Mi Cuenta</span></a></li>
+            			{% endif %}
+            		{% else %}
+            			<li><a href="{{ path('default_login') }}"><span>Login</span></a></li>
+            		{% endif %}
+            		<li><a href="#"><span> Regístrate</span></a></li>
+            		<li><a href="#"><span> Contáctenos</span></a></li>
             	</ul>
             <div id="divSearch">
-            	<input type="text" size="30" id="indexSearch" name="indexSearch" />
+            	<input type="text" size="20" id="indexSearch" name="indexSearch" />
             	<a href="#"><img alt="" title="Buscar" src="{{ asset('bundles/epikaclub/images/lupa.png') }}" /></a>
             </div>
         </div>
@@ -157,5 +179,6 @@
 
        
     <!-- END body -->
+    {{ requireonce('arscode-social-slider/arscode-social-slider.php') }}
     </body>
 </html>

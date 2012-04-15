@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @var integer $id
@@ -74,26 +74,18 @@ class User implements UserInterface
     public function __construct()
     {
     	$this->isActive = true;
-    	$this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    	$this->salt = md5(uniqid(null, true));
     }
     
     /**
-     * Get Role
+     * Get Roles
      * @return Epika\ClubBundle\Entity\Role
      */
     public function getRoles()
     {
-    	return $this->role;
+    	return array($this->role->getName());
     }
     
-    /**
-     * Set Role
-     * @param \Epika\ClubBundle\Entity\Role $role
-     */
-    public function setRoles(\Epika\ClubBundle\Entity\Role $role)
-    {
-    	$this->role = $role;
-    }
     /**
      * (non-PHPdoc)
      * @see Symfony\Component\Security\Core\User.UserInterface::equals()
@@ -136,6 +128,137 @@ class User implements UserInterface
     public function getPassword()
     {
     	return $this->password;
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param datetime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return datetime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param datetime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return datetime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set role
+     *
+     * @param Epika\ClubBundle\Entity\Role $role
+     */
+    public function setRole(\Epika\ClubBundle\Entity\Role $role)
+    {
+        $this->role[] = $role;
+    }
+    
+    public function serialize()
+    {
+    	return serialize(array(
+    			'id' => $this->id,
+    			'username' => $this->username,
+    			'password' => $this->password,
+    			'salt' => $this->salt,
+    			'role' => $this->role->getName()));
+    }
+    
+    public function unserialize($serializedData)
+    {
+    	$unserializedData     = unserialize($serializedData);
+    
+    	$this->id = isset($unserializedData['id']) ? $unserializedData['id'] : null;
+    	$this->setUsername(isset($unserializedData['username']) ? $unserializedData['username'] : null);
+    	$this->setPassword(isset($unserializedData['password']) ? $unserializedData['password'] : null);
+    	$this->setSalt(isset($unserializedData['salt']) ? $unserializedData['salt'] : null);
     }
 
 }

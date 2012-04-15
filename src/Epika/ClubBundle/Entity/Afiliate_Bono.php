@@ -47,6 +47,13 @@ class Afiliate_Bono
      */
     private $bono;
     
+    /**
+     * 
+     * @var smallint
+     * @ORM\Column(name="quantity", type="smallint")
+     */
+    private $quantity;
+    
     /******************************************** Class functions ******************************************/
 
     /**
@@ -137,5 +144,25 @@ class Afiliate_Bono
     public function getBono()
     {
         return $this->bono;
+    }
+
+    /**
+     * Set quantity
+     *
+     * @param smallint $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return smallint 
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
 }

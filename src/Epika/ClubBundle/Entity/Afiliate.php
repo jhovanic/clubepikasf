@@ -108,7 +108,7 @@ class Afiliate
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="Afiliate_Bono", mappedBy="afiliate")
+     * @ORM\OneToMany(targetEntity="Afiliate_Bono", mappedBy="afiliate", cascade={ "persist", "remove" })
      */
     private $bonos;
     
@@ -118,7 +118,7 @@ class Afiliate
     private $city;
     
     /**
-     * @ORM\OneToOne(targetEntity="Ocupation")
+     * @ORM\ManyToOne(targetEntity="Ocupation")
      */
     private $ocupation;
     

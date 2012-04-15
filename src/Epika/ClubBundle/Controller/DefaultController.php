@@ -7,10 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\SecurityContext;
 
+/**
+ * Default controller.
+ *
+ */
 class DefaultController extends Controller
 {
     /**
-     * @Route("/index", name="default_index")
+     * @Route("/", name="default_index")
      * @Template()
      */
     public function indexAction()

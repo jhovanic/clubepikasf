@@ -1,0 +1,135 @@
+{% extends bonos is defined? 'EpikaClubBundle::layout.html.twig':'EpikaClubBundle:Company:profile.html.twig' %}
+{% if bonos is defined %}
+{% block contenido_title %}Mis Bonos - {{ company.name }}{% endblock %}
+
+{% block contenido %}
+<br />
+{% if bonos|length > 0 %}
+    {% for bono in bonos %}
+        <div style="width: 708px; height:290px; border: 2px #000000 groove; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
+			<table border="0">
+				<tr>
+					<td width="300">
+						<div class="bonoImages" style="margin: 0; padding: 0; position: relative; top: -3px; left: -4px;">
+							<img class="image" alt="" src="{{ bono.images[0].getWebPath }}" width="300" height="253" />
+						</div>
+						<div class="bonoSocials" style="width: 302px; height: 37px; background: #D0CACA; text-align: center; margin:0 auto; padding-top: 10px; padding-bottom: 5px; position: relative; top: -25px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
+							<div style="text-align:center; margin:0 auto; padding:8px 65px; width:100%;">
+								<!-- AddThis Button BEGIN -->
+								<div class="addthis_toolbox addthis_default_style" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':bono.id}) }}" 
+								addthis:title="{{ bono.name }}" addthis:description="{{ bono.description }}" addthis:screenshot="{{ bono.images[0].getWebPath }}" 
+								addthis:templates=""
+								addthis:width="300" addthis:height="253">
+								<a class="addthis_button_facebook"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_twitter"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_google_plusone" g:plusone:annotation="none"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_email"></a><span class="addthis_separator">|</span>
+								<a class="addthis_button_compact" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':bono.id}) }}" 
+								addthis:title="{{ bono.name }}" addthis:description="{{ bono.description }}"></a>
+								</div>
+								<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f70d93e6ae929b0"></script>
+								<script type="text/javascript">
+									var addthis_config =
+									{
+										services_compact: 'blogger,digg,gmail,google,hotmail,linkedin,myspace,orkut,reddit,tumblr',
+										services_exclude: 'facebook,twitter'
+									}
+									
+									var addthis_share = {
+								        templates: {
+								            twitter: '{{ bono.name }} {{ '{{url}}' }} via @clubepika'
+								        }
+								    }
+								</script>
+								<!-- AddThis Button END -->
+							</div>
+						</div>
+					</td>
+					<td>
+						<table border="0" width="100%">
+							<tr>
+								<td height="20">
+									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -42px; left: 300px;">
+										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" />
+										{% if bono.discount < 100 %}
+										<span style="position: relative; top:-61px; left: 19px; font-size: 1.8em; color: #b31504;">{{ bono.discount }}%</span>
+										{% else %}
+										<span style="position: relative; top:-61px; left: 19px; font-size: 1.8em; color: #b31504;">2x1</span>
+										{% endif %}
+									</div>
+									<!-- 
+									<div class="bonoSaveImage" style="float: right; position: relative; top: -53px; left: -80px; width: 20px; height: 55px;">
+										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="80" height="89" />
+										<span style="position: relative; top:-58px; left: 9px; font-size: 1.4em; color: #fff;">{{ bono.save }}</span>
+									</div> -->
+									<div class="bonoTitle" style="width: 200px; height: 50px; position: relative; top: -70px; word-wrap: break-word;">	
+										<h2>{{ bono.name }}</h2>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="bonoShortDescription" style="width: 400px; height: 70px; word-wrap: break-word; position: relative; top: -50px;">
+										{{ bono.description }}
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<div class="bonoPrice" style="position: relative; top: 0px;">
+										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
+										<a href="{{ path('company_validate', {'id':bono.id,'aid':afiliate.id}) }}">
+										<img alt="Validar" title="Validar" src="{{ asset('bundles/epikaclub/images/validar.png') }}" />
+										</a>
+									</div>
+									{% if bono.discount == 100 %}
+									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #ef7f1a;">${{ bono.price }}</span>
+									{% else %}
+									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #ef7f1a;">${{ bono.price - bono.save }}</span>
+									{% endif %}
+									<!-- <span style="position: relative; top:-45px; left: 28px; font-size: 1.11em; color: #ef7f1a;">VER PROMOCIÓN</span> -->
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+</div>
+<br />
+    {% endfor %}
+{% else %}
+	<p style="margin-left: 10px;">No Hay Bonos Activos</p>
+{% endif %}
+{% endblock %}
+{% else %}
+	{% block stylesheets %}
+	
+			{{ parent() }}
+			<style>
+			#profileContent table { width: 200px; position: relative; top: 0px; left: -150px; }
+			</style>
+		
+	{% endblock %}
+	{% block profileContent %}
+	<form action="{{ path('company_activate') }}" method="post">
+	<div id="profileContent">
+		<table>
+			<tr>
+				<td>Cedula:</td>
+				<td><input type="text" name="identification" placeholder="Número de Cedula" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="Activar Bono" /></td>
+			</tr>
+		</table>
+	</div>
+	</form>
+	<script type="text/javascript">
+	$(function() {
+		$( "#profileContent input:submit" ).button({
+			icons: {primary:'',secondary:''},
+		});
+	});
+	</script>
+	{% endblock %}
+{% endif %}

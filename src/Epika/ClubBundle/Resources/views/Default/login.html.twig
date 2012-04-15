@@ -2,13 +2,13 @@
 
 {% block body %}
 <div id="divRecentWorks">
-	<form name="loginForm" action="{{ path('login_check') }}" method="post" enctype="text/plain">
+	<form name="loginForm" action="{{ path('login_check') }}" method="post" enctype="application/x-www-form-urlencoded">
 				{% if error %}
 				<div style="color: #ff0000; position: relative; left: 25px; margin-bottom:10px;">
 					<span>Nombre de Usuario o Contraseña Invalidos</span>
 				</div>
 				{% endif %}
-				<div id="loginDiv" style="position: relative; top: 0px; left: 25px; display:block; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; width:492px;">
+				<div id="loginDiv" style="position: relative; top: 0px; left: 25px; display:block; margin: 0 auto; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; width:492px;">
                 	<table class="loginTable" border="0">
                 		<tr>
                 			<td style="background: url({{ asset('bundles/epikaclub/images/barramicuenta.png') }}); width: 45px; height: 238px;">
@@ -24,7 +24,7 @@
                 					</tr>
                 					<tr height="15%">
                 						<td width="7%">&nbsp;</td>
-                						<td align="left" colspan="2"><input type="text" name="login" placeholder="Nombre de Usuario" /></td>
+                						<td align="left" colspan="2"><input type="text" name="_username" placeholder="Nombre de Usuario" /></td>
                 						<td width="7%"><div id="loginError"></div></td>
                 					</tr>
                 					<tr height="15%">
@@ -34,13 +34,13 @@
                 					</tr>
                 					<tr height="15%">
                 						<td width="7%">&nbsp;</td>
-                						<td align="left" colspan="2"><input type="password" name="password" placeholder="Tú Contraseña" /></td>
+                						<td align="left" colspan="2"><input type="password" name="_password" placeholder="Tú Contraseña" /></td>
                 						<td width="7%"><div id="passwordError"></div></td>
                 					</tr>
                 					<tr>
                 						<td width="7%">&nbsp;</td>
                 						<td align="left">
-                							<input type="checkbox" name="rememberme" value="true" />
+                							<input type="checkbox" name="_remember_me" />
                 							<img src="{{ asset('bundles/epikaclub/images/recordarme.png') }}" />
                 						</td>
                 						<td align="left">
