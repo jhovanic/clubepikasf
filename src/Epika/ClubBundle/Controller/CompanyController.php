@@ -320,10 +320,14 @@ class CompanyController extends Controller
     	
     	foreach ($afiliate->getBonos() as $afbono) {
     		if ($afbono->getBono()->getId() == $id) {
-    			$afbono->setQuantity($afbono->getQuantity() - 1);
-    			$afbono->setActivationDate(new \DateTime('now'));
-    			if($afbono->getQuantity() <= 0)
-    				$afbono->setIsActive(false);
+    			if($afbono->getQuantity() > 0) {
+	    			$afbono->setQuantity($afbono->getQuantity() - 1);
+	    			$afbono->setActivationDate(new \DateTime('now'));
+	    			if($afbono->getQuantity() <= 0)
+	    				$afbono->setIsActive(false);
+    			} else {
+    				$afbono->setActivationDate(new \DateTime('now'));
+    			}
     			$em->persist($afbono);
     			$em->flush();
     		}

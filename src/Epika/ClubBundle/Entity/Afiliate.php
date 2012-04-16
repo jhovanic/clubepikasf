@@ -26,7 +26,7 @@ class Afiliate
     /**
      * @var string $identification
      *
-     * @ORM\Column(name="identification", type="string", length=255)
+     * @ORM\Column(name="identification", type="string", length=255, unique=true)
      */
     private $identification;
 

@@ -22,7 +22,13 @@ class AfiliateType extends AbstractType
             		'choices' => array('Masculino' => 'Masculino',
             				'Femenino' => 'Femenino'),
             		'empty_value' => 'Seleccione su sexo'))
-            ->add('birth_date', 'birthday', array('label' => 'Fecha de Nacimiento'))
+            ->add('birth_date', 'birthday', array('label' => 'Fecha de Nacimiento',
+            		'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día'),
+            		'years' => range(date('Y')-80,date('Y')),
+            		'months' => range(1,12),
+            		'format' => 'yyyy - MMMM - dd',
+            		'user_timezone' => 'America/Bogota',
+            		'data_timezone' => 'America/Bogota'))
             ->add('department', 'entity', array('class' => 'EpikaClubBundle:Department',
             		'property' => 'name',
             		'required' => false,
@@ -40,6 +46,7 @@ class AfiliateType extends AbstractType
             ->add('ocupation', 'entity', array('class' => 'EpikaClubBundle:Ocupation',
             		'property' => 'name',
             		'label' => 'Ocupación',
+            		'empty_value' => 'Seleccione una Ocupación',
             		'multiple' => false,
             		'expanded' => false))
             ->add('user', new UserType(), array('label' => 'Usuario'))

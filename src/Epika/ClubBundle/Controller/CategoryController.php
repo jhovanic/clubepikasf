@@ -12,7 +12,7 @@ use Epika\ClubBundle\Form\CategoryType;
 /**
  * Category controller.
  *
- * @Route("/categoria")
+ * @Route("/categorias")
  */
 class CategoryController extends Controller
 {

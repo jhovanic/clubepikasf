@@ -121,6 +121,7 @@ class BonoController extends Controller
             	$ab->setAfiliate($afiliate);
             	$ab->setBono($bono);
             	$ab->setIsActive($bono->getIsActive());
+            	$ab->setQuantity($bono->getQuantity());
             	$em->persist($ab);
             	$em->flush();
             }

@@ -52,7 +52,9 @@
     	</tr>
     	<tr>
     		<td>{{ form_label(form.birth_date) }}</td>
-    		<td>{{ form_widget(form.birth_date) }}</td>
+    		<td>{{ form_widget(form.birth_date.day) }}
+    		{{ form_widget(form.birth_date.month) }}
+    		{{ form_widget(form.birth_date.year) }}</td>
     		<td>{{ form_errors(form.birth_date) }}</td>
     	</tr>
     	<tr>

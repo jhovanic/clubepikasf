@@ -50,9 +50,9 @@ class BonoType extends AbstractType
             ->add('unpublish_date',null,array('label' => 'Fecha de Vencimiento',
             		'widget' => 'choice',
             		'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día'),
-            		'years' => range(2012,2020),
+            		'years' => range(date('Y'),date('Y')+5),
             		'months' => range(1,12),
-            		'format' => 'dd - MMMM - yyyy',
+            		'format' => 'yyyy - MMMM - dd',
             		'user_timezone' => 'America/Bogota',
             		'data_timezone' => 'America/Bogota'))
             ->add('company','entity',array('property' => 'name',

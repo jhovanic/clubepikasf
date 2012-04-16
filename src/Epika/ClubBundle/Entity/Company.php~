@@ -33,7 +33,7 @@ class Company
     /**
      * @var string $nit
      *
-     * @ORM\Column(name="nit", type="string", length=255)
+     * @ORM\Column(name="nit", type="string", length=255, unique=true)
      */
     private $nit;
 

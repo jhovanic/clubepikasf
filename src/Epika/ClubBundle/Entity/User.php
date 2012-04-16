@@ -2,6 +2,8 @@
 
 namespace Epika\ClubBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,7 +27,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string $username
      *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
 
@@ -38,7 +40,7 @@ class User implements UserInterface, \Serializable
     
     /**
      * 
-     * @ORM\OneToOne(targetEntity="Role")
+     * @ORM\ManyToOne(targetEntity="Role")
      */
     private $role;
     
@@ -230,16 +232,6 @@ class User implements UserInterface, \Serializable
     {
         return $this->isActive;
     }
-
-    /**
-     * Set role
-     *
-     * @param Epika\ClubBundle\Entity\Role $role
-     */
-    public function setRole(\Epika\ClubBundle\Entity\Role $role)
-    {
-        $this->role[] = $role;
-    }
     
     public function serialize()
     {
@@ -270,5 +262,15 @@ class User implements UserInterface, \Serializable
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * Set role
+     *
+     * @param Epika\ClubBundle\Entity\Role $role
+     */
+    public function setRole(\Epika\ClubBundle\Entity\Role $role)
+    {
+        $this->role = $role;
     }
 }

@@ -24,7 +24,7 @@ class Card
     /**
      * @var string $number
      *
-     * @ORM\Column(name="number", type="string", length=255)
+     * @ORM\Column(name="number", type="string", length=255, unique=true)
      */
     private $number;
 
@@ -36,7 +36,7 @@ class Card
     private $expiration_date;
     
     /**
-     * @ORM\OneToOne(targetEntity="Membership")
+     * @ORM\ManyToOne(targetEntity="Membership")
      */
     private $membership;
 
