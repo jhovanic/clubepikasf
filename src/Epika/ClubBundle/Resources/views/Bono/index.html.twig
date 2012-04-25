@@ -24,20 +24,6 @@
 								<a class="addthis_button_compact" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
 								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}"></a>
 								</div>
-								<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f70d93e6ae929b0"></script>
-								<script type="text/javascript">
-									var addthis_config =
-									{
-										services_compact: 'blogger,digg,gmail,google,hotmail,linkedin,myspace,orkut,reddit,tumblr',
-										services_exclude: 'facebook,twitter'
-									}
-									
-									var addthis_share = {
-								        templates: {
-								            twitter: '{{ entity.name }} {{ '{{url}}' }} via @clubepika'
-								        }
-								    }
-								</script>
 								<!-- AddThis Button END -->
 							</div>
 						</div>
@@ -46,7 +32,7 @@
 						<table border="0" width="100%">
 							<tr>
 								<td height="20">
-									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -42px; left: 300px;">
+									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -62px; left: 300px; z-index: 1000;">
 										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" />
 										{% if entity.discount < 100 %}
 										<span style="position: relative; top:-61px; left: 19px; font-size: 1.8em; color: #b31504;">{{ entity.discount }}%</span>
@@ -59,14 +45,14 @@
 										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="80" height="89" />
 										<span style="position: relative; top:-58px; left: 9px; font-size: 1.4em; color: #fff;">{{ entity.save }}</span>
 									</div> -->
-									<div class="bonoTitle" style="width: 200px; height: 50px; position: relative; top: -70px; word-wrap: break-word;">	
+									<div class="bonoTitle" style="float: right; width: 300px; height: 50px; position: relative; top: -50px; left: -20px; word-wrap: break-word;">	
 										<h2>{{ entity.name }}</h2>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<div class="bonoShortDescription" style="width: 400px; height: 70px; word-wrap: break-word; position: relative; top: -50px;">
+									<div class="bonoShortDescription" style="width: 300px; height: 70px; word-wrap: break-word; position: relative; top: -40px;">
 										{{ entity.description }}
 									</div>
 								</td>
@@ -94,5 +80,20 @@
 </div>
 <br />
 {% endfor %}
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f70d93e6ae929b0"></script>
+<script type="text/javascript">
+	var addthis_config =
+	{
+		services_compact: 'blogger,digg,gmail,google,hotmail,linkedin,myspace,orkut,reddit,tumblr',
+		services_exclude: 'facebook,twitter'
+	}
+
+	var addthis_share = 
+	{
+		templates: {
+			twitter: '{{ '{{title}}' }} {{ '{{url}}' }} via @clubepika'
+		}
+	}
+</script>
 
 {% endblock %}

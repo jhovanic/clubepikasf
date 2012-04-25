@@ -21,11 +21,10 @@ class AdminController extends Controller
 	 */
 	public function profileAction()
 	{
-		$info = 'Some Admin Info';
+		if(false === $this->get('security.context')->isGranted('ROLE_ADMIN'))
+			throw new AccessDeniedException();
 		
-		return array(
-				'info' => $info
-				);
+		return array();
 	}
 	
 }

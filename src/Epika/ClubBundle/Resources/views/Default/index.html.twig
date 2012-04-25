@@ -6,9 +6,8 @@
             
 			<!-- BEGIN #sliderList -->
             <ul id="sliderList">
-               	<li><a href="#"><img src="{{ asset('bundles/epikaclub/images/slider/sliderImg1.jpg') }}" width="800" height="300" /></a></li>
-                <li><a href="#"><img src="{{ asset('bundles/epikaclub/images/slider/sliderImg2.jpg') }}" width="800" height="300" /></a></li>
-                <li><a href="#"><img src="{{ asset('bundles/epikaclub/images/slider/sliderImg2.jpg') }}" width="800" height="300" /></a></li>
+               	<li><a href="#"><img src="{{ asset('bundles/epikaclub/images/slider/banners_1.jpg') }}" width="800" height="300" /></a></li>
+                <li><a href="#"><img src="{{ asset('bundles/epikaclub/images/slider/banners_2.jpg') }}" width="800" height="300" /></a></li>
 			<!-- END #sliderList -->			
             </ul>
 			
@@ -82,7 +81,7 @@
                         <div class="recentWorksItem">
                             
                                 <!-- BEGIN .recentWorksItemsImageLink -->
-                                <a class="recentWorksItemsImageLink" href="{{ path('company_show',{ 'id': company.id }) }}">
+                                <a class="recentWorksItemsImageLink" href="{{ path('bono_company',{ 'id': company.id }) }}">
                                     <img class="recentWorksItemsImage" src="{{ company.getWebPath }}"/>
                                 </a>
                                 

@@ -50,6 +50,20 @@ class Company
      * @ORM\Column(name="neighborhood", type="string", length=255)
      */
     private $neighborhood;
+    
+    /**
+     * 
+     * @var string $geoX
+     * @ORM\Column(name="geox", type="string", length=255)
+     */
+    private $geoX;
+    
+    /**
+     * 
+     * @var string $geoY
+     * @ORM\Column(name="geoy", type="string", length=255)
+     */
+    private $geoY;
 
     /**
      * @var string $email

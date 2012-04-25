@@ -1,0 +1,27 @@
+01/04/2012 - v2.1
+- G+ feed fix
+01/02/2012 - v2.0
+- better button position setting
+- locale settings
+- light/dark color scheme
+- middle/fixed vertical position
+- likebox show header option
+- separate widget options (Width, Height, Show faces, Show stream, Show header, Color Scheme, Border Color)
+- 3 new tab designs (black)
+- z-index option
+- color picker for border color
+- some fixed for IE7
+- fixed border settings 
+- Twitter support
+- Google Plus SUPPORT
+- ipad and other tablets support
+- added twitter follow button
+- fix for short_open_tag=Off
+- css for dir=rtl
+- added Disable by get param
+- YouTube support
+- added loading gif
+- hover zindex fix
+- force_wall option for fb
+11/02/2012 - v2.2
+- LinkedIn support

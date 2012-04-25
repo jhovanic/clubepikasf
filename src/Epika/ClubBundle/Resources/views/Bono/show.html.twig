@@ -21,7 +21,7 @@
 							<!-- BEGIN #imageList -->							
 				            <div id="slider" class="nivoSlider">
 				               	{% for image in entity.images %}
-				               	<img class="image" alt="{{ entity.description }}" title="{{ entity.description }}" src="{{ image.getWebPath }}" width="300" height="253" />
+				               	<img class="image" alt="{{ entity.description }}" title="" src="{{ image.getWebPath }}" width="300" height="253" />
 				               	{% endfor %}
 							</div>
 							<!-- END #imageList -->
@@ -55,20 +55,6 @@
 								<!-- <a class="addthis_button_compact" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
 								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}"></a> -->
 								</div>
-								<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f70d93e6ae929b0"></script>
-								<script type="text/javascript">
-									var addthis_config =
-									{
-										services_compact: 'blogger,digg,gmail,google,hotmail,linkedin,myspace,orkut,reddit,tumblr',
-										services_exclude: 'facebook,twitter'
-									}
-									
-									var addthis_share = {
-								        templates: {
-								            twitter: '{{ entity.name }} {{ '{{url}}' }} via @clubepika'
-								        }
-								    }
-								</script>
 								<!-- AddThis Button END -->
 							</div>
 						</div>
@@ -77,7 +63,7 @@
 						<table border="0" width="100%">
 							<tr>
 								<td height="20">
-									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -44px; left: 300px;">
+									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -66px; left: 300px; z-index: 1000;">
 										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" />
 										{% if entity.discount < 100 %}
 										<span style="position: relative; top:-61px; left: 19px; font-size: 1.9em; color: #b31504;">{{ entity.discount }}%</span>
@@ -89,14 +75,14 @@
 										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="140" height="140" />
 										<span style="position: relative; top:-86px; left: 38px; font-size: 1.7em; color: #fff;">{{ entity.save }}</span>
 									</div> -->
-									<div class="bonoTitle" style="width: 200px; height: 50px; position: relative; top: -70px; word-wrap: break-word;">	
+									<div class="bonoTitle" style="float: right; width: 300px; height: 50px; position: relative; top: -50px; left: -20px; word-wrap: break-word;">	
 										<h2>{{ entity.name }}</h2>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<div class="bonoShortDescription" style="width: 400px; height: 70px; word-wrap: break-word; position: relative; top: -50px;">
+									<div class="bonoShortDescription" style="width: 300px; height: 70px; word-wrap: break-word; position: relative; top: -40px;">
 										{{ entity.description }}
 									</div>
 								</td>
@@ -136,8 +122,7 @@
 <!-- Bono Description -->
 <div id="bonoMicroSite" style="width:100%;text-align:left;padding: 0; margin-left: 1.5em; margin-top: 1.5em;">
 	<div id="bonoDescription" style="width: 700px;margin-left:1em;margin-top:2em;">
-		<h2>{{ entity.name }}</h2>
-		<span>{{ entity.description }}</span><br /><br />
+
 		<!-- BEGIN TABS -->
 		<div id="tab-container" class="tab-container">
 			<ul class="etabs">
@@ -154,7 +139,11 @@
 					{{ entity.information }}
 				</div>
 				<div id="tab-cond">
-					{{ entity.conditions }}
+					<ul>
+					{% for condition in conditions %}
+						<li>{{ condition }}</li>
+					{% endfor %}
+					</ul>
 				</div>
 				<div id="tab-map">
 					<div id="map_canvas" style="width: 675px; height:250px; border: 1px #000000 groove;text-align:center"></div>
@@ -168,79 +157,75 @@
 <!-- Google Maps -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> 
 <script type="text/javascript">
-$(document).ready(function() {
-	var geocoder, map;
-	function initialize() {
-		geocoder = new google.maps.Geocoder();
-	  var latlng = new google.maps.LatLng(-34.397, 150.644);
-	  var myOptions = {
-	    zoom: 15,
-	    center: latlng,
-	    mapTypeId: google.maps.MapTypeId.ROADMAP
-	  };
-	  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	}
-	var infoWindow = new google.maps.InfoWindow();
-	function codeAddress(adrs, title) {
-			//alert(adrs);	
-		  var address = adrs;
-		  geocoder.geocode( { 'address': address}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-			  map.setCenter(results[0].geometry.location);
-			  var marker = new google.maps.Marker({
-				  map: map, 
-				  position: results[0].geometry.location,
-				  title:"Prueba"
-			  });
-	
-			  google.maps.event.addListener(marker, 'click', function () {
-				 //infoWindow.close();
-			     infoWindow.setContent("<b>"+title+"</b><br />"+address);
-			     infoWindow.open(map, marker);
-			  });
-			}
-		  });
-		}
+$(document).ready( function() {
+var map;
+function initialize() {
+  	var latlng = new google.maps.LatLng({{ entity.company.geoX }}, {{ entity.company.geoY }});
+  	var myOptions = {
+    	zoom: 15,
+    	center: latlng,
+    	mapTypeId: google.maps.MapTypeId.ROADMAP
+  	};
+  	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  	var markerImage = new google.maps.MarkerImage('{{ asset('bundles/epikaclub/images/marcador_new.png') }}',
+		new google.maps.Size(100,50),
+		new google.maps.Point(0,0),
+		new google.maps.Point(50,50)
+	);
 
-		//$(document).ready(function() {
-		//	initialize();
-		//	codeAddress('{{ entity.company.address }}' + ' ' + '{{ entity.company.neighborhood }}' + ' ' + '{{ entity.company.city.name }}' + ' ' + 'Colombia', '{{ entity.company.name }}');
-		//});
-
-		$(document).ready( function() {
-			$('#tab-container').easytabs();
+	var markerShadow = new google.maps.MarkerImage('{{ asset('bundles/epikaclub/images/marcador_shadow.png') }}',
+		new google.maps.Size(130,50),
+		new google.maps.Point(0,0),
+		new google.maps.Point(65, 50)
+	);
+	var contentString = '<div id="markerContent">'+
+	'<h3 id="firstHeading" class="firstHeading" style="padding:0; margin:0;">{{ entity.company.name }}</h3>'+
+	'<div>'+
+	'<p style="padding:0; margin:0;">{{ entity.company.address }}, {{ entity.company.neighborhood }}</p>'+
+	'</div>'+
+	'</div>';
+	var infoWindow = new google.maps.InfoWindow({
+		content: contentString
 		});
+	var marker = new google.maps.Marker({
+	map: map,
+	position: latlng,
+	icon: markerImage,
+	shadow: markerShadow,
+	title:"{{ entity.company.name }}",
+	zIndex: 3
+	});
 
-		$('#tab-container').bind('easytabs:after', function(evt, tab, panel, data) {
-			  if ( tab.hasClass('active') ) {
-			    initialize();
-			    codeAddress('{{ entity.company.address }}' + ' ' + '{{ entity.company.neighborhood }}' + ' ' + '{{ entity.company.city.name }}' + ' ' + 'Colombia', '{{ entity.company.name }}');
-			  }
-		});
+	google.maps.event.addListener(marker, 'click', function () {
+		//infoWindow.close();
+		infoWindow.open(map, marker);
+	});
+};
 
+	$('#tab-container').easytabs();
 
+	$('#tab-container').bind('easytabs:after', function(evt, tab, panel, data) {
+		  if ( tab.hasClass('active') ) {
+		    initialize();
+		  }
+	});
 });
 </script>
 <!-- END Google Maps -->
-<div class="actions" style="">
-	<ul class="record_actions">
-	    <li>
-	        <a href="{{ path('bono') }}">
-	            Volver
-	        </a>
-	    </li>
-	    <li>
-	        <a href="{{ path('bono_edit', { 'id': entity.id }) }}">
-	            Editar
-	        </a>
-	    </li>
-	    <li>
-	        <form action="{{ path('bono_delete', { 'id': entity.id }) }}" method="post">
-	            {{ form_widget(delete_form) }}
-	            <button type="submit">Eliminar</button>
-	        </form>
-	    </li>
-	</ul>
-</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f70d93e6ae929b0"></script>
+<script type="text/javascript">
+	var addthis_config =
+	{
+		services_compact: 'blogger,digg,gmail,google,hotmail,linkedin,myspace,orkut,reddit,tumblr',
+		services_exclude: 'facebook,twitter'
+	}
+									
+	var addthis_share = 
+	{
+		templates: {
+        	twitter: '{{ '{{title}}' }} {{ '{{url}}' }} via @clubepika'
+    	}
+	}
+</script>
 </div>
 {% endblock %}

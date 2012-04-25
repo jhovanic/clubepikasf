@@ -50,6 +50,20 @@ class Company
      * @ORM\Column(name="neighborhood", type="string", length=255)
      */
     private $neighborhood;
+    
+    /**
+     * 
+     * @var string $geoX
+     * @ORM\Column(name="geox", type="string", length=255)
+     */
+    private $geoX;
+    
+    /**
+     * 
+     * @var string $geoY
+     * @ORM\Column(name="geoy", type="string", length=255)
+     */
+    private $geoY;
 
     /**
      * @var string $email
@@ -465,5 +479,45 @@ class Company
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set geoX
+     *
+     * @param string $geoX
+     */
+    public function setGeoX($geoX)
+    {
+        $this->geoX = $geoX;
+    }
+
+    /**
+     * Get geoX
+     *
+     * @return string 
+     */
+    public function getGeoX()
+    {
+        return $this->geoX;
+    }
+
+    /**
+     * Set geoY
+     *
+     * @param string $geoY
+     */
+    public function setGeoY($geoY)
+    {
+        $this->geoY = $geoY;
+    }
+
+    /**
+     * Get geoY
+     *
+     * @return string 
+     */
+    public function getGeoY()
+    {
+        return $this->geoY;
     }
 }

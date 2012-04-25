@@ -11,10 +11,12 @@ class BonoType extends AbstractType
     {
         $builder
             ->add('name',null,array('label' => 'Nombre',
+            		'max_length' => 56,
             		'attr' => array(
-            				'size' => 50
+            				'size' => 50,
             				)))
             ->add('description',null,array('label' => 'Descripción',
+            		'max_length' => 130,
             		'attr' => array(
             				'size' => 50
             				)))

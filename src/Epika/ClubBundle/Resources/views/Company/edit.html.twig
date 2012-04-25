@@ -26,6 +26,16 @@
     		<td>{{ form_errors(edit_form.neighborhood) }}</td>
     	</tr>
     	<tr>
+    		<th>{{ form_label(edit_form.geoX) }}</th>
+    		<td>{{ form_widget(edit_form.geoX) }} <span>(Solo para GMaps)</span></td>
+    		<td>{{ form_errors(edit_form.geoX) }}</td>
+    	</tr>
+    	<tr>
+    		<th>{{ form_label(edit_form.geoY) }}</th>
+    		<td>{{ form_widget(edit_form.geoY) }} <span>(Solo para GMaps)</span></td>
+    		<td>{{ form_errors(edit_form.geoY) }}</td>
+    	</tr>
+    	<tr>
     		<th>{{ form_label(edit_form.email) }}</th>
     		<td>{{ form_widget(edit_form.email) }}</td>
     		<td>{{ form_errors(edit_form.email) }}</td>

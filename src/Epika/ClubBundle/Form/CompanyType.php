@@ -13,6 +13,8 @@ class CompanyType extends AbstractType
             ->add('name',null,array('label' => 'Nombre'))
             ->add('nit',null,array('label' => 'Nit'))
             ->add('address',null,array('label' => 'Dirección'))
+            ->add('geoX',null,array('label' => 'Latitud'))
+            ->add('geoY',null,array('label' => 'Longitud'))
             ->add('neighborhood',null,array('label' => 'Barrio'))
             ->add('email','email',array('label' => 'Email'))
             ->add('phone','number',array('label' => 'Teléfono'))

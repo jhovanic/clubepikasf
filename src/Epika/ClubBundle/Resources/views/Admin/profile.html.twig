@@ -1,6 +1,82 @@
 {% extends '::base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/ui-lightness/jquery-ui-1.8.18.custom.css') }}" />
+	<style>
+		#profileActions { float: left; width: 200px; height:100%; margin-left: 2em; }
+		.accordionContentPane ul li { list-style: none; padding-left: .5em; }
+		.accordionContentPane a { text-decoration: none; }
+	</style>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery-ui-1.8.18.custom.min.js') }}"></script>
+{% endblock %}
 {% block body %}
 <div id="divRecentWorks">
-	{{ info }}
+	<div id="profileActions" class="profileActions">
+		<div id="accordion" class="accordion">
+			<h3><a href="#">Bonos</a></h3>
+			<div class="accordionContentPane">
+				<ul>
+					<li><a href="{{ path('bono') }}">Lista</a></li>
+					<li><a href="{{ path('bono_new') }}">Nuevo</a></li>
+					<li><a href="#">Editar</a></li>
+				</ul>
+			</div>
+			<h3><a href="#">Comercios</a></h3>
+			<div class="accordionContentPane">
+				<ul>
+					<li><a href="{{ path('company') }}">Lista</a></li>
+					<li><a href="{{ path('company_new') }}">Nuevo</a></li>
+					<li><a href="#">Editar</a></li>
+				</ul>
+			</div>
+			<h3><a href="#">Categorias</a></h3>
+			<div class="accordionContentPane">
+				<ul>
+					<li><a href="{{ path('category') }}">Lista</a></li>
+					<li><a href="{{ path('category_new') }}">Nueva</a></li>
+					<li><a href="#">Editar</a></li>
+				</ul>
+			</div>
+			<h3><a href="#">Membresias</a></h3>
+			<div class="accordionContentPane">
+				<ul>
+					<li><a href="{{ path('membresia') }}">Lista</a></li>
+					<li><a href="{{ path('membresia_new') }}">Nueva</a></li>
+					<li><a href="#">Editar</a></li>
+				</ul>
+			</div>
+			<h3><a href="#">Cambiar Contraseña</a></h3>
+			<div class="accordionContentPane">
+				<ul>
+					<li><a href="#">Cambiar Contraseña</a></li>
+				</ul>
+			</div>
+			<h3><a href="#">Cerrar Sesión</a></h3>
+			<div class="accordionContentPane">
+				<ul>
+					<li><a href="{{ path('logout') }}">Cerrar Sesión</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% block profileContent %}
+		
+	{% endblock %}
+
 </div>
+
+<script type="text/javascript">
+$(function() {
+	$( "#accordion" ).accordion({
+		active: 'none',
+		autoHeight: false,
+		collapsible: true,
+		event: 'click',
+		navigation: true
+	});
+});
+</script>
 {% endblock %}

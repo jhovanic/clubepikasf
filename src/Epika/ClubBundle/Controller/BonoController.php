@@ -33,6 +33,20 @@ class BonoController extends Controller
 
         return array('entities' => $entities);
     }
+    
+    /**
+     * List all Bonos by Company
+     * @Route("/comercio/{id}", name="bono_company")
+     * @Template("EpikaClubBundle:Bono:index.html.twig")
+     */
+    public function indexByCompanyAction($id)
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+    	
+    	$entities = $em->getRepository('EpikaClubBundle:Bono')->findBy(array('company' => $id));
+    	
+    	return array('entities' => $entities);
+    }
 
     /**
      * Finds and displays a Bono entity.
@@ -49,11 +63,14 @@ class BonoController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Bono entity.');
         }
+        
+        $conditions = explode("\n", $entity->getConditions());
 
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
+        	'conditions' => $conditions,
             'delete_form' => $deleteForm->createView(),        );
     }
 
