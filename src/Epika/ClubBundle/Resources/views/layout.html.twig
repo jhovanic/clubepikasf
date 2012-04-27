@@ -1,11 +1,11 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 <div id="divRecentWorks">
-		<div id="sideContent" style="float: right; width:225px; position:relative; top: 15px; left: -12px; margin:0; padding: 0;">
-			<img alt="" src="{{ asset('bundles/epikaclub/images/adquierela.jpg') }}" width="225" height="323">
-			<img alt="" src="{{ asset('bundles/epikaclub/images/bono_club.jpg') }}" width="225" height="72">
-		</div>
 		<h1 class="divRecentWorksTitle" style="padding-left: 10px;">{% block contenido_title %}{% endblock %}</h1>
+		<div id="sideContent" style="float: right; width:225px; position:relative; top: 5px; left: -12px; margin:0; padding: 0;">
+			<img alt="" src="{{ asset('bundles/epikaclub/images/bono_club.jpg') }}" width="225" height="72">
+			<img alt="" src="{{ asset('bundles/epikaclub/images/adquierela.jpg') }}" width="225" height="323">
+		</div>
 		{% block contenido %}
 		{% endblock %}
 		

@@ -407,9 +407,83 @@ blockquote p{
 	background-repeat: no-repeat;
 	background-position: left top;
 }
+/************** 0 y 1 ******************/
+#recentWorksBackLink0 {
+	float: right;
+	height: 26px;
+	width: 36px;
+	background-image: url(../images/back.jpg);
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#recentWorksBackLink1 {
+	float: right;
+	height: 26px;
+	width: 36px;
+	background-image: url(../images/back.jpg);
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#recentWorksBackLink0:hover {
+	background-position: right top;
+}
+#recentWorksBackLink1:hover {
+	background-position: right top;
+}
+/****************** ******************/
 #recentWorksBackLink:hover {
 	background-position: right top;
 }
+/************** 0 y 1 *************************/
+#recentWorksNextLink0 {
+	float: right;
+	margin-right: 9px;
+	margin-left: 2px;
+	height: 26px;
+	width: 36px;
+	background-image: url(../images/next.jpg);
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	font-size: 18px;
+	color: #333;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#recentWorksNextLink0:hover {
+	background-position: right top;
+}
+#recentWorksNextLink1 {
+	float: right;
+	margin-right: 9px;
+	margin-left: 2px;
+	height: 26px;
+	width: 36px;
+	background-image: url(../images/next.jpg);
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	font-size: 18px;
+	color: #333;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#recentWorksNextLink1:hover {
+	background-position: right top;
+}
+/******************** ****************************/
 #recentWorksNextLink {
 	float: right;
 	margin-right: 9px;

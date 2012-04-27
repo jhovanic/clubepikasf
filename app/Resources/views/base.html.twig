@@ -38,15 +38,30 @@
 					});
 
 
-					$('.recentWorksList').carouFredSel({
+					$('#recentWorksList0').carouFredSel({
 						scroll: {
 						duration: 1000,
 						easing:'easeInOutExpo',
 						items:1
 						},
 						circular:true,
-						prev: '.recentWorksBackLink',
-						next: '.recentWorksNextLink',
+						prev: '#recentWorksBackLink0',
+						next: '#recentWorksNextLink0',
+						auto: false,
+						items: {
+						visible: 4
+						}
+					});
+
+					$('#recentWorksList1').carouFredSel({
+						scroll: {
+						duration: 1000,
+						easing:'easeInOutExpo',
+						items:1
+						},
+						circular:true,
+						prev: '#recentWorksBackLink1',
+						next: '#recentWorksNextLink1',
 						auto: false,
 						items: {
 						visible: 4

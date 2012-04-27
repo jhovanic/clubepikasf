@@ -8,13 +8,13 @@
 				<tr>
 					<td width="300">
 						<div class="bonoImages" style="margin: 0; padding: 0; position: relative; top: -3px; left: -4px;">
-							<img class="image" alt="" src="{{ entity.images[0].getWebPath }}" width="300" height="253" />
+							<img class="image" alt="" src="http://www.clubepika.com/web{{ entity.images[0].getWebPath }}" width="300" height="253" />
 						</div>
 						<div class="bonoSocials" style="width: 302px; height: 37px; background: #D0CACA; text-align: center; margin:0 auto; padding-top: 10px; padding-bottom: 5px; position: relative; top: -25px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
 							<div style="text-align:center; margin:0 auto; padding:8px 65px; width:100%;">
 								<!-- AddThis Button BEGIN -->
 								<div class="addthis_toolbox addthis_default_style" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
-								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}" addthis:screenshot="{{ entity.images[0].getWebPath }}" 
+								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}" addthis:screenshot="http://www.clubepika.com/web{{ entity.images[0].getWebPath }}" 
 								addthis:templates=""
 								addthis:width="300" addthis:height="253">
 								<a class="addthis_button_facebook"></a><span class="addthis_separator">|</span>

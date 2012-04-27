@@ -186,9 +186,7 @@ class CompanyController extends Controller
         $request = $this->getRequest();
 
         $editForm->bindRequest($request);
-        $entity->setCreatedAt(new \DateTime('now'));
         $entity->setUpdatedAt(new \DateTime('now'));
-        $entity->getContacto()->setCreatedAt(new \DateTime('now'));
         $entity->getContacto()->setUpdatedAt(new \DateTime('now'));
         $image = $editForm['image']->getData();
         $photo = $editForm['contacto']['photo']->getData();

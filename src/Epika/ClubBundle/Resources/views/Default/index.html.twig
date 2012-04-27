@@ -52,6 +52,8 @@
 		<!-- END #divWelcomeBottom -->
 		</div>
 	
+	{% set i = 0 %}
+	
 	{% for category in categories %}
 	
 		<!-- BEGIN #divRecentWorks -->
@@ -65,8 +67,8 @@
 			
 			<!-- BEGIN #divRecentWorksNextBack -->
           	<div id="divRecentWorksNextBack">
-          		<a id="recentWorksNextLink" class="recentWorksNextLink" href="#"></a>
-                <a id="recentWorksBackLink" class="recentWorksBackLink" href="#"></a>
+          		<a id="recentWorksNextLink{{ i }}" class="recentWorksNextLink" href="#"></a>
+                <a id="recentWorksBackLink{{ i }}" class="recentWorksBackLink" href="#"></a>
 			<!-- END #divRecentWorksNextBack -->
     		</div>
 			
@@ -74,7 +76,7 @@
             <div id="divRecentWorksItems">
             	
 				<!-- BEGIN #recentWorksList -->
-				<ul id="recentWorksList" class="recentWorksList">  
+				<ul id="recentWorksList{{ i }}" class="recentWorksList">  
 					{% for company in category.companies %}
 					<li>
                         <!-- BEGIN .recentWorksItem -->
@@ -82,12 +84,12 @@
                             
                                 <!-- BEGIN .recentWorksItemsImageLink -->
                                 <a class="recentWorksItemsImageLink" href="{{ path('bono_company',{ 'id': company.id }) }}">
-                                    <img class="recentWorksItemsImage" src="{{ company.getWebPath }}"/>
+                                    <img class="recentWorksItemsImage" src="http://www.clubepika.com/web{{ company.getWebPath }}"/>
                                 </a>
                                 
                                 <!-- BEGIN .recentWorksItemsTitle -->
                                 <div class="recentWorksItemsTitle">
-                                    <a href="portfolio_details.html">{{ company.name }}</a>
+                                    <a href="{{ path('bono_company',{ 'id': company.id }) }}">{{ company.name }}</a>
                                 <!-- END .recentWorksItemsTitle -->
                                 </div>
                                 
@@ -115,6 +117,7 @@
 		<div style="text-align: center;"><img style="width: 990px;" alt="" src="{{ asset('bundles/epikaclub/images/separador.png') }}" /></div>
 		<!-- END #divRecentWorks -->
 		</div>
+		{% set i = 1 %}
       {% endfor %}
       	
 {% endblock %}

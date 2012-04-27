@@ -21,7 +21,7 @@
 							<!-- BEGIN #imageList -->							
 				            <div id="slider" class="nivoSlider">
 				               	{% for image in entity.images %}
-				               	<img class="image" alt="{{ entity.description }}" title="" src="{{ image.getWebPath }}" width="300" height="253" />
+				               	<img class="image" alt="{{ entity.description }}" title="" src="http://www.clubepika.com/web{{ image.getWebPath }}" width="300" height="253" />
 				               	{% endfor %}
 							</div>
 							<!-- END #imageList -->
@@ -46,7 +46,7 @@
 							<div style="text-align:center; margin:0 auto; padding:8px 11px; width:100%;">
 								<!-- AddThis Button BEGIN -->
 								<div class="addthis_toolbox addthis_default_style" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
-								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}" addthis:screenshot="{{ entity.images[0].getWebPath }}" 
+								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}" addthis:screenshot="http://www.clubepika.com/web{{ entity.images[0].getWebPath }}" 
 								addthis:templates=""
 								addthis:width="300" addthis:height="253">
 								<a class="addthis_button_facebook_like"></a>

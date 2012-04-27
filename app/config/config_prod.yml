@@ -17,3 +17,9 @@ monolog:
             type:  stream
             path:  %kernel.logs_dir%/%kernel.environment%.log
             level: debug
+
+framework:
+    templating:
+        assets_base_urls:
+            http: [http://www.clubepika.com/web]
+            ssl: []
