@@ -45,7 +45,7 @@
 										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="80" height="89" />
 										<span style="position: relative; top:-58px; left: 9px; font-size: 1.4em; color: #fff;">{{ entity.save }}</span>
 									</div> -->
-									<div class="bonoTitle" style="float: right; width: 300px; height: 50px; position: relative; top: -50px; left: -20px; word-wrap: break-word;">	
+									<div class="bonoTitle" style="float: right; width: 300px; height: 50px; position: relative; top: -50px; left: -20px; word-wrap: break-word; font-family: 'Share', 'Bowlby One'; font-size: 28px; font-weight: 700;">	
 										<h2>{{ entity.name }}</h2>
 									</div>
 								</td>
@@ -66,9 +66,9 @@
 										</a>
 									</div>
 									{% if entity.discount == 100 %}
-									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #ef7f1a;">${{ entity.price }}</span>
+									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #7e6754;"><strong>${{ entity.price }}</strong></span>
 									{% else %}
-									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #ef7f1a;">${{ entity.price - entity.save }}</span>
+									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #7e6754;">${{ entity.price - entity.save }}</span>
 									{% endif %}
 									<!-- <span style="position: relative; top:-45px; left: 28px; font-size: 1.11em; color: #ef7f1a;">VER PROMOCIÓN</span> -->
 								</td>

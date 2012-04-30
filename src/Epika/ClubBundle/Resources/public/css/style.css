@@ -10,7 +10,7 @@
 	#E6E5DD
 --*/
 /* ========================== general tags ========================== */
-body {
+/*body {
 	font-family: Arial, Verdana, Tahoma, Helvetica, sans-serif;
 	font-size: 13px;
 	color: #606060;
@@ -18,6 +18,29 @@ body {
 	margin: 0px;
 	padding: 0px;
 	line-height: 20px;
+}*/
+@font-face {
+ font-family: titleFont;
+ src: url("tt0768m_.ttf"); /* TTF file for CSS3 browsers */
+ src: url("tt0768m_.eot"); /* EOT file for IE */
+}
+@font-face {
+	font-family: MachaCow;
+	src: url('http://www.clubepika.com/web/bundles/epikaclub/fonts/MachaCow.ttf'); /* TTF file for CSS3 browsers */
+}
+@font-face{
+	font-family: MachaCow;
+	src: url('http://www.clubepika.com/web/bundles/epikaclub/fonts/MachaCow.otf'); /* OTF file for IE */
+}
+body {
+	font-family: MachaCow, Verdana, Tahoma, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #606060;
+	background: url(../images/DiaDeLaMadre-BG.jpg) center top no-repeat #faf5f1;
+	margin: 0px;
+	padding: 0px;
+	line-height: 20px;
+	height: 100%;
 }
 p {
 	float:left;
@@ -335,20 +358,25 @@ blockquote p{
 	float: left;
 	width: 948px;
 	color: #FFF;
+	background: #ea6941;
 	font-size: 16px;
-	background-color: #ea6941;
-	padding-top: 15px;
+	padding-top: 5px;
 	padding-right: 37px;
-	padding-bottom: 15px;
+	padding-bottom: 0px;
 	padding-left: 37px;
+	margin: 0;
 	position: relative;
 	top: -50px;
 }
 #divWelcome a {
 	color:#FFF;
+	padding: 0px;
+	margin: 0px;
 }
 #divWelcome a:hover {
 	color:#FFF;
+	padding: 0px;
+	margin: 0px;
 }
 #divWelcomeBottom {
 	float: left;
@@ -356,8 +384,20 @@ blockquote p{
 	background-image: url(../images/welcome_bottom.png);
 	background-repeat: no-repeat;
 	height: 14px;
+	padding: 0px;
+	margin: 0px;
 	position: relative;
 	top: -50px;
+}
+#divWelcomeTop {
+	float: left;
+	width: 1003px;
+	background-image: url(../images/menuepika.png);
+	background-repeat: no-repeat;
+	height: 98px;
+	position: relative;
+	top: -63px;
+	left: 3px;
 }
 
 /* ========================== Home Recent Works ========================== */
@@ -1001,7 +1041,7 @@ divFooterWidgets {
 	margin-right: 20px;
 }
 #divFooterLogo {
-	font-family: Georgia, "Times New Roman", Times, serif;
+	font-family: bodyFont,Georgia, "Times New Roman", Times, serif;
 	font-size: 24px;
 	font-style: italic;
 	font-weight: bold;

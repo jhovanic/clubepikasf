@@ -8,6 +8,7 @@
             <ul id="sliderList">
                	<li><a href="#"><img src="{{ asset('bundles/epikaclub/images/slider/banners_1.jpg') }}" width="800" height="300" /></a></li>
                 <li><a href="#"><img src="{{ asset('bundles/epikaclub/images/slider/banners_2.jpg') }}" width="800" height="300" /></a></li>
+                <li><a href="#"><img src="{{ asset('bundles/epikaclub/images/slider/banners_3.png') }}" width="800" height="300" /></a></li>
 			<!-- END #sliderList -->			
             </ul>
 			
@@ -26,20 +27,25 @@
 		<!-- END #divSlider -->
         </div>
         
-        
+        <!-- BEGIN #divWelcomeTop 
+        <div id="divWelcomeTop">
+         END #divWelcomeTop
+        </div> -->
 		<!-- BEGIN #divWelcome -->
         <div id="divWelcome">
-            <table width="80%" align="center">
+            <table width="100%" align="center" style="position: relative; left:100px;">
             	<tr>
-            		<td width="25%">Siguenos en: </td>
-            		<td>
-            			<a href="http://www.facebook.com/cpsclub" target="_blank">
-            			<img alt="" src="{{ asset('bundles/epikaclub/images/facebook_index.png') }}" height="40">
+            		<td width="33%"><a href="{{ path('bono') }}" target="_self">
+            			<img alt="" src="{{ asset('bundles/epikaclub/images/botonbono.png') }}" height="55" width="96">
+            			</a></td>
+            		<td width="33%">
+            			<a href="{{ path('category') }}" target="_self">
+            			<img alt="" src="{{ asset('bundles/epikaclub/images/botoncategorias.png') }}" height="55" width="96">
             			</a>
             		</td>
-            		<td>
-            			<a href="http://www.twitter.com/#!/clubepika" target="_blank">
-            			<img alt="" src="{{ asset('bundles/epikaclub/images/twitter_index.png') }}" height="40">
+            		<td width="33%">
+            			<a href="{{ path('company') }}" target="_self">
+            			<img alt="" src="{{ asset('bundles/epikaclub/images/botonmarcas.png') }}" height="55" width="96">
             			</a>
             		</td>
             	</tr>
@@ -95,7 +101,7 @@
                                 
                                 <!-- BEGIN .recentWorksItemsText -->
                                 <div class="recentWorksItemsText">
-                                    {{ company.address }}
+                                    {{ company.address }}, {{ company.neighborhood }}
                                 <!-- END .recentWorksItemsText -->
                                 </div>
                             

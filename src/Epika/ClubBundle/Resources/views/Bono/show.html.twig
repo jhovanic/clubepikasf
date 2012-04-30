@@ -93,9 +93,9 @@
 										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
 									</div>
 									{% if entity.discount == 100 %}
-									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #ef7f1a;">${{ entity.price }}</span>
+									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #7e6754;">${{ entity.price }}</span>
 									{% else %}
-									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #ef7f1a;">${{ entity.price - entity.save }}</span>
+									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #7e6754;">${{ entity.price - entity.save }}</span>
 									{% endif %}
 								</td>
 							</tr>
@@ -126,10 +126,10 @@
 		<!-- BEGIN TABS -->
 		<div id="tab-container" class="tab-container">
 			<ul class="etabs">
-				<li class="tab"><a href="#tab-desc">Descripción</a></li>
-				<li class="tab"><a href="#tab-info">Información</a></li>
+				<li class="tab"><a href="#tab-desc">Detalles del Bono</a></li>
 				<li class="tab"><a href="#tab-cond">Condiciones</a></li>
 				<li class="tab"><a id="map-tab" href="#tab-map">Ubicación</a></li>
+				<li class="tab"><a href="#tab-info">Más sobre {{ entity.company.name }}</a></li>
 			</ul>
 			<div class="panel-container">
 				<div id="tab-desc">
