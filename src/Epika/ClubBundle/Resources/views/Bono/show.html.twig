@@ -1,4 +1,11 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block fbmetas %}
+<meta property="og:title" content="{{ entity.name }}" />
+<meta property="og:description" content="{{ entity.description }}" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://www.clubepika.com/web{{ entity.images[0].getWebPath }}" />
+<meta property="og:url" content="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}" />
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
 	<link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/nivo-slider.css') }}" type="text/css" />
@@ -49,7 +56,9 @@
 								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}" addthis:screenshot="http://www.clubepika.com/web{{ entity.images[0].getWebPath }}" 
 								addthis:templates=""
 								addthis:width="300" addthis:height="253">
-								<a class="addthis_button_facebook_like"></a>
+								<a class="addthis_button_facebook_like" 
+								fb:like:layout="button_count" 
+								addthis:url="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}"></a>
 								<a class="addthis_button_tweet"></a>
 								<a class="addthis_button_google_plusone" g:plusone:annotation="bubble" g:plusone:size="medium"></a>
 								<!-- <a class="addthis_button_compact" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 

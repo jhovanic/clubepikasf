@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#"
-		xmlns:addthis="http://www.addthis.com/help/client-api">
+		xmlns:addthis="http://www.addthis.com/help/client-api" 
+		xmlns:fb="http://www.facebook.com/2008/fbml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        {% block fbmetas %}{% endblock %}
         <title>{% block title %}Club Epika{% endblock %}</title>
         {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/style.css') }}" type="text/css" />

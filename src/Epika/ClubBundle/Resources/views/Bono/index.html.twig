@@ -60,7 +60,7 @@
 							<tr>
 								<td align="center">
 									<div class="bonoPrice" style="position: relative; top: 0px;">
-										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
+										<img alt="Precio" title="Precio" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
 										<a href="{{ path('bono_show', {'id':entity.id}) }}">
 										<img alt="Ver Promoción" title="Ver Promoción" src="{{ asset('bundles/epikaclub/images/botones.png') }}" />
 										</a>
@@ -68,7 +68,7 @@
 									{% if entity.discount == 100 %}
 									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #7e6754;"><strong>${{ entity.price }}</strong></span>
 									{% else %}
-									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #7e6754;">${{ entity.price - entity.save }}</span>
+									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #7e6754;"><strong>${{ entity.price - entity.save }}</strong></span>
 									{% endif %}
 									<!-- <span style="position: relative; top:-45px; left: 28px; font-size: 1.11em; color: #ef7f1a;">VER PROMOCIÓN</span> -->
 								</td>
