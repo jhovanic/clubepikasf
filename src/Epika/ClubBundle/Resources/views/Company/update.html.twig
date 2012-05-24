@@ -1,0 +1,36 @@
+{% extends 'EpikaClubBundle:Company:profile.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
+{% block profileContent %}
+	
+	<form action="{{ path('company_update_profile') }}" method="post" enctype="application/x-www-form-urlencoded">
+		<table style="position: relative; top:10px; left: 100px;">
+			<tr>
+				<td colspan="2"><h1>Actualiza tu Información</h1></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="email" id="email" name="email" value="{{ entity.email }}" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Teléfono:</td>
+				<td><input type="tel" id="phone" name="phone" value="{{ entity.phone }}" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Celular:</td>
+				<td><input type="tel" id="cellphone" name="cellphone" value="{{ entity.cellphone }}" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" value="Actualizar" /></td>
+			</tr>
+		</table>
+	</form>
+
+{% endblock %}

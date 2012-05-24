@@ -1,0 +1,67 @@
+{% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block contenido_title %}Editar Imagenes del Bono{% endblock %}
+{% block contenido %}
+<table style="">
+{% for entity in entities %}
+	<tr>
+		<td>
+			<img {% if entity.screenshot %} style="border: 4px solid blue;" {% else %} style="border: 4px solid #fff;" {% endif %} src="http://www.clubepika.com/web{{ entity.getWebpath }}" />
+		</td>
+		<td>
+			<table>
+				<tr>
+					<td>Nombre: </td>
+					<td> {{ entity.path }}</td>
+				</tr>
+				<tr>
+					<td>Ubicación: </td>
+					<td> {{ entity.getWebPath }}</td>
+				</tr>
+				<tr>
+					<td>Creada en: </td>
+					<td> {{ entity.createdAt.format('Y-m-d H:i:s') }}</td>
+				</tr>
+				<tr>
+					<td>Actualizada en: </td>
+					<td> {{ entity.updatedAt.format('Y-m-d H:i:s') }}</td>
+				</tr>
+				<tr>
+					<td>Screenshot: </td>
+					<td> {{ entity.screenshot? 'Si':'No' }}</td>
+				</tr>
+				<tr>
+					<td><a href="{{ path('bono_images_delete', {'id': entity.id }) }}">Eliminar</a>
+					{% if entity.screenshot is sameas(false) %} | <a href="{{ path('bono_images_screenshot', {'id': entity.id }) }}">Screenshot</a>{% endif %}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+{% endfor %}
+</table>
+<hr />
+<h1 class="recentWorksTitle">Nueva Imagen</h1>
+	<form action="{{ path('bono_images_new', {'id': bono.id}) }}" method="post" {{ form_enctype(form) }}>
+		<div>{{ form_errors(form) }}</div>
+		<table width="80%">		
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td>{{ form_label(form.path) }}</td>
+								<td>{{ form_widget(form.path) }}</td>
+								<td>{{ form_errors(form.path) }}</td>
+							</tr>
+						</table>
+					</td>
+					<td width="40%">
+						{{ form_rest(form) }}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" name="submit" value="Upload" />
+					</td>
+				</tr>
+		</table>
+	</form>
+{% endblock %}
