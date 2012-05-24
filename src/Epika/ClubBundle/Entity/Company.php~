@@ -480,4 +480,44 @@ class Company
     {
         return $this->user;
     }
+
+    /**
+     * Set geoX
+     *
+     * @param string $geoX
+     */
+    public function setGeoX($geoX)
+    {
+        $this->geoX = $geoX;
+    }
+
+    /**
+     * Get geoX
+     *
+     * @return string 
+     */
+    public function getGeoX()
+    {
+        return $this->geoX;
+    }
+
+    /**
+     * Set geoY
+     *
+     * @param string $geoY
+     */
+    public function setGeoY($geoY)
+    {
+        $this->geoY = $geoY;
+    }
+
+    /**
+     * Get geoY
+     *
+     * @return string 
+     */
+    public function getGeoY()
+    {
+        return $this->geoY;
+    }
 }

@@ -34,6 +34,12 @@ class Bono_Images
      * @ORM\Column(name="thumb", type="string", length=255)
      */
     private $thumb;
+    
+    /**
+     * @var boolean $screenshot
+     * @ORM\Column(name="screenshot", type="boolean", nullable=true)
+     */
+    private $screenshot;
 
     /**
      * @var datetime $created_at
@@ -193,4 +199,24 @@ class Bono_Images
     
     /******************************* END UPLOAD FUNCTIONS *********************************/
     
+
+    /**
+     * Set screenshot
+     *
+     * @param boolean $screenshot
+     */
+    public function setScreenshot($screenshot)
+    {
+        $this->screenshot = $screenshot;
+    }
+
+    /**
+     * Get screenshot
+     *
+     * @return boolean 
+     */
+    public function getScreenshot()
+    {
+        return $this->screenshot;
+    }
 }

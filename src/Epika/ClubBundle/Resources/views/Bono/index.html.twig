@@ -3,14 +3,18 @@
 {% block contenido %}
 <br />
 {% for entity in entities %}
-<div style="width: 708px; height:290px; border: 2px #000000 groove; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
+<div style="width: 708px; height:290px; border: none; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
 			<table border="0">
 				<tr>
 					<td width="300">
 						<div class="bonoImages" style="margin: 0; padding: 0; position: relative; top: -3px; left: -4px;">
-							<img class="image" alt="" src="http://www.clubepika.com/web{{ entity.images[0].getWebPath }}" width="300" height="253" />
+							{% for image in entity.images %}
+							{% if image.getScreenshot %}
+							<img class="image" alt="" src="http://www.clubepika.com/web{{ image.getWebPath }}" width="300" height="253" />
+							{% endif %}
+							{% endfor %}
 						</div>
-						<div class="bonoSocials" style="width: 302px; height: 37px; background: #D0CACA; text-align: center; margin:0 auto; padding-top: 10px; padding-bottom: 5px; position: relative; top: -25px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524;">
+						<div class="bonoSocials" style="width: 300px; height: 37px; background: #D0CACA; text-align: center; margin:0 auto; padding-top: 10px; padding-bottom: 5px; position: relative; top: -23px; left: -4px; border-bottom-left-radius: 6px; border-top: none;">
 							<div style="text-align:center; margin:0 auto; padding:8px 65px; width:100%;">
 								<!-- AddThis Button BEGIN -->
 								<div class="addthis_toolbox addthis_default_style" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
@@ -32,12 +36,12 @@
 						<table border="0" width="100%">
 							<tr>
 								<td height="20">
-									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -62px; left: 300px; z-index: 1000;">
+									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -51px; left: 300px; z-index: 1000;">
 										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" />
 										{% if entity.discount < 100 %}
-										<span style="position: relative; top:-61px; left: 19px; font-size: 1.8em; color: #b31504;">{{ entity.discount }}%</span>
+										<span style="position: relative; top:-63px; left: 19px; font-size: 1.8em; color: #b31504;">{{ entity.discount }}%</span>
 										{% else %}
-										<span style="position: relative; top:-61px; left: 19px; font-size: 1.8em; color: #b31504;">2x1</span>
+										<span style="position: relative; top:-63px; left: 19px; font-size: 1.8em; color: #b31504;">2x1</span>
 										{% endif %}
 									</div>
 									<!-- 
@@ -45,14 +49,14 @@
 										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="80" height="89" />
 										<span style="position: relative; top:-58px; left: 9px; font-size: 1.4em; color: #fff;">{{ entity.save }}</span>
 									</div> -->
-									<div class="bonoTitle" style="float: right; width: 300px; height: 50px; position: relative; top: -50px; left: -20px; word-wrap: break-word; font-family: 'Share', 'Bowlby One'; font-size: 28px; font-weight: 700;">	
+									<div class="bonoTitle" style="color: #523824;float: right; width: 300px; height: 50px; position: relative; top: -46px; left: -20px; word-wrap: break-word; font-family: 'Gentium Book Basic'; font-size: 28px;">	
 										<h2>{{ entity.name }}</h2>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<div class="bonoShortDescription" style="width: 300px; height: 70px; word-wrap: break-word; position: relative; top: -40px;">
+									<div class="bonoShortDescription" style="font-family: 'PT Serif'; font-size: 16px; color: #523824; width: 300px; height: 70px; word-wrap: break-word; position: relative; top: -40px;">
 										{{ entity.description }}
 									</div>
 								</td>
@@ -66,11 +70,19 @@
 										</a>
 									</div>
 									{% if entity.discount == 100 %}
-									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #7e6754;"><strong>${{ entity.price }}</strong></span>
+									<span style="position: relative; top:-41px; left: -75px; font-family: 'Gentium Book Basic'; font-size: 1.8em; color: #7e6754;"><strong>${{ entity.price|number_format }}</strong></span>
 									{% else %}
-									<span style="position: relative; top:-41px; left: -75px; font-size: 1.8em; color: #7e6754;"><strong>${{ entity.price - entity.save }}</strong></span>
+									<span style="position: relative; top:-41px; left: -75px; font-family: 'Gentium Book Basic'; font-size: 1.8em; color: #7e6754;"><strong>${{ (entity.price-entity.save)|number_format }}</strong></span>
 									{% endif %}
-									<!-- <span style="position: relative; top:-45px; left: 28px; font-size: 1.11em; color: #ef7f1a;">VER PROMOCIÓN</span> -->
+									<!-- <span style="position: relative; top:-42px; left: 33px; font-family: 'Gentium Book Basic'; font-size: 1.41em; color: #7e6754;"><strong>Ver Promoción</strong></span>-->
+									<div id="qImage" style="width:20px; height:20px; position: relative; top: -49px; right:-157px;">
+									{% if entity.quantity > 0 %}
+									<img alt="" src="{{ asset('bundles/epikaclub/images/bonoilimitado3.png') }}" />
+									<span style="color: #fff; position:relative; top:-56px; left:41px;">{{ entity.quantity }}</span>
+									{% else %}
+									<img alt="" src="{{ asset('bundles/epikaclub/images/bonoprueba.png') }}" />
+									{% endif %}
+									</div>
 								</td>
 							</tr>
 						</table>

@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
         $entities = $em->getRepository('EpikaClubBundle:Category')->findAll();
 
-        return array('entities' => $entities);
+        return array('categories' => $entities);
     }
 
     /**

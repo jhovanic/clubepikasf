@@ -8,7 +8,7 @@ security:
 
     role_hierarchy:
         ROLE_ADMIN:       [ROLE_USER, ROLE_COMPANY]
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
         chain:
@@ -49,11 +49,18 @@ security:
         - { path: ^/comercios/activar, roles: ROLE_COMPANY }
         - { path: ^/comercios/validar, roles: ROLE_COMPANY }
         - { path: ^/comercios/perfil, roles: ROLE_COMPANY }
-        - { path: ^/comercios, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/comercios/nuevo, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/comercios/editar, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/comercios, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/bonos/nuevo, roles: ROLE_SUPER_ADMIN }
         - { path: ^/bonos/editar, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/bonos/eliminar, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/bonos/admin, roles: ROLE_SUPER_ADMIN }
         - { path: ^/bonos, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/categorias, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/categorias/nueva, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/categorias/editar, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/categorias/eliminar, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/categorias, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/city, roles: ROLE_SUPER_ADMIN }
         - { path: ^/departamentos, roles: ROLE_SUPER_ADMIN }
         - { path: ^/membresias, roles: ROLE_SUPER_ADMIN }

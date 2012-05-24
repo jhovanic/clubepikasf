@@ -29,8 +29,27 @@ class CompanyController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $entities = $em->getRepository('EpikaClubBundle:Company')->findAll();
+        
+        $size = ceil(sizeof($entities)/4);
+        
+        $companies = array();
+        
+        $k = 0;
+        	
+	    for ($i = 0; $i < $size; $i++) {
+	     	for ($j = 0; $j < 4; $j++ ) {
+	      		if ($k < sizeof($entities)) {
+		      		$companies[$i][$j] = $entities[$k];
+		       		$k++;
+	       		} else break;
+	       	}
+	    }    
 
-        return array('entities' => $entities);
+
+        return array(
+        		'entities' => $companies,
+        		'size' => $size
+        		);
     }
 
     /**
@@ -275,11 +294,18 @@ class CompanyController extends Controller
     	
     	if($request->getMethod() === 'POST') {
 	    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliate')->findOneBy(array('identification' => $request->request->get('identification')));
+	    	if (!$afiliate) {
+	    		$card = $em->getRepository('EpikaClubBundle:Card')->findOneBy(array('number' => $request->request->get('identification')));
+	    		if (!$card)
+	    			throw $this->createNotFoundException('Ooops el Afiliado no existe.');
+	    		$afiliate = $em->getRepository('EpikaClubBundle:Afiliate')->findOneBy(array('card' => $card->getId()));
+	    	}
+	    	$now = new \DateTime('now');
 	    	foreach ($afiliate->getBonos() as $bono)
 	    	{
-	    		if(($bono->getBono()->getCompany()->getId() == $company->getId()) && ($bono->getIsActive() === true))
+	    		if(($bono->getBono()->getCompany()->getId() == $company->getId()) && ($bono->getBono()->getUnpublishDate()->getTimestamp() > $now->getTimestamp()))
 	    		{
-	    			$bonos[] = $bono->getBono();
+	    			$bonos[] = $bono;
 	    		}
 	    	}
 	    	return array(
@@ -348,6 +374,80 @@ class CompanyController extends Controller
     		throw new AccessDeniedException();
     	$em = $this->getDoctrine()->getEntityManager();
     	$company = $em->getRepository('EpikaClubBundle:Company')->findOneBy(array('user' => $this->get('security.context')->getToken()->getUser()->getId()));
+    	return array(
+    			'entity' => $company
+    	);
+    }
+    
+    
+    /**
+     * Updates the info of a Company by its administrator
+     * @Route("/perfil/actualizar", name="company_update_profile")
+     * @Template("EpikaClubBundle:Company:update.html.twig")
+     */
+    public function updateProfileAction()
+    {
+    	if(false === $this->get('security.context')->isGranted('ROLE_COMPANY'))
+    		throw new AccessDeniedException();
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$company = $em->getRepository('EpikaClubBundle:Company')->findOneBy(array('user' => $this->get('security.context')->getToken()->getUser()->getId()));
+    	
+    	$request = $this->getRequest();
+    	
+    	if ($request->getMethod() == 'POST') {
+    		
+    		$company->setEmail($request->request->get('email'));
+    		$company->setPhone($request->request->get('phone'));
+    		$company->setCellphone($request->request->get('cellphone'));
+    		$company->setUpdatedAt(new \DateTime('now'));
+    		
+    		$em->persist($company);
+    		$em->flush();
+    		
+    		return $this->redirect($this->generateUrl('company_profile'));
+    		
+    	}
+    	
+    	return array(
+    			'entity' => $company
+    	);
+    }
+    
+    /**
+     * Updates the password of a Company by its administrator
+     * @Route("/perfil/contraseña", name="company_password")
+     * @Template("EpikaClubBundle:Company:password.html.twig")
+     */
+    public function updatePasswordAction()
+    {
+    	if(false === $this->get('security.context')->isGranted('ROLE_COMPANY'))
+    		throw new AccessDeniedException();
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$company = $em->getRepository('EpikaClubBundle:Company')->findOneBy(array('user' => $this->get('security.context')->getToken()->getUser()->getId()));
+    	 
+    	$request = $this->getRequest();
+    	 
+    	if ($request->getMethod() == 'POST') {
+    
+    		if(strcmp($request->request->get('password'), $request->request->get('repassword')) == 0) {
+    			$factory = $this->get('security.encoder_factory');
+    			$encoder = $factory->getEncoder($company->getUser());
+    			$company->getUser()->setPassword($encoder->encodePassword($request->request->get('password'), $company->getUser()->getSalt()));
+    			$company->setUpdatedAt(new \DateTime('now'));
+    
+    			$em->persist($company);
+    			$em->flush();
+    		} else {
+    			return array(
+    					'entity' => $company,
+    					'error' => 'Las Contraseñas no coinciden'
+    					);
+    		}
+    
+    		return $this->redirect($this->generateUrl('logout'));
+    
+    	}
+    	 
     	return array(
     			'entity' => $company
     	);

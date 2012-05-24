@@ -1,4 +1,5 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
+{% form_theme form 'EpikaClubBundle:Form:fields.html.twig' %}
 {% block contenido_title %}Nuevo Bono{% endblock %}
 {% block contenido %}
 
@@ -71,26 +72,33 @@
     <br />
     <h1 class="divRecentWorksTitle">Imagenes</h1>
     <hr>
-    <table>
+    <table width="80%">
     	<tr>
-    		<td>{{ form_label(form.image1) }}<span class="field_required">*</span></td>
-    		<td>{{ form_widget(form.image1) }}</td>
-    		<td>{{ form_errors(form.image1) }}</td>
-    	</tr>
-    	<tr>
-    		<td>{{ form_label(form.image2) }}</td>
-    		<td>{{ form_widget(form.image2) }}</td>
-    		<td>{{ form_errors(form.image2) }}</td>
-    	</tr>
-    	<tr>
-    		<td>{{ form_label(form.image3) }}</td>
-    		<td>{{ form_widget(form.image3) }}</td>
-    		<td>{{ form_errors(form.image3) }}</td>
-    	</tr>
-    	<tr>
-    		<td>{{ form_label(form.image4) }}</td>
-    		<td>{{ form_widget(form.image4) }}</td>
-    		<td>{{ form_errors(form.image4) }}</td>
+    		<td>
+    			<table>
+			    	<tr>
+			    		<td>{{ form_label(form.image1) }}<span class="field_required">*</span></td>
+			    		<td>{{ form_widget(form.image1) }}</td>
+			    		<td>{{ form_errors(form.image1) }}</td>
+			    	</tr>
+			    	<tr>
+			    		<td>{{ form_label(form.image2) }}</td>
+			    		<td>{{ form_widget(form.image2) }}</td>
+			    		<td>{{ form_errors(form.image2) }}</td>
+			    	</tr>
+			    	<tr>
+			    		<td>{{ form_label(form.image3) }}</td>
+			    		<td>{{ form_widget(form.image3) }}</td>
+			    		<td>{{ form_errors(form.image3) }}</td>
+			    	</tr>
+			    	<tr>
+			    		<td>{{ form_label(form.image4) }}</td>
+			    		<td>{{ form_widget(form.image4) }}</td>
+			    		<td>{{ form_errors(form.image4) }}</td>
+			    	</tr>
+			    </table>
+	    	</td>
+	    	<td width="40%">{{ form_label(form.screenshot) }}<span class="field_required">*</span> {{ form_widget(form.screenshot) }} {{ form_errors(form.screenshot) }}</td>
     	</tr>
     </table>
     {{ form_rest(form) }}

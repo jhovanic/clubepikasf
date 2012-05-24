@@ -81,6 +81,17 @@ class BonoType extends AbstractType
             ->add('image4', 'file', array('label' => 'Imagen',
             		'property_path' => false,
             		'required' => false))
+            ->add('screenshot', 'choice', array('label' => 'Screenshot',
+            		'property_path' => false,
+            		'choices' => array(
+            				'1' => 'Imagen 1',
+            				'2' => 'Imagen 2',
+            				'3' => 'Imagen 3',
+            				'4' => 'Imagen 4'),
+            		'data' => '1',
+            		'expanded' => true,
+            		'multiple' => false,
+            		'required' => true))
         ;
     }
 

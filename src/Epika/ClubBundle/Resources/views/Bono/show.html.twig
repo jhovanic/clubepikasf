@@ -19,7 +19,7 @@
 {% block contenido_title %}{% endblock %}
 {% block contenido %}
 <div id="showContainer">
-<div style="width: 708px; height:290px; border: 2px #000000 groove; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
+<div style="width: 708px; height:290px; border: none; border-radius: 6px; padding: 0; margin-left: 1em; margin-top: 2em; box-shadow: 8px 8px 4px #888888; -webkit-box-shadow: 8px 8px 4px #888888; ">
 			<table border="0">
 				<tr>
 					<td width="301">
@@ -28,7 +28,9 @@
 							<!-- BEGIN #imageList -->							
 				            <div id="slider" class="nivoSlider">
 				               	{% for image in entity.images %}
-				               	<img class="image" alt="{{ entity.description }}" title="" src="http://www.clubepika.com/web{{ image.getWebPath }}" width="300" height="253" />
+				               		
+				               			<img class="image" alt="{{ entity.description }}" title="" src="http://www.clubepika.com/web{{ image.getWebPath }}" width="300" height="253" />
+				               		
 				               	{% endfor %}
 							</div>
 							<!-- END #imageList -->
@@ -49,17 +51,17 @@
 							</script>
 							
 						</div>
-						<div class="bonoSocials" style="width: 302px; height: 37px; background: #D0CACA; text-align: center; margin:0 auto; padding-top: 10px; padding-bottom: 5px; position: relative; top: -33px; left: -4px; border-bottom-left-radius: 6px; border-top: 2px groove #242524; z-index:1000;">
-							<div style="text-align:center; margin:0 auto; padding:8px 11px; width:100%;">
+						<div class="bonoSocials" style="width: 300px; height: 37px; background: #D0CACA; text-align: center; margin:0 auto; padding-top: 10px; padding-bottom: 5px; position: relative; top: -31px; left: -5px; border-bottom-left-radius: 6px; border-top: none; z-index:1000;">
+							<div style="text-align:center; margin:0 auto; padding:8px 15px; width:100%;">
 								<!-- AddThis Button BEGIN -->
-								<div class="addthis_toolbox addthis_default_style" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
+								<div id="addthis" class="addthis_toolbox addthis_default_style" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
 								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}" addthis:screenshot="http://www.clubepika.com/web{{ entity.images[0].getWebPath }}" 
 								addthis:templates=""
 								addthis:width="300" addthis:height="253">
 								<a class="addthis_button_facebook_like" 
 								fb:like:layout="button_count" 
 								addthis:url="http://www.clubepika.com{{ path('bono_show',{'id':entity.id}) }}"></a>
-								<a class="addthis_button_tweet"></a>
+								<a class="addthis_button_tweet" tw:size="medium"></a>
 								<a class="addthis_button_google_plusone" g:plusone:annotation="bubble" g:plusone:size="medium"></a>
 								<!-- <a class="addthis_button_compact" addthis:url="http://www.clubepika.com{{ path("bono_show",{'id':entity.id}) }}" 
 								addthis:title="{{ entity.name }}" addthis:description="{{ entity.description }}"></a> -->
@@ -72,40 +74,60 @@
 						<table border="0" width="100%">
 							<tr>
 								<td height="20">
-									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -66px; left: 300px; z-index: 1000;">
+									<div class="bonoDiscountImage" style="float: left; width: 20px !important; height: 55px !important; position: relative; top: -10px; left: 300px; z-index: 1000;">
 										<img alt="descuento" title="Descuento" src="{{ asset('bundles/epikaclub/images/descuento.png') }}" />
 										{% if entity.discount < 100 %}
-										<span style="position: relative; top:-61px; left: 19px; font-size: 1.9em; color: #b31504;">{{ entity.discount }}%</span>
+										<span style="position: relative; top:-63px; left: 19px; font-size: 1.9em; color: #b31504;">{{ entity.discount }}%</span>
 										{% else %}
-										<span style="position: relative; top:-61px; left: 19px; font-size: 1.9em; color: #b31504;">2x1</span>
+										<span style="position: relative; top:-63px; left: 19px; font-size: 1.9em; color: #b31504;">2x1</span>
 										{% endif %}
 									</div>
 									<!-- <div class="bonoSaveImage" style="float: right; position: relative; top: -69px; left: -110px; width: 20px; height: 55px;">
 										<img alt="ahorra" title="Ahorra" src="{{ asset('bundles/epikaclub/images/ahorra.png') }}" width="140" height="140" />
 										<span style="position: relative; top:-86px; left: 38px; font-size: 1.7em; color: #fff;">{{ entity.save }}</span>
 									</div> -->
-									<div class="bonoTitle" style="float: right; width: 300px; height: 50px; position: relative; top: -50px; left: -20px; word-wrap: break-word;">	
+									<div class="bonoTitle" style="float: right; width: 300px; height: 50px; color: #523824; position: relative; top: -6px; left: -20px; word-wrap: break-word; font-family: 'Gentium Book Basic'; font-size: 28px;">	
 										<h2>{{ entity.name }}</h2>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<div class="bonoShortDescription" style="width: 300px; height: 70px; word-wrap: break-word; position: relative; top: -40px;">
+									<div class="bonoShortDescription" style="font-family: 'PT Serif'; font-size: 16px; color: #523824; width: 300px; height: 70px; word-wrap: break-word; position: relative; top: -10px;">
 										{{ entity.description }}
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td align="center">
-									<div class="bonoPrice" style="position: relative; top: -15px;">
-										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
+									<span style="position: relative; top: 60px; left: -75px; font-size: 16px; font-weight:bold; color: #523824;">Solo Pagas:</span>
+									<span style="position: relative; top: 20px; left: -160px; font-size: 16px; font-weight:bold; color: #523824;">Ahorra:</span>
+									<div class="bonoSave" style="position: relative; top: -10px; left: 25px;">
+										<img alt="ahorro" title="Ahorro" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
+										
 									</div>
+									<div class="bonoPrice" style="position: relative; top: -18px; left: 25px;">
+										<img alt="precio" title="Precio" src="{{ asset('bundles/epikaclub/images/botones3.png') }}" />
+										
+									</div>
+									<div style="position: relative; top:-98px; left: 18px; font-family: 'Gentium Book Basic'; font-size: 1.8em; color: #7e6754;">
+										<span>${{ entity.save|number_format }}</span>
+									</div>
+									<div style="position: relative; top:-78px; left: 18px; font-family: 'Gentium Book Basic'; font-size: 1.8em; color: #7e6754;">
 									{% if entity.discount == 100 %}
-									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #7e6754;">${{ entity.price }}</span>
+									<span>${{ entity.price|number_format }}</span>
 									{% else %}
-									<span style="position: relative; top:-55px; left: 5px; font-size: 1.7em; color: #7e6754;">${{ entity.price - entity.save }}</span>
+									<span>${{ (entity.price - entity.save)|number_format }}</span>
 									{% endif %}
+									</div>
+									<div id="qImage" style="width:20px; height:20px; position: relative; top: -88px; right:-157px;">
+									{% if entity.quantity > 0 %}
+									<img alt="" src="{{ asset('bundles/epikaclub/images/bonoilimitado3.png') }}" />
+									<span style="color: #fff; position:relative; top:-56px; left:41px;">{{ entity.quantity }}</span>
+									{% else %}
+									<img alt="" src="{{ asset('bundles/epikaclub/images/bonoprueba.png') }}" />
+									{% endif %}
+									</div>
 								</td>
 							</tr>
 						</table>
@@ -161,8 +183,24 @@
 		</div>
 		<!-- END TABS -->
 	</div>
-</div> 
+</div>
 <!-- End Bono Description -->
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	{% if is_granted('ROLE_SUPER_ADMIN') %}
+	<div>
+	<ul style="list-style-type: none;">
+		<li style="display: inline-block;"><a href="{{ path('bono_edit', {'id': entity.id}) }}">Editar</a></li>
+		<li style="display: inline-block;"> | <a href="{{ path('bono_images', {'id': entity.id}) }}">Editar Imagenes</a></li>
+		<li style="display: inline-block;">
+		 <form action="{{ path('bono_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+             | <button type="submit">Eliminar</button>
+        </form>
+        </li>
+	</ul>
+	</div>
+	{% endif %}
+{% endif %}
 <!-- Google Maps -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> 
 <script type="text/javascript">

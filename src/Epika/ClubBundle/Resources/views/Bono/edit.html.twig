@@ -69,30 +69,35 @@
     	</tr>
     </table>
     <br />
-    <h1 class="divRecentWorksTitle">Imagenes</h1>
-    <hr>
-    <table>
-    	<tr>
-    		<td>{{ form_label(edit_form.image1) }}</td>
-    		<td>{{ form_widget(edit_form.image1, { 'class': ''}) }}</td>
-    		<td>{{ form_errors(edit_form.image1) }}</td>
+    <!-- <table width="80%">
+    	 <tr>
+    		<td>
+    			<table>
+			    	<tr>
+			    		<td>{{ form_label(edit_form.image1) }}<span class="field_required">*</span></td>
+			    		<td>{{ form_widget(edit_form.image1) }}</td>
+			    		<td>{{ form_errors(edit_form.image1) }}</td>
+			    	</tr>
+			    	<tr>
+			    		<td>{{ form_label(edit_form.image2) }}</td>
+			    		<td>{{ form_widget(edit_form.image2) }}</td>
+			    		<td>{{ form_errors(edit_form.image2) }}</td>
+			    	</tr>
+			    	<tr>
+			    		<td>{{ form_label(edit_form.image3) }}</td>
+			    		<td>{{ form_widget(edit_form.image3) }}</td>
+			    		<td>{{ form_errors(edit_form.image3) }}</td>
+			    	</tr>
+			    	<tr>
+			    		<td>{{ form_label(edit_form.image4) }}</td>
+			    		<td>{{ form_widget(edit_form.image4) }}</td>
+			    		<td>{{ form_errors(edit_form.image4) }}</td>
+			    	</tr>
+			    </table>
+	    	</td>
+	    	<td width="40%">{{ form_label(edit_form.screenshot) }}<span class="field_required">*</span> {{ form_widget(edit_form.screenshot) }} {{ form_errors(edit_form.screenshot) }}</td>
     	</tr>
-    	<tr>
-    		<td>{{ form_label(edit_form.image2) }}</td>
-    		<td>{{ form_widget(edit_form.image2) }}</td>
-    		<td>{{ form_errors(edit_form.image2) }}</td>
-    	</tr>
-    	<tr>
-    		<td>{{ form_label(edit_form.image3) }}</td>
-    		<td>{{ form_widget(edit_form.image3) }}</td>
-    		<td>{{ form_errors(edit_form.image3) }}</td>
-    	</tr>
-    	<tr>
-    		<td>{{ form_label(edit_form.image4) }}</td>
-    		<td>{{ form_widget(edit_form.image4) }}</td>
-    		<td>{{ form_errors(edit_form.image4) }}</td>
-    	</tr>
-    </table>
+    </table> -->
     {{ form_rest(edit_form) }}
     
     Los campos marcados con <span class="field_required">*</span> son obligatorios.

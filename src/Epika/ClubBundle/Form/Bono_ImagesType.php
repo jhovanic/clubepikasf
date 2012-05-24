@@ -11,9 +11,10 @@ class Bono_ImagesType extends AbstractType
 	{
 		$builder
 			->add('path', 'file', array('label' => 'Imagen',
-					'attr' => array(
-							'size' => 50
-							)))
+					'property_path' => false,
+					'required' => true
+					))
+			->add('screenshot', null, array('label' => 'Screenshot'))
 		;
 	}
 

@@ -9,6 +9,9 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
+swiftmailer:
+    delivery_address:  angelus985@gmail.com
+
 monolog:
     handlers:
         main:
@@ -21,3 +24,8 @@ monolog:
 
 assetic:
     use_controller: true
+
+services:
+    debug.twig.extension:
+        class: Twig_Extensions_Extension_Debug
+        tags: [{ name: 'twig.extension' }]

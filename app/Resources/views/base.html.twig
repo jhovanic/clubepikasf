@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/style.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/prettyPhoto.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/validationEngine.jquery.css') }}" type="text/css" />
-        <link href='http://fonts.googleapis.com/css?family=Bowlby+One|Share:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic|Bentham|PT+Serif' rel='stylesheet' type='text/css'>
         {% endblock %}
         {% block javascripts %}
     		<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery-1.7.1.min.js') }}"></script>
@@ -70,6 +70,10 @@
 						visible: 4
 						}
 					});
+
+					{% block categories_js %}
+						
+					{% endblock %}
 
 				});
 			</script>

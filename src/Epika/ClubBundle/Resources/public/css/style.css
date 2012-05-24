@@ -44,10 +44,10 @@ p {
 	padding-bottom:15px;
 }
 /*a {
-	color:#ea6941;
+	border: none;
 }
 a:hover {
-	color:#606060;
+	border: none;
 }*/
 h1 {
 	float:left;
@@ -353,7 +353,7 @@ blockquote p{
 	float: left;
 	width: 948px;
 	color: #FFF;
-	background: #ea6941;
+	background: #ea6941 url('../images/welcomeepika.png');
 	font-size: 16px;
 	padding-top: 5px;
 	padding-right: 37px;
@@ -365,6 +365,7 @@ blockquote p{
 }
 #divWelcome a {
 	color:#FFF;
+	border: none;
 	padding: 0px;
 	margin: 0px;
 }
@@ -372,6 +373,9 @@ blockquote p{
 	color:#FFF;
 	padding: 0px;
 	margin: 0px;
+}
+#divWelcome img {
+	border: none;
 }
 #divWelcomeBottom {
 	float: left;
@@ -781,6 +785,9 @@ blockquote p{
 	margin-left: 16px;
 	position: relative;
 	top: -50px;
+}
+#divFooter a, img {
+	border: none;
 }
 #divFooterWidgetsAndFollowUs {
 	float: left;
@@ -2445,7 +2452,7 @@ divFooterWidgets {
 	height: 253px;
 	border-top-left-radius: 6px;
 	border-bottom-left-radius: 6px;
-	border-right: 2px groove #242524;
+	/*border-right: 2px groove #242524;*/
 }
 
 #divMenuBar {
@@ -2518,6 +2525,7 @@ divFooterWidgets {
 }
 
 #divSearch a {
+	border: none;
 	position: relative;
 	top: -1px;
 }
@@ -2545,4 +2553,9 @@ divFooterWidgets {
 .topMenu ul li {
 	padding: 0;
 	margin: 0;
+}
+
+#addthis a {
+	margin: 0 !important;
+	padding: 0 !important;
 }

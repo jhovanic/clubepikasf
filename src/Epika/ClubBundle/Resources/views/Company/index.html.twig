@@ -1,49 +1,26 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block contenido_title %}Compañias{% endblock %}
+{% block contenido_title %}{% endblock %}
+{% block sidebar %}{% endblock %}
 {% block contenido %}
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Nit</th>
-            <th>Dirección</th>
-            <th>Barrio</th>
-            <th>Email</th>
-            <th>Telefono</th>
-            <th>Celular</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+<table class="records_list" style="margin:0 auto; padding:0; border-spacing: 15px;">
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td>{{ entity.name }}</td>
-            <td>{{ entity.nit }}</td>
-            <td>{{ entity.address }}</td>
-            <td>{{ entity.neighborhood }}</td>
-            <td>{{ entity.email }}</td>
-            <td>{{ entity.phone }}</td>
-            <td>{{ entity.cellphone }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('company_show', { 'id': entity.id }) }}">Ver</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('company_edit', { 'id': entity.id }) }}">Editar</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
+    	{% for company in entity %}
+    		<td>
+    			<a class="recentWorksItemsImageLink" href="{{ path('bono_company', {'id': company.id}) }}"><img src="http://www.clubepika.com/web{{ company.getWebPath }}" /></a>
+    		</td>
+    	{% endfor %}
+    	</tr>
     {% endfor %}
     </tbody>
 </table>
 
-<ul>
+<!-- <ul>
     <li>
         <a href="{{ path('company_new') }}">
             Nueva Compañia
         </a>
     </li>
-</ul>
+</ul>-->
 {% endblock %}

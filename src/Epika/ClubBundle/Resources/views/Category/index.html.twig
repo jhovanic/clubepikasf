@@ -1,42 +1,72 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
-{% block contenido_title %}Categorias{% endblock %}
+{% block contenido_title %}{% endblock %}
 {% block contenido %}
-
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Categoria</th>
-            <th>Creado</th>
-            <th>Actualizado</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td>{{ entity.name }}</td>
-            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-            <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('category_show', { 'id': entity.id }) }}">Ver</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('category_edit', { 'id': entity.id }) }}">Editar</a>
-                    </li>
+	{% for category in categories %}
+	
+			<!-- BEGIN #divRecentWorksTitle -->
+            <div id="divRecentWorksTitle">
+            	{{ category.name }}
+			<!-- END #divRecentWorksTitle -->
+        	</div>
+			
+			<!-- BEGIN #divRecentWorksNextBack -->
+          	<div id="divRecentWorksNextBack">
+          		<!-- <a id="recentWorksNextLink" class="recentWorksNextLink" href="#"></a>
+                <a id="recentWorksBackLink" class="recentWorksBackLink" href="#"></a>-->
+			<!-- END #divRecentWorksNextBack -->
+    		</div>
+			
+			<!-- BEGIN #divRecentWorksItems -->
+            <div id="divRecentWorksItems">
+            	
+				<!-- BEGIN #recentWorksList -->
+				<ul id="recentWorksList" class="recentWorksList">  
+					{% for company in category.companies %}
+					<li>
+                        <!-- BEGIN .recentWorksItem -->
+                        <div class="recentWorksItem">
+                            
+                                <!-- BEGIN .recentWorksItemsImageLink -->
+                                <a class="recentWorksItemsImageLink" href="{{ path('bono_company',{ 'id': company.id }) }}">
+                                    <img class="recentWorksItemsImage" src="http://www.clubepika.com/web{{ company.getWebPath }}"/>
+                                </a>
+                                
+                                <!-- BEGIN .recentWorksItemsTitle -->
+                                <div class="recentWorksItemsTitle">
+                                    <a href="{{ path('bono_company',{ 'id': company.id }) }}">{{ company.name }}</a>
+                                <!-- END .recentWorksItemsTitle -->
+                                </div>
+                                
+                                <!-- BEGIN .recentWorksItemsText -->
+                                <div class="recentWorksItemsText">
+                                    {{ company.address }}, {{ company.neighborhood }}
+                                <!-- END .recentWorksItemsText -->
+                                </div>
+                            
+                        <!-- END .recentWorksItem -->
+                        </div>
+					</li>
+					{% endfor %}
+					
+				<!-- END #recentWorksList -->
                 </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-
+				
+				<!-- BEGIN .clearfix -->
+                <div class="clearfix">
+				<!-- END .clearfix -->
+				</div>
+				
+			<!-- END #divRecentWorksItems -->
+            </div>
+		<div style="text-align: center;"><img style="width: 990px;" alt="" src="{{ asset('bundles/epikaclub/images/separador.png') }}" /></div>
+      {% endfor %}
+<!-- 
 <ul>
     <li>
         <a href="{{ path('category_new') }}">
             Nueva Categoria
         </a>
     </li>
-</ul>
+</ul>-->
 {% endblock %}
+{% block sidebar %}{% endblock %}
