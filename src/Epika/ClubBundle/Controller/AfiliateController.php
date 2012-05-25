@@ -233,10 +233,105 @@ class AfiliateController extends Controller
      */
     public function profileAction()
     {
-    	$info = 'SOme info';
+    	if(false === $this->get('security.context')->isGranted('ROLE_USER'))
+    		throw new AccessDeniedException();
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliate')->findOneBy(array('user' => $this->get('security.context')->getToken()->getUser()->getId()));
+    	return array(
+    			'entity' => $afiliate
+    	);
+    }
+    
+    
+    /**
+     * Updates the info of an Afiliate
+     * @Route("/perfil/actualizar", name="afiliate_update_profile")
+     * @Template("EpikaClubBundle:Afiliate:update.html.twig")
+     */
+    public function updateProfileAction()
+    {
+    	if(false === $this->get('security.context')->isGranted('ROLE_USER'))
+    		throw new AccessDeniedException();
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$afiliate = $em->getRepository('EpikaClubBundle:Afiliate')->findOneBy(array('user' => $this->get('security.context')->getToken()->getUser()->getId()));
+    	
+    	$request = $this->getRequest();
+    	
+    	if ($request->getMethod() == 'POST') {
+    		
+    		$afiliate->setEmail($request->request->get('email'));
+    		$afiliate->setPhone($request->request->get('phone'));
+    		$afiliate->setCellphone($request->request->get('cellphone'));
+    		$afiliate->setUpdatedAt(new \DateTime('now'));
+    		
+    		$em->persist($afiliate);
+    		$em->flush();
+    		
+    		return $this->redirect($this->generateUrl('afiliate_profile'));
+    		
+    	}
     	
     	return array(
-    			'info' => $info
-    			);
+    			'entity' => $afiliate
+    	);
     }
+    
+    /**
+     * Updates the password of an Afiliate
+     * @Route("/perfil/contraseña", name="afiliate_password")
+     * @Template("EpikaClubBundle:Afiliate:password.html.twig")
+     */
+    public function updatePasswordAction()
+    {
+    	if(false === $this->get('security.context')->isGranted('ROLE_USER'))
+    		throw new AccessDeniedException();
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$entity = $em->getRepository('EpikaClubBundle:Afiliate')->findOneBy(array('user' => $this->get('security.context')->getToken()->getUser()->getId()));
+    
+    	$request = $this->getRequest();
+    
+    	if ($request->getMethod() == 'POST') {
+    
+    		if(strcmp($request->request->get('password'), $request->request->get('repassword')) == 0) {
+    			$factory = $this->get('security.encoder_factory');
+    			$encoder = $factory->getEncoder($entity->getUser());
+    			$entity->getUser()->setPassword($encoder->encodePassword($request->request->get('password'), $entity->getUser()->getSalt()));
+    			$entity->setUpdatedAt(new \DateTime('now'));
+    
+    			$em->persist($entity);
+    			$em->flush();
+    		} else {
+    			return array(
+    					'entity' => $entity,
+    					'error' => 'Las Contraseñas no coinciden'
+    			);
+    		}
+    
+    		return $this->redirect($this->generateUrl('logout'));
+    
+    	}
+    
+    	return array(
+    			'entity' => $entity
+    	);
+    }
+    
+    /**
+     * List the bonos of an Afiliate
+     * @Route("/bonos", name="afiliate_bonos")
+     * @Template()
+     */
+    public function bonosAction()
+    {
+    	if(false === $this->get('security.context')->isGranted('ROLE_USER'))
+    		throw new AccessDeniedException();
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$entity = $em->getRepository('EpikaClubBundle:Afiliate')->findOneBy(array('user' => $this->get('security.context')->getToken()->getUser()->getId()));
+    	
+    	return array(
+    			'bonos' => $entity->getBonos()
+    			);
+    	
+    }
+    
 }

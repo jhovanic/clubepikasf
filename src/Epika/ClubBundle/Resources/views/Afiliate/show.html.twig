@@ -58,11 +58,17 @@
         </tr>
     </tbody>
 </table>
-
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	{% if is_granted('ROLE_SUPER_ADMIN') %}
 <ul class="record_actions">
     <li>
         <a href="{{ path('afiliado') }}">
             Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_afiliate_reset',{'id': entity.id}) }}">
+            Resetear Password
         </a>
     </li>
     <li>
@@ -77,4 +83,6 @@
         </form>
     </li>
 </ul>
+	{% endif %}
+{% endif %}
 {% endblock %}

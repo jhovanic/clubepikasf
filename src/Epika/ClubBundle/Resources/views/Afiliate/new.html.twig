@@ -73,8 +73,10 @@
     		<td>{{ form_errors(form.ocupation) }}</td>
     	</tr>
     </table>
-    <h1>Tarjeta</h1>
     <table>
+    	<tr>
+    		<th align="left"><h1>Tarjeta</h1></th>
+    	</tr>
     	<tr>
     		<td>{{ form_label(form.card.number) }}</td>
     		<td>{{ form_widget(form.card.number) }}</td>
@@ -91,8 +93,10 @@
     		<td>{{ form_errors(form.card.membership) }}</td>
     	</tr>
     </table>
-    <h1>Usuario</h1>
     <table>
+    	<tr>
+    		<th><h1>Usuario</h1></th>
+    	</tr>
     	<tr>
     		<td>{{ form_label(form.user.username) }}</td>
     		<td>{{ form_widget(form.user.username) }}</td>
@@ -113,3 +117,4 @@
     </li>
 </ul>
 {% endblock %}
+{% block sidebar %}{% endblock %}

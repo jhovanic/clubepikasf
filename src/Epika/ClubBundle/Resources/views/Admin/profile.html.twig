@@ -16,12 +16,18 @@
 <div id="divRecentWorks">
 	<div id="profileActions" class="profileActions">
 		<div id="accordion" class="accordion">
+			<h3><a href="#">Afiliados</a></h3>
+			<div class="accordionContentPane">
+				<ul>
+					<li><a href="{{ path('afiliado') }}">Lista</a></li>
+					<li><a href="{{ path('afiliado_new') }}">Nuevo</a></li>
+				</ul>
+			</div>
 			<h3><a href="#">Bonos</a></h3>
 			<div class="accordionContentPane">
 				<ul>
 					<li><a href="{{ path('bono_admin') }}">Lista</a></li>
 					<li><a href="{{ path('bono_new') }}">Nuevo</a></li>
-					<li><a href="#">Editar</a></li>
 				</ul>
 			</div>
 			<h3><a href="#">Comercios</a></h3>
@@ -29,7 +35,6 @@
 				<ul>
 					<li><a href="{{ path('company') }}">Lista</a></li>
 					<li><a href="{{ path('company_new') }}">Nuevo</a></li>
-					<li><a href="#">Editar</a></li>
 				</ul>
 			</div>
 			<h3><a href="#">Categorias</a></h3>
@@ -37,7 +42,6 @@
 				<ul>
 					<li><a href="{{ path('category') }}">Lista</a></li>
 					<li><a href="{{ path('category_new') }}">Nueva</a></li>
-					<li><a href="#">Editar</a></li>
 				</ul>
 			</div>
 			<h3><a href="#">Membresias</a></h3>
@@ -45,7 +49,6 @@
 				<ul>
 					<li><a href="{{ path('membresia') }}">Lista</a></li>
 					<li><a href="{{ path('membresia_new') }}">Nueva</a></li>
-					<li><a href="#">Editar</a></li>
 				</ul>
 			</div>
 			<h3><a href="#">Cambiar Contraseña</a></h3>

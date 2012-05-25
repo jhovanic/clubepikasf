@@ -137,7 +137,7 @@
         <!-- BEGIN #divMenuBar -->
         <div id="divMenuBar">
 				<ul>
-					<li><a href="#"><span>¿ Cómo funciona ?</span></a></li>
+					<li><a href="{{ path('default_works') }}"><span>¿ Cómo funciona ?</span></a></li>
             		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
             			{% if is_granted('ROLE_ADMIN') %}
             				<li><a href="{{ path('admin_profile') }}"><span>Admin</span></a></li>

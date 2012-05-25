@@ -36,6 +36,16 @@ class DefaultController extends Controller
     }
     
     /**
+     * How the club works
+     * @Route("/como-funciona", name="default_works")
+     * @Template("EpikaClubBundle:Default:howthisworks.html.twig")
+     */
+    public function howThisWorksAction()
+    {
+    	return array();
+    }
+    
+    /**
      * @Route("/login", name="default_login")
      * @Template()
      */

@@ -1,6 +1,72 @@
 {% extends '::base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/epikaclub/css/ui-lightness/jquery-ui-1.8.18.custom.css') }}" />
+	<style>
+		#profileActions { float: left; }
+		#profileActions ul li { list-style: none; }
+		#profileActions a { width: 200px; }
+		#profileContent { width: 550px; padding-top: 1em; padding-left: 0; position: relative; left: 250px; }
+		#profileContent table { width: 100%; position: relative; top: -140px; margin-left: 1em; }
+		#profileContent table img { position: relative; left: 100px; margin-bottom: 1em; }
+	</style>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundles/epikaclub/js/jquery-ui-1.8.18.custom.min.js') }}"></script>
+{% endblock %}
 {% block body %}
 <div id="divRecentWorks">
-	{{ info }}
+	<div id="profileActions" class="profileActions">
+		<ul>
+			<li><a href="{{ path('afiliate_profile') }}">Mi Info</a></li>
+			<li><a href="{{ path('afiliate_update_profile') }}">Actualizar Info</a></li>
+			<li><a href="{{ path('afiliate_password') }}">Cambiar Contraseña</a></li>
+			<li><a href="{{ path('afiliate_bonos') }}">Mis Bonos</a></li>
+			<li><a href="{{ path('logout') }}">Cerrar Sesión</a></li>
+		</ul>
+	</div>
+	{% block profileContent %}
+	<div id="profileContent" class="">
+		<table style="position: relative; top:-160px; left: 70px; font-family: 'Gentium Book Basic'; font-size: 18px; color: #523824;">
+			<tr>
+				<td width="10%" align="right">Cedula:</td>
+				<td>{{ entity.identification }}</td>
+			</tr>
+			<tr>
+				<td align="right">Nombre:</td>
+				<td>{{ entity.name }}</td>
+			</tr>
+			<tr>
+				<td align="right">Apellido:</td>
+				<td>{{ entity.lastname }}</td>
+			</tr>
+			<tr>
+				<td align="right">Dirección:</td>
+				<td>{{ entity.address }}</td>
+			</tr>
+			<tr>
+				<td align="right">Email:</td>
+				<td>{{ entity.email }}</td>
+			</tr>
+			<tr>
+				<td align="right">Teléfono:</td>
+				<td>{{ entity.phone }}</td>
+			</tr>
+			<tr>
+				<td align="right">Celular:</td>
+				<td>{{ entity.cellphone }}</td>
+			</tr>
+		</table>
+	</div>
+	{% endblock %}
 </div>
+<script type="text/javascript">
+$(function() {
+	$( "#profileActions a" ).button({
+		icons: {primary:'',secondary:'ui-icon-gear'},
+	});
+});
+</script>
+
 {% endblock %}

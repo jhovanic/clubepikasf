@@ -71,8 +71,10 @@
     		<td>{{ form_errors(form.city) }}</td>
     	</tr>
     </table>
-    <h1>Contacto</h1>
     <table>
+    	<tr>
+    		<th><h1>Contacto</h1></th>
+    	</tr>
     	<tr>
     		<th>{{ form_label(form.contacto.name) }}</th>
     		<td>{{ form_widget(form.contacto.name) }}</td>
@@ -99,8 +101,10 @@
     		<td>{{ form_errors(form.contacto.photo) }}</td>
     	</tr>
     </table>
-    <h1>Usuario</h1>
     <table>
+    	<tr>
+    		<th><h1>Usuario</h1></th>
+    	</tr>
     	<tr>
     		<th>{{ form_label(form.user.username) }}</th>
     		<td>{{ form_widget(form.user.username) }}</td>
@@ -121,3 +125,4 @@
     </li>
 </ul>
 {% endblock %}
+{% block sidebar %}{% endblock %}

@@ -45,6 +45,7 @@ security:
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/afiliados/perfil, roles: ROLE_USER }
+        - { path: ^/afiliados/bonos, roles: ROLE_USER }
         - { path: ^/afiliados, roles: ROLE_SUPER_ADMIN }
         - { path: ^/comercios/activar, roles: ROLE_COMPANY }
         - { path: ^/comercios/validar, roles: ROLE_COMPANY }

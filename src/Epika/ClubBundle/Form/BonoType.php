@@ -44,7 +44,9 @@ class BonoType extends AbstractType
             ->add('type','choice',array('label' => 'Tipo de Bono',
             		'choices' => array(
             				'0' => 'Ilimitado',
-            				'1' => 'Mensual'
+            				'1' => 'Mensual',
+            				'2' => 'Anual',
+            				'3' => 'Bienvenida'
             				),
             		'empty_value' => 'Seleccione el tipo'))
             ->add('quantity', 'number', array('label' => 'Cantidad x Mes',
