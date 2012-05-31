@@ -31,7 +31,7 @@ body {
 	font-family: Verdana, Tahoma, Helvetica, sans-serif;
 	font-size: 13px;
 	color: #606060;
-	background: url(../images/DiaDeLaMadre-BG.jpg) center top no-repeat #faf5f1;
+	background: url(../images/fondowebpapa.jpg) center top no-repeat #daa3a4;
 	margin: 0px;
 	padding: 0px;
 	line-height: 20px;
@@ -783,8 +783,11 @@ blockquote p{
 	width: 990px;
 	margin-right: 16px;
 	margin-left: 16px;
+	margin-bottom: 0;
+	padding: 0;
 	position: relative;
 	top: -50px;
+	/*background-color: #F4F3EF;*/
 }
 #divFooter a, img {
 	border: none;
