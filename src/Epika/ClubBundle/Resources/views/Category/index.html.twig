@@ -1,4 +1,5 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
+{% block route %} {{ parent() }} > Categorias {% endblock %}
 {% block contenido_title %}{% endblock %}
 {% block contenido %}
 	{% for category in categories %}

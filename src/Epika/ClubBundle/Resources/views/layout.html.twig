@@ -1,6 +1,9 @@
 {% extends '::base.html.twig' %}
 {% block body %}
 <div id="divRecentWorks">
+		<div style="margin-left: 15px;">
+		{% block route %}<a href="{{ path('default_index') }}"> Inicio</a>{% endblock %}
+		</div>
 		<h1 class="divRecentWorksTitle" style="padding-left: 10px;">{% block contenido_title %}{% endblock %}</h1>
 		{% block sidebar %}
 		<div id="sideContent" style="float: right; width:225px; position:relative; top: 5px; left: -12px; margin:0; padding: 0;">

@@ -1,5 +1,18 @@
 {% extends 'EpikaClubBundle::layout.html.twig' %}
 
+{% set currentPath = app.request.attributes.get('_route') %}
+{% set baseUrl = url('default_index') %}
+{% block route %} {{ parent() }} 
+
+		{% if app.request.server.get('HTTP_REFERER') == baseUrl  %} 
+			> Bonos
+		{% else %}
+			> <a href="{{ path('category') }}">Categorias</a> 
+		{% endif %} 
+		{% if currentPath == 'bono_company' %} > {{ entities[0].company.name }} {% endif %} 
+		
+{% endblock %}
+
 {% block contenido %}
 <br />
 {% for entity in entities %}

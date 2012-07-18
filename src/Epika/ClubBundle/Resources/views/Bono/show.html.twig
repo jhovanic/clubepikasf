@@ -16,6 +16,16 @@
 	<script type="text/javascript" src="{{ asset('bundles/epikaclub/tabs/vendor/jquery.hashchange.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/epikaclub/tabs/lib/jquery.easytabs.min.js') }}"></script>
 {% endblock %}
+{% set baseUrl = url('default_index') %}
+{% block route %} {{ parent() }} 
+
+	{% if app.request.server.get('HTTP_REFERER') == baseUrl ~ 'bonos/' %}
+	> <a href="{{ path('bono') }}">Bonos</a> > {{ entity.name }}
+	{% else %}
+	> <a href="{{ path('category') }}">Categorias</a> > <a href="{{ path('bono_company',{'id': entity.company.id}) }}">{{ entity.company.name }}</a> > {{ entity.name }} 
+	{% endif %}
+	
+{% endblock %}
 {% block contenido_title %}{% endblock %}
 {% block contenido %}
 <div id="showContainer">
@@ -191,6 +201,7 @@
 	<ul style="list-style-type: none;">
 		<li style="display: inline-block;"><a href="{{ path('bono_edit', {'id': entity.id}) }}">Editar</a></li>
 		<li style="display: inline-block;"> | <a href="{{ path('bono_images', {'id': entity.id}) }}">Editar Imagenes</a></li>
+		<li style="display: inline-block;"> | <a href="{{ path('company_edit', {'id': entity.company.id}) }}">Editar Comercio</a></li>
 		<li style="display: inline-block;">
 		 <form action="{{ path('bono_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
