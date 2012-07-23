@@ -31,11 +31,10 @@ body {
 	font-family: Verdana, Tahoma, Helvetica, sans-serif;
 	font-size: 13px;
 	color: #606060;
-	background: url(../images/fondowebpapa.jpg) center top no-repeat #daa3a4;
+	background: url(../images/fondowebjulio.jpg) center top no-repeat #413a39;
 	margin: 0px;
 	padding: 0px;
 	line-height: 20px;
-	height: 100%;
 }
 p {
 	float:left;

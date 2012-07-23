@@ -202,6 +202,7 @@
 		<li style="display: inline-block;"><a href="{{ path('bono_edit', {'id': entity.id}) }}">Editar</a></li>
 		<li style="display: inline-block;"> | <a href="{{ path('bono_images', {'id': entity.id}) }}">Editar Imagenes</a></li>
 		<li style="display: inline-block;"> | <a href="{{ path('company_edit', {'id': entity.company.id}) }}">Editar Comercio</a></li>
+		<li style="display: inline-block;"> | <a href="{{ path('admin_reset', {'id': entity.company.id, 'tipo': 1}) }}">Resetear Password Comercio</a></li>
 		<li style="display: inline-block;">
 		 <form action="{{ path('bono_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}

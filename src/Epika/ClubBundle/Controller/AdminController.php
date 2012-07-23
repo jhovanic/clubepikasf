@@ -29,18 +29,19 @@ class AdminController extends Controller
 	
 	/**
 	 * resets afiliate password
-	 * @Route("/afiliados/reset/{id}", name="admin_afiliate_reset")
+	 * @Route("/reset/{id}/{tipo}", name="admin_reset")
 	 * @Template()
 	 */
-	public function resetPasswordAction($id)
+	public function resetPasswordAction($id, $tipo)
 	{
 		if(false === $this->get('security.context')->isGranted('ROLE_ADMIN'))
 			throw new AccessDeniedException();
 		
 		$em = $this->getDoctrine()->getEntityManager();
-		$entity = $em->getRepository('EpikaClubBundle:Afiliate')->find($id);
 		
-		if (!$entity)
+		if($tipo == 0)
+			$entity = $em->getRepository('EpikaClubBundle:Afiliate')->find($id);
+		else
 			$entity = $em->getRepository('EpikaClubBundle:Company')->find($id);
 		
 		if(!$entity)
@@ -66,6 +67,5 @@ class AdminController extends Controller
 		return $this->redirect($this->generateUrl('admin_profile'));
 		
 	}
-	
 	
 }
