@@ -1,7 +1,7 @@
-/app/bootstrap*
 /app/cache/*
 /app/logs/*
-/vendor/
 /app/config/parameters.ini
-/web/images/*
-/web/bundles/*
+
+.settings
+.buildpath
+.project
